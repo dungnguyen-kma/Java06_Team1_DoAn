@@ -5,6 +5,7 @@
 package com.actvn.java06;
 
 import java.time.LocalDateTime;
+import java.util.Random;
 
 /**
  *
@@ -39,9 +40,10 @@ public class Ticket {
         this.registereDate = registereDate;
     }
 
-    public String ramdomTicketID() {
-
-        return "";
+    public int ramdomTicketID() {
+        Random random =new Random();
+        int randomint = random.nextInt(999);
+        return randomint;
     }
 
 }

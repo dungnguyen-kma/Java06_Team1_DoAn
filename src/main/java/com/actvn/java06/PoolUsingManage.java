@@ -5,7 +5,6 @@
 package com.actvn.java06;
 
 import java.time.LocalDateTime;
-import java.util.Random;
 
 /**
  *
@@ -17,12 +16,12 @@ public class PoolUsingManage {
     public LocalDateTime startTime;
     public void showProcess(){
         DailyTicket dailyticket = new DailyTicket();
-        
-        
-    }
-    public String randomTicketID(){
-        Random random = new Random();
-        return null;
-        
+        timeSlotID = dailyticket.getTimeSlotID();
+        TimeSlotManage timeslotmanage = new TimeSlotManage();
+        ticketID = timeslotmanage.getTicketID();
+        startTime = timeslotmanage.getStartTime();
+        System.out.println("Ma Ve:"+ticketID);
+        System.out.println("Khung Gio:"+timeSlotID);
+        System.out.println("Gio Bat Dau:"+startTime);
     }
 }

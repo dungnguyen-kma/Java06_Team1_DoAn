@@ -12,6 +12,9 @@ import java.time.LocalDateTime;
  */
 public class TimeSlotManage extends DailyTicket {
 
+    public TimeSlotManage() {
+    }
+
     public TimeSlotManage(String timeSlotID, String ticketID, LocalDateTime registereDate) {
         super(timeSlotID, ticketID, registereDate);
     }

@@ -13,6 +13,10 @@ import java.time.LocalDateTime;
  */
 public class MonthlyTicket extends Ticket {
 
+    public MonthlyTicket() {
+    }
+    
+
     public MonthlyTicket(String ticketID, LocalDateTime registereDate) {
         super(ticketID, registereDate);
     }
