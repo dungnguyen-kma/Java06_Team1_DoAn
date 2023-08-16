@@ -4,24 +4,23 @@
  */
 package com.actvn.java06;
 
-import java.time.LocalDateTime;
-import java.util.Random;
-
 /**
  *
  * @author PC- FPTSHOP
  */
-public class Ticket {
+public abstract class Ticket {
 
-    public String ticketID;
-    public LocalDateTime registereDate;
+    private String ticketID;
+    private int age;
+    private String isTicketVip;
 
     public Ticket() {
     }
 
-    public Ticket(String ticketID, LocalDateTime registereDate) {
+    public Ticket(String ticketID, int age, String isTicketVip) {
         this.ticketID = ticketID;
-        this.registereDate = registereDate;
+        this.age = age;
+        this.isTicketVip = isTicketVip;
     }
 
     public String getTicketID() {
@@ -32,18 +31,21 @@ public class Ticket {
         this.ticketID = ticketID;
     }
 
-    public LocalDateTime getRegistereDate() {
-        return registereDate;
+    public int getAge() {
+        return age;
     }
 
-    public void setRegistereDate(LocalDateTime registereDate) {
-        this.registereDate = registereDate;
+    public void setAge(int age) {
+        this.age = age;
     }
 
-    public int ramdomTicketID() {
-        Random random =new Random();
-        int randomint = random.nextInt(999);
-        return randomint;
+    public String getIsTicketVip() {
+        return isTicketVip;
     }
 
+    public void setIsTicketVip(String isTicketVip) {
+        this.isTicketVip = isTicketVip;
+    }
+
+    public abstract String creatTicketID();
 }
