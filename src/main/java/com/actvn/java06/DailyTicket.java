@@ -1,15 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.actvn.java06;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Objects;
 
-/**
- *
- * @author PC- FPTSHOP
- */
 public class DailyTicket extends Ticket {
 
     private String timeSlotID;
@@ -30,6 +24,10 @@ public class DailyTicket extends Ticket {
         this.timeSlotID = timeSlotID;
         this.startTime = startTime;
         this.dailyPrice = dailyPrice;
+    }
+
+    public DailyTicket(String ticketID, int age, String isTicketVip) {
+        super(ticketID, age, isTicketVip);
     }
 
     public String getTimeSlotID() {
@@ -57,17 +55,61 @@ public class DailyTicket extends Ticket {
     }
 
     @Override
+    public String toString() {
+        return "DailyTicket{" + "timeSlotID=" + timeSlotID + ", startTime=" + startTime + ", dailyPrice=" + dailyPrice + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + Objects.hashCode(this.timeSlotID);
+        hash = 83 * hash + Objects.hashCode(this.startTime);
+        hash = 83 * hash + (int) (Double.doubleToLongBits(this.dailyPrice) ^ (Double.doubleToLongBits(this.dailyPrice) >>> 32));
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final DailyTicket other = (DailyTicket) obj;
+        if (Double.doubleToLongBits(this.dailyPrice) != Double.doubleToLongBits(other.dailyPrice)) {
+            return false;
+        }
+        if (!Objects.equals(this.timeSlotID, other.timeSlotID)) {
+            return false;
+        }
+        return Objects.equals(this.startTime, other.startTime);
+    }
+
+    @Override
     public String creatTicketID() {
+        //chưa làm xong
         LocalTime startDay = LocalTime.MIDNIGHT;
         super.setTicketID("DAY-001");
+        String subString = getTicketID().substring(4, 7);
+        int number = Integer.parseInt(subString);
+        System.out.println(number);
+        number += 1;
+        super.setTicketID(String.format("DAY-" + "%03d", number));
         int quatity = startDay.getHour();
         if (quatity == 23) {
             super.setTicketID("DAY-001");
         }
+        /*int quatity = 3;
+        int[] array = new int[quatity];
+        for(int )*/
         return null;
     }
 
-    /*public String checkTimeSlotID() {
+    public String checkTimeSlotID() {
         LocalTime now = LocalTime.now();
         int partOfTheDay = now.getHour();
         if (partOfTheDay >= 7 && partOfTheDay <= 11) {
@@ -81,7 +123,7 @@ public class DailyTicket extends Ticket {
         }
     }
 
-    public String checkIsTicketVip() {
+    /*public  String checkIsTicketVip() {
         if (super.getIsTicketVip().equals("N")) {
             return "NORMAL";
         } else if (super.getIsTicketVip().equals("Y")) {
@@ -89,23 +131,20 @@ public class DailyTicket extends Ticket {
         } else {
             return null;
         }
-    }
-
+    }*/
     public LocalDate checkStartTime() {
-        LocalDate date = LocalDate.now();
-        startTime = date;
-        return startTime;
+        this.setStartTime(LocalDate.now());
+        return this.getStartTime();
     }
 
     public double caculatorDailyPrice() {
-        dailyPrice = 40000;
+        setDailyPrice(40000);
         if (getIsTicketVip().equals("Y")) {
-            dailyPrice += 20000;
+            this.dailyPrice += 20000;
         }
         if (getAge() >= 3 && getAge() <= 12) {
-            dailyPrice -= 15000;
+            this.dailyPrice -= 15000;
         }
-        return dailyPrice;
-    }*/
-
+        return getDailyPrice();
+    }
 }
