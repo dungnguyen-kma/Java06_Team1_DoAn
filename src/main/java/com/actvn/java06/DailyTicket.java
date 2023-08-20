@@ -56,7 +56,7 @@ public class DailyTicket extends Ticket {
 
     @Override
     public String toString() {
-        return "DailyTicket{" + "timeSlotID=" + timeSlotID + ", startTime=" + startTime + ", dailyPrice=" + dailyPrice + '}';
+        return "DailyTicket{" + "timeSlotID= " + timeSlotID + ", startTime= " + startTime + ", dailyPrice= " + dailyPrice + ", ticketID= " + super.getTicketID() + ", age= " + super.getAge() + ", VIP or Nomal= " + checkIsTicketVip() + '}';
     }
 
     @Override
@@ -123,15 +123,15 @@ public class DailyTicket extends Ticket {
         }
     }
 
-    /*public  String checkIsTicketVip() {
-        if (super.getIsTicketVip().equals("N")) {
+    public  String checkIsTicketVip() {
+        if (super.getIsTicketVip().toUpperCase().equals("N")) {
             return "NORMAL";
-        } else if (super.getIsTicketVip().equals("Y")) {
+        } else if (super.getIsTicketVip().toUpperCase().equals("V")) {
             return "VIP";
         } else {
             return null;
         }
-    }*/
+    }
     public LocalDate checkStartTime() {
         this.setStartTime(LocalDate.now());
         return this.getStartTime();
@@ -139,7 +139,7 @@ public class DailyTicket extends Ticket {
 
     public double caculatorDailyPrice() {
         setDailyPrice(40000);
-        if (getIsTicketVip().equals("Y")) {
+        if (getIsTicketVip().toUpperCase().equals("V")) {
             this.dailyPrice += 20000;
         }
         if (getAge() >= 3 && getAge() <= 12) {
