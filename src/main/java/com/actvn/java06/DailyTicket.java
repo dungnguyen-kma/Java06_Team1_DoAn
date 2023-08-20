@@ -1,33 +1,37 @@
 package com.actvn.java06;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class DailyTicket extends Ticket {
 
     private String timeSlotID;
-    private LocalDate startTime;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
     private double dailyPrice;
 
     public DailyTicket() {
     }
 
-    public DailyTicket(String timeSlotID, LocalDate startTime, double dailyPrice) {
-        this.timeSlotID = timeSlotID;
-        this.startTime = startTime;
-        this.dailyPrice = dailyPrice;
-    }
-
-    public DailyTicket(String timeSlotID, LocalDate startTime, double dailyPrice, String ticketID, int age, String isTicketVip) {
-        super(ticketID, age, isTicketVip);
-        this.timeSlotID = timeSlotID;
-        this.startTime = startTime;
-        this.dailyPrice = dailyPrice;
-    }
-
     public DailyTicket(String ticketID, int age, String isTicketVip) {
         super(ticketID, age, isTicketVip);
+    }
+
+    public DailyTicket(String timeSlotID, LocalDateTime startTime, LocalDateTime endTime, double dailyPrice, String ticketID, int age, String isTicketVip) {
+        super(ticketID, age, isTicketVip);
+        this.timeSlotID = timeSlotID;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.dailyPrice = dailyPrice;
+    }
+
+    public DailyTicket(String timeSlotID, LocalDateTime startTime, LocalDateTime endTime, double dailyPrice) {
+        this.timeSlotID = timeSlotID;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.dailyPrice = dailyPrice;
     }
 
     public String getTimeSlotID() {
@@ -38,11 +42,11 @@ public class DailyTicket extends Ticket {
         this.timeSlotID = timeSlotID;
     }
 
-    public LocalDate getStartTime() {
+    public LocalDateTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalDate startTime) {
+    public void setStartTime(LocalDateTime startTime) {
         this.startTime = startTime;
     }
 
@@ -52,6 +56,14 @@ public class DailyTicket extends Ticket {
 
     public void setDailyPrice(double dailyPrice) {
         this.dailyPrice = dailyPrice;
+    }
+
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
     }
 
     @Override
@@ -116,25 +128,47 @@ public class DailyTicket extends Ticket {
             return "SANG";
         } else if (partOfTheDay >= 13 && partOfTheDay <= 17) {
             return "CHIEU";
-        } else if (partOfTheDay >= 18 && partOfTheDay <= 21) {
-            return "TOI";
         } else {
-            return null;
+            return "TOI";
         }
     }
 
-    public  String checkIsTicketVip() {
+    public String checkIsTicketVip() {
         if (super.getIsTicketVip().toUpperCase().equals("N")) {
             return "NORMAL";
-        } else if (super.getIsTicketVip().toUpperCase().equals("V")) {
-            return "VIP";
         } else {
-            return null;
+            return "VIP";
         }
     }
-    public LocalDate checkStartTime() {
-        this.setStartTime(LocalDate.now());
-        return this.getStartTime();
+
+    public LocalDateTime checkStartTime() {
+        this.setStartTime(LocalDateTime.now());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
+        String str = this.getStartTime().format(formatter);
+        LocalDateTime date = LocalDateTime.parse(str);
+        return date;
+    }
+
+    public LocalDateTime checkEndTime() {
+        if (checkTimeSlotID().equals("SANG")) {
+            this.setEndTime(LocalDateTime.now().withHour(10).withMinute(00).withMinute(00));
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
+            String str = this.getStartTime().format(formatter);
+            LocalDateTime date = LocalDateTime.parse(str);
+            return date;
+        } else if (checkTimeSlotID().equals("CHIEU")) {
+            this.setEndTime(LocalDateTime.now().withHour(17).withMinute(30).withMinute(00));
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
+            String str = this.getStartTime().format(formatter);
+            LocalDateTime date = LocalDateTime.parse(str);
+            return date;
+        } else {
+            this.setEndTime(LocalDateTime.now().withHour(22).withMinute(00).withMinute(00));
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
+            String str = this.getStartTime().format(formatter);
+            LocalDateTime date = LocalDateTime.parse(str);
+            return date;
+        }
     }
 
     public double caculatorDailyPrice() {
@@ -142,9 +176,10 @@ public class DailyTicket extends Ticket {
         if (getIsTicketVip().toUpperCase().equals("V")) {
             this.dailyPrice += 20000;
         }
-        if (getAge() >= 3 && getAge() <= 12) {
+        if (super.getAge() >= 3 && super.getAge() <= 12) {
             this.dailyPrice -= 15000;
         }
         return getDailyPrice();
     }
+
 }

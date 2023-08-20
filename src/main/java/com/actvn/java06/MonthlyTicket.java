@@ -2,6 +2,7 @@ package com.actvn.java06;
 
 //import java.net.URL;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class MonthlyTicket extends Ticket {
@@ -33,6 +34,12 @@ public class MonthlyTicket extends Ticket {
         this.expiedDate = expiedDate;
         this.monthlyPrice = monthlyPrice;
         this.customerAvatar = customerAvatar;
+    }
+
+    public MonthlyTicket(String customerName, String customerAddress, String ticketID, int age, String isTicketVip) {
+        super(ticketID, age, isTicketVip);
+        this.customerName = customerName;
+        this.customerAddress = customerAddress;
     }
 
     public String getCustomerName() {
@@ -85,7 +92,7 @@ public class MonthlyTicket extends Ticket {
 
     @Override
     public String toString() {
-        return "MonthlyTicket{" + "customerName=" + customerName + ", customerAddress=" + customerAddress + ", registereDate=" + registereDate + ", expiedDate=" + expiedDate + ", monthlyPrice=" + monthlyPrice + ", customerAvatar=" + customerAvatar + '}';
+        return "MonthlyTicket{" + "customerName=" + customerName + ", customerAddress=" + customerAddress + ", registereDate=" + registereDate + ", expiedDate=" + expiedDate + ", monthlyPrice=" + monthlyPrice + ", customerAvatar=" + customerAvatar + ", ticketID= " + super.getTicketID() + ", age= " + super.getAge() + ", VIP or Nomal= " + checkIsTicketVip() + '}';
     }
 
     @Override
@@ -132,21 +139,55 @@ public class MonthlyTicket extends Ticket {
 
     @Override
     public String creatTicketID() {
+        //chưa làm xong
         return null;
     }
 
-    /*public String checkIsTicketVip() {
-        if (super.getIsTicketVip().equals("N")) {
+    public String checkIsTicketVip() {
+        if (super.getIsTicketVip().toUpperCase().equals("N")) {
             return "NORMAL";
-        } else if (super.getIsTicketVip().equals("Y")) {
-            return "VIP";
         } else {
-            return null;
+            return "VIP";
         }
-    }*/
-    public double caculatorMonthlyPrice() {
-        setMonthlyPrice(300000);
-        return getMonthlyPrice();
     }
 
+    public LocalDate checkRegistereDate() {
+        this.setRegistereDate(LocalDate.now());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String str = this.getRegistereDate().format(formatter);
+        LocalDate date = LocalDate.parse(str);
+        return date;
+    }
+
+    public LocalDate checkExpiedDate() {
+        if (this.checkIsTicketVip().equals("V")) {
+            this.setExpiedDate(this.getRegistereDate().plusMonths(2));
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            String str = this.getExpiedDate().format(formatter);
+            LocalDate date = LocalDate.parse(str);
+            return date;
+        } else {
+            this.setExpiedDate(this.getRegistereDate().plusMonths(1));
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            String str = this.getExpiedDate().format(formatter);
+            LocalDate date = LocalDate.parse(str);
+            return date;
+        }
+    }
+
+    public double caculatorDailyPrice() {
+        setMonthlyPrice(300000);
+        if (getIsTicketVip().toUpperCase().equals("V")) {
+            this.monthlyPrice += 150000;
+        }
+        if (super.getAge() >= 3 && super.getAge() <= 12) {
+            this.monthlyPrice -= 100000;
+        }
+        return this.monthlyPrice;
+    }
+
+    public String checkCustomerAvata() {
+        //đọc file và trả về URL
+        return "path";
+    }
 }
