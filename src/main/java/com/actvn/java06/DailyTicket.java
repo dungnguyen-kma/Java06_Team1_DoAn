@@ -102,23 +102,15 @@ public class DailyTicket extends Ticket {
     }
 
     @Override
-    public String creatTicketID() {
-        //chưa làm xong
+    public String creatTicketID(int index) {
         LocalTime startDay = LocalTime.MIDNIGHT;
-        super.setTicketID("DAY-001");
-        String subString = getTicketID().substring(4, 7);
-        int number = Integer.parseInt(subString);
-        System.out.println(number);
-        number += 1;
-        super.setTicketID(String.format("DAY-" + "%03d", number));
         int quatity = startDay.getHour();
         if (quatity == 23) {
-            super.setTicketID("DAY-001");
+            index = 1;
         }
-        /*int quatity = 3;
-        int[] array = new int[quatity];
-        for(int )*/
-        return null;
+        index += 1;
+        super.setTicketID(String.format("DAY-" + "%03d", index));
+        return super.getTicketID();
     }
 
     public String checkTimeSlotID() {
@@ -134,7 +126,7 @@ public class DailyTicket extends Ticket {
     }
 
     public String checkIsTicketVip() {
-        if (super.getIsTicketVip().toUpperCase().equals("N")) {
+        if (super.getIsTicketVip().equalsIgnoreCase("N")) {
             return "NORMAL";
         } else {
             return "VIP";
@@ -173,7 +165,7 @@ public class DailyTicket extends Ticket {
 
     public double caculatorDailyPrice() {
         setDailyPrice(40000);
-        if (getIsTicketVip().toUpperCase().equals("V")) {
+        if (getIsTicketVip().equalsIgnoreCase("V")) {
             this.dailyPrice += 20000;
         }
         if (super.getAge() >= 3 && super.getAge() <= 12) {

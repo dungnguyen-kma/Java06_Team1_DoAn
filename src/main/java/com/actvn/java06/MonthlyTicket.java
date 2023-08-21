@@ -2,6 +2,8 @@ package com.actvn.java06;
 
 //import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
@@ -138,13 +140,32 @@ public class MonthlyTicket extends Ticket {
     }
 
     @Override
-    public String creatTicketID() {
-        //chưa làm xong
-        return null;
+    public String creatTicketID(int index) {
+        LocalDate start = LocalDate.now();
+        LocalDate normal = LocalDate.now().plusMonths(1);
+        LocalDate vip = LocalDate.now().plusMonths(2);
+
+        index += 1;
+        super.setTicketID(String.format("THANG-" + "%03d", index));
+
+        if (this.checkIsTicketVip().equalsIgnoreCase("V")) {
+            Period period = Period.between(start, vip);
+            if (period.getDays() == 0) {
+                index = 1;
+                return "Het han";
+            }
+        } else {
+            Period period = Period.between(start, normal);
+            if (period.getDays() == 0) {
+                index = 1;
+                return "Het han";
+            }
+        }
+        return super.getTicketID();
     }
 
     public String checkIsTicketVip() {
-        if (super.getIsTicketVip().toUpperCase().equals("N")) {
+        if (super.getIsTicketVip().equalsIgnoreCase("N")) {
             return "NORMAL";
         } else {
             return "VIP";
@@ -160,7 +181,7 @@ public class MonthlyTicket extends Ticket {
     }
 
     public LocalDate checkExpiedDate() {
-        if (this.checkIsTicketVip().equals("V")) {
+        if (this.checkIsTicketVip().equalsIgnoreCase("V")) {
             this.setExpiedDate(this.getRegistereDate().plusMonths(2));
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
             String str = this.getExpiedDate().format(formatter);
@@ -177,7 +198,7 @@ public class MonthlyTicket extends Ticket {
 
     public double caculatorDailyPrice() {
         setMonthlyPrice(300000);
-        if (getIsTicketVip().toUpperCase().equals("V")) {
+        if (getIsTicketVip().equalsIgnoreCase("V")) {
             this.monthlyPrice += 150000;
         }
         if (super.getAge() >= 3 && super.getAge() <= 12) {

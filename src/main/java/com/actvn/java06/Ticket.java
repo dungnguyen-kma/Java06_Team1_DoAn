@@ -39,5 +39,5 @@ public abstract class Ticket {
         this.isTicketVip = isTicketVip;
     }
 
-    public abstract String creatTicketID();
+    public abstract String creatTicketID(int index);
 }

@@ -26,15 +26,12 @@ public class PoolManage {
             int age;
             age = input.nextInt();
 
-            System.out.println("Nhap V neu la ve VIP, N la ve thuong:");
-            String isTicketVip;
-            isTicketVip = input.next();
-            if (!isTicketVip.equals("N") || !isTicketVip.equals("V")) {
-                System.out.println("Ban da nhap sai gia tri phan xac dinh ve vip, vui long tao lai ve!");
-                return;
+            String isTicketVip = "";
+            while (!isTicketVip.equalsIgnoreCase("N") && !isTicketVip.equalsIgnoreCase("V")) {
+                System.out.println("Nhap V neu la ve VIP, N la ve thuong:");
+                isTicketVip = input.next();
             }
 
-            // creatTicketID();
             DailyTicket ticket = new DailyTicket(ticketQuatity, age, isTicketVip);
             LocalDateTime start = ticket.checkStartTime();
             ticket.setStartTime(start);
@@ -44,6 +41,7 @@ public class PoolManage {
             ticket.setTimeSlotID(timeSlotID);
             double dailyPrice = ticket.caculatorDailyPrice();
             ticket.setDailyPrice(dailyPrice);
+
             dailyTickets.add(ticket);
         } catch (InputMismatchException ei) {
             System.out.println("Ban da nhap sai gia tri, vui long nhap lai");
@@ -62,12 +60,10 @@ public class PoolManage {
             int age;
             age = input.nextInt();
 
-            System.out.println("Nhap V neu la ve VIP, N la ve thuong:");
-            String isTicketVip;
-            isTicketVip = input.next();
-            if (!isTicketVip.equals("N") || !isTicketVip.equals("V")) {
-                System.out.println("Ban da nhap sai gia tri phan xac dinh ve vip, vui long tao lai ve!");
-                return;
+            String isTicketVip = "";
+            while (!isTicketVip.equalsIgnoreCase("N") && !isTicketVip.equalsIgnoreCase("V")) {
+                System.out.println("Nhap V neu la ve VIP, N la ve thuong:");
+                isTicketVip = input.next();
             }
 
             System.out.println("Nhap vao ten khach hang:");
@@ -78,7 +74,6 @@ public class PoolManage {
             String customerAddress;
             customerAddress = input.next();
 
-            //creatTicketID
             MonthlyTicket ticket = new MonthlyTicket(customerName, customerAddress, ticketQuatity, age, isTicketVip);
             LocalDate registere = ticket.checkRegistereDate();
             ticket.setRegistereDate(registere);
@@ -86,6 +81,7 @@ public class PoolManage {
             ticket.setExpiedDate(expied);
             String url = ticket.checkCustomerAvata();
             ticket.setCustomerAvatar(url);
+
             monthlyTickets.add(ticket);
         } catch (InputMismatchException ei) {
             System.out.println("Ban da nhap sai gia tri, vui long nhap lai");
@@ -103,7 +99,18 @@ public class PoolManage {
         switch (mode) {
             case 1: {
                 ArrayList<DailyTicket> dailyTickets = new ArrayList<>();
-                inputDailyTicketInfo(input, dailyTickets);
+                System.out.println("Nhap so luong ve:");
+                int n;
+                n = input.nextInt();
+                for (int i = 1; i <= n; i++) {
+                    inputDailyTicketInfo(input, dailyTickets);
+                    int index = dailyTickets.size();
+                    if (index == 0) {
+                        dailyTickets.get(0).creatTicketID(index + 1);
+                    } else {
+                        dailyTickets.get(index - 1).creatTicketID(index);
+                    }
+                }
                 dailyTickets.stream().forEach(
                         ticket -> System.out.println(ticket.toString())
                 );
@@ -111,7 +118,18 @@ public class PoolManage {
             }
             case 2: {
                 ArrayList<MonthlyTicket> monthlyTickets = new ArrayList<>();
-                inputCustomerInfo(input, monthlyTickets);
+                System.out.println("Nhap so luong ve:");
+                int n;
+                n = input.nextInt();
+                for (int i = 1; i <= n; i++) {
+                    inputCustomerInfo(input, monthlyTickets);
+                    int index = monthlyTickets.size();
+                    if (index == 0) {
+                        monthlyTickets.get(0).creatTicketID(index + 1);
+                    } else {
+                        monthlyTickets.get(index - 1).creatTicketID(index);
+                    }
+                }
                 monthlyTickets.stream().forEach(
                         ticket -> System.out.println(ticket.toString())
                 );
