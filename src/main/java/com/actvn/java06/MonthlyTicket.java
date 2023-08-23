@@ -38,8 +38,8 @@ public class MonthlyTicket extends Ticket {
         this.customerAvatar = customerAvatar;
     }
 
-    public MonthlyTicket(String customerName, String customerAddress, String ticketID, int age, String isTicketVip) {
-        super(ticketID, age, isTicketVip);
+    public MonthlyTicket(String customerName, String customerAddress, int age, String isTicketVip) {
+        super(age, isTicketVip);
         this.customerName = customerName;
         this.customerAddress = customerAddress;
     }
@@ -94,7 +94,7 @@ public class MonthlyTicket extends Ticket {
 
     @Override
     public String toString() {
-        return "MonthlyTicket{" + "customerName=" + customerName + ", customerAddress=" + customerAddress + ", registereDate=" + registereDate + ", expiedDate=" + expiedDate + ", monthlyPrice=" + monthlyPrice + ", customerAvatar=" + customerAvatar + ", ticketID= " + super.getTicketID() + ", age= " + super.getAge() + ", VIP or Nomal= " + checkIsTicketVip() + '}';
+        return "MonthlyTicket{" + "customerName=" + customerName + ", customerAddress=" + customerAddress + ", registereDate=" + registereDate + ", expiedDate=" + expiedDate + ", monthlyPrice=" + Math.round(monthlyPrice) + ", customerAvatar=" + customerAvatar + ", ticketID= " + super.getTicketID() + ", age= " + super.getAge() + ", VIP or Nomal= " + checkIsTicketVip() + '}';
     }
 
     @Override
@@ -145,7 +145,6 @@ public class MonthlyTicket extends Ticket {
         LocalDate normal = LocalDate.now().plusMonths(1);
         LocalDate vip = LocalDate.now().plusMonths(2);
 
-        index += 1;
         super.setTicketID(String.format("THANG-" + "%03d", index));
 
         if (this.checkIsTicketVip().equalsIgnoreCase("V")) {
@@ -172,39 +171,38 @@ public class MonthlyTicket extends Ticket {
         }
     }
 
-    public LocalDate checkRegistereDate() {
-        this.setRegistereDate(LocalDate.now());
+    public LocalDate checkRegistereDate(LocalDate time) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        String str = this.getRegistereDate().format(formatter);
-        LocalDate date = LocalDate.parse(str);
-        return date;
+        String str = time.format(formatter);
+        LocalDate result = LocalDate.parse(str, formatter);
+        return result;
     }
 
-    public LocalDate checkExpiedDate() {
-        if (this.checkIsTicketVip().equalsIgnoreCase("V")) {
-            this.setExpiedDate(this.getRegistereDate().plusMonths(2));
+    public LocalDate checkExpiedDate(LocalDate time) {
+        if (this.getIsTicketVip().equalsIgnoreCase("V")) {
+            this.setExpiedDate(time.plusMonths(2));
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-            String str = this.getExpiedDate().format(formatter);
-            LocalDate date = LocalDate.parse(str);
-            return date;
+            String str = getExpiedDate().format(formatter);
+            LocalDate result = LocalDate.parse(str, formatter);
+            return result;
         } else {
-            this.setExpiedDate(this.getRegistereDate().plusMonths(1));
+            this.setExpiedDate(time.plusMonths(1));
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-            String str = this.getExpiedDate().format(formatter);
-            LocalDate date = LocalDate.parse(str);
-            return date;
+            String str = getExpiedDate().format(formatter);
+            LocalDate result = LocalDate.parse(str, formatter);
+            return result;
         }
     }
 
-    public double caculatorDailyPrice() {
+    public double caculatorMonthlyPrice() {
         setMonthlyPrice(300000);
-        if (getIsTicketVip().equalsIgnoreCase("V")) {
+        if (this.getIsTicketVip().equalsIgnoreCase("V")) {
             this.monthlyPrice += 150000;
         }
         if (super.getAge() >= 3 && super.getAge() <= 12) {
-            this.monthlyPrice -= 100000;
+            this.monthlyPrice -= 50000;
         }
-        return this.monthlyPrice;
+        return getMonthlyPrice();
     }
 
     public String checkCustomerAvata() {

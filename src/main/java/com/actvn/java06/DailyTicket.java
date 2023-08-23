@@ -15,8 +15,8 @@ public class DailyTicket extends Ticket {
     public DailyTicket() {
     }
 
-    public DailyTicket(String ticketID, int age, String isTicketVip) {
-        super(ticketID, age, isTicketVip);
+    public DailyTicket(int age, String isTicketVip) {
+        super(age, isTicketVip);
     }
 
     public DailyTicket(String timeSlotID, LocalDateTime startTime, LocalDateTime endTime, double dailyPrice, String ticketID, int age, String isTicketVip) {
@@ -68,7 +68,7 @@ public class DailyTicket extends Ticket {
 
     @Override
     public String toString() {
-        return "DailyTicket{" + "timeSlotID= " + timeSlotID + ", startTime= " + startTime + ", dailyPrice= " + dailyPrice + ", ticketID= " + super.getTicketID() + ", age= " + super.getAge() + ", VIP or Nomal= " + checkIsTicketVip() + '}';
+        return "DailyTicket{" + "timeSlotID= " + timeSlotID + ", startTime= " + startTime + ", endTime= " + endTime + ", dailyPrice= " + Math.round(dailyPrice) + ", ticketID= " + super.getTicketID() + ", age= " + super.getAge() + ", VIP or Nomal= " + checkIsTicketVip() + '}';
     }
 
     @Override
@@ -108,7 +108,6 @@ public class DailyTicket extends Ticket {
         if (quatity == 23) {
             index = 1;
         }
-        index += 1;
         super.setTicketID(String.format("DAY-" + "%03d", index));
         return super.getTicketID();
     }
@@ -133,33 +132,32 @@ public class DailyTicket extends Ticket {
         }
     }
 
-    public LocalDateTime checkStartTime() {
-        this.setStartTime(LocalDateTime.now());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
-        String str = this.getStartTime().format(formatter);
-        LocalDateTime date = LocalDateTime.parse(str);
-        return date;
+    public LocalDateTime checkStartTime(LocalDateTime time) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String str = time.format(formatter);
+        LocalDateTime result = LocalDateTime.parse(str, formatter);
+        return result;
     }
 
-    public LocalDateTime checkEndTime() {
+    public LocalDateTime checkEndTime(LocalDateTime time) {
         if (checkTimeSlotID().equals("SANG")) {
-            this.setEndTime(LocalDateTime.now().withHour(10).withMinute(00).withMinute(00));
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
-            String str = this.getStartTime().format(formatter);
-            LocalDateTime date = LocalDateTime.parse(str);
-            return date;
+            this.setEndTime(time.withHour(10).withMinute(00).withSecond(00));
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+            String str = this.getEndTime().format(formatter);
+            LocalDateTime result = LocalDateTime.parse(str, formatter);
+            return result;
         } else if (checkTimeSlotID().equals("CHIEU")) {
-            this.setEndTime(LocalDateTime.now().withHour(17).withMinute(30).withMinute(00));
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
-            String str = this.getStartTime().format(formatter);
-            LocalDateTime date = LocalDateTime.parse(str);
-            return date;
+            this.setEndTime(time.withHour(17).withMinute(30).withSecond(00));
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+            String str = this.getEndTime().format(formatter);
+            LocalDateTime result = LocalDateTime.parse(str, formatter);
+            return result;
         } else {
-            this.setEndTime(LocalDateTime.now().withHour(22).withMinute(00).withMinute(00));
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
-            String str = this.getStartTime().format(formatter);
-            LocalDateTime date = LocalDateTime.parse(str);
-            return date;
+            this.setEndTime(time.withHour(22).withMinute(00).withSecond(00));
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+            String str = this.getEndTime().format(formatter);
+            LocalDateTime result = LocalDateTime.parse(str, formatter);
+            return result;
         }
     }
 

@@ -14,6 +14,11 @@ public abstract class Ticket {
         this.age = age;
         this.isTicketVip = isTicketVip;
     }
+    
+    public Ticket(int age, String isTicketVip) {
+        this.age = age;
+        this.isTicketVip = isTicketVip;
+    }
 
     public String getTicketID() {
         return ticketID;
