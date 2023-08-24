@@ -26,30 +26,35 @@ public class FeatureMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jDailyTicketButton = new javax.swing.JButton();
+        jMonthlyTicketButton = new javax.swing.JButton();
+        jMangeDailyTicketButton = new javax.swing.JButton();
+        jFilterTicket = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Bán vé ngày");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jDailyTicketButton.setText("Bán vé ngày");
+        jDailyTicketButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jDailyTicketButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Bán vé tháng");
-
-        jButton3.setText("Quản lý vé lượt ngày");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jMonthlyTicketButton.setText("Bán vé tháng");
+        jMonthlyTicketButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jMonthlyTicketButtonActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Thống kê");
+        jMangeDailyTicketButton.setText("Quản lý vé lượt ngày");
+        jMangeDailyTicketButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMangeDailyTicketButtonActionPerformed(evt);
+            }
+        });
+
+        jFilterTicket.setText("Thống kê");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -58,44 +63,50 @@ public class FeatureMenu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(149, 149, 149)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(jMonthlyTicketButton)
+                    .addComponent(jDailyTicketButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(132, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton3)
+                        .addComponent(jMangeDailyTicketButton)
                         .addGap(125, 125, 125))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton4)
+                        .addComponent(jFilterTicket)
                         .addGap(159, 159, 159))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(45, 45, 45)
-                .addComponent(jButton1)
+                .addComponent(jDailyTicketButton)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(jMonthlyTicketButton)
                 .addGap(27, 27, 27)
-                .addComponent(jButton3)
+                .addComponent(jMangeDailyTicketButton)
                 .addGap(29, 29, 29)
-                .addComponent(jButton4)
+                .addComponent(jFilterTicket)
                 .addContainerGap(73, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jDailyTicketButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDailyTicketButtonActionPerformed
         SellDailyTicket daily = new SellDailyTicket();
         daily.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jDailyTicketButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jMangeDailyTicketButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMangeDailyTicketButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jMangeDailyTicketButtonActionPerformed
+
+    private void jMonthlyTicketButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMonthlyTicketButtonActionPerformed
+        // TODO add your handling code here:
+        SellMonthlyTicket monthly = new SellMonthlyTicket();
+        monthly.setVisible(true);
+    }//GEN-LAST:event_jMonthlyTicketButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -133,9 +144,9 @@ public class FeatureMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jDailyTicketButton;
+    private javax.swing.JButton jFilterTicket;
+    private javax.swing.JButton jMangeDailyTicketButton;
+    private javax.swing.JButton jMonthlyTicketButton;
     // End of variables declaration//GEN-END:variables
 }

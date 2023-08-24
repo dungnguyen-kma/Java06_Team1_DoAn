@@ -11,7 +11,6 @@ import javax.swing.WindowConstants;
  * @author thepo
  */
 public class SellDailyTicket extends javax.swing.JFrame {
-    
     /**
      * Creates new form SellDailyTicket
      */
@@ -181,8 +180,8 @@ public class SellDailyTicket extends javax.swing.JFrame {
         );
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Đăng ký vé ngày");
-        jLabel6.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         jExitButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jExitButton.setText("Thoát");
@@ -194,6 +193,11 @@ public class SellDailyTicket extends javax.swing.JFrame {
 
         jSubmitButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jSubmitButton.setText("Xác nhận");
+        jSubmitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSubmitButtonActionPerformed(evt);
+            }
+        });
 
         jResetButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jResetButton.setText("Hủy");
@@ -203,12 +207,10 @@ public class SellDailyTicket extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -224,8 +226,8 @@ public class SellDailyTicket extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -253,6 +255,10 @@ public class SellDailyTicket extends javax.swing.JFrame {
         jSelectVipTicket.setSelected(true);
         jSelectNormalTicket.setSelected(false);
     }//GEN-LAST:event_jSelectVipTicketActionPerformed
+
+    private void jSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSubmitButtonActionPerformed
+
+    }//GEN-LAST:event_jSubmitButtonActionPerformed
 
     
     /**
