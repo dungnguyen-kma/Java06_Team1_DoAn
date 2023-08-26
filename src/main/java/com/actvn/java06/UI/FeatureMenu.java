@@ -30,6 +30,7 @@ public class FeatureMenu extends javax.swing.JFrame {
         jMonthlyTicketButton = new javax.swing.JButton();
         jMangeDailyTicketButton = new javax.swing.JButton();
         jFilterTicket = new javax.swing.JButton();
+        jExitButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,16 +57,17 @@ public class FeatureMenu extends javax.swing.JFrame {
 
         jFilterTicket.setText("Thống kê");
 
+        jExitButton.setText("Thoát");
+        jExitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jExitButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(149, 149, 149)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jMonthlyTicketButton)
-                    .addComponent(jDailyTicketButton))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(132, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -75,6 +77,17 @@ public class FeatureMenu extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jFilterTicket)
                         .addGap(159, 159, 159))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(149, 149, 149)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jMonthlyTicketButton)
+                            .addComponent(jDailyTicketButton)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jExitButton)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,7 +100,9 @@ public class FeatureMenu extends javax.swing.JFrame {
                 .addComponent(jMangeDailyTicketButton)
                 .addGap(29, 29, 29)
                 .addComponent(jFilterTicket)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(jExitButton)
+                .addContainerGap())
         );
 
         pack();
@@ -107,6 +122,11 @@ public class FeatureMenu extends javax.swing.JFrame {
         SellMonthlyTicket monthly = new SellMonthlyTicket();
         monthly.setVisible(true);
     }//GEN-LAST:event_jMonthlyTicketButtonActionPerformed
+
+    private void jExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExitButtonActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jExitButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,6 +165,7 @@ public class FeatureMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jDailyTicketButton;
+    private javax.swing.JButton jExitButton;
     private javax.swing.JButton jFilterTicket;
     private javax.swing.JButton jMangeDailyTicketButton;
     private javax.swing.JButton jMonthlyTicketButton;
