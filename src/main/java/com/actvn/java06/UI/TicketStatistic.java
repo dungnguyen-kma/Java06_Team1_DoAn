@@ -31,7 +31,6 @@ public class TicketStatistic extends javax.swing.JFrame {
         jListDailyCurrentDay = new javax.swing.JMenuItem();
         jListDailyByDate = new javax.swing.JMenuItem();
         jListDailyByTimeSlot = new javax.swing.JMenuItem();
-        jPriceByTimeSlot = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jListMonthlyByMonth = new javax.swing.JMenuItem();
         jPriceByMonth = new javax.swing.JMenuItem();
@@ -55,21 +54,22 @@ public class TicketStatistic extends javax.swing.JFrame {
         jListDailyByTimeSlot.setText("Danh sách vé theo khung giờ");
         jListCurrentDay.add(jListDailyByTimeSlot);
 
-        jPriceByTimeSlot.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jPriceByTimeSlot.setText("Tổng thu nhập theo khung giờ");
-        jListCurrentDay.add(jPriceByTimeSlot);
-
         jMenuBar1.add(jListCurrentDay);
 
         jMenu2.setText("Vé tháng");
         jMenu2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jListMonthlyByMonth.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jListMonthlyByMonth.setText("Danh sách theo tháng");
+        jListMonthlyByMonth.setText("Danh sách trong tháng");
+        jListMonthlyByMonth.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jListMonthlyByMonthActionPerformed(evt);
+            }
+        });
         jMenu2.add(jListMonthlyByMonth);
 
         jPriceByMonth.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jPriceByMonth.setText("Thống kê thu nhập theo tháng");
+        jPriceByMonth.setText("Danh sách theo tháng");
         jMenu2.add(jPriceByMonth);
 
         jMenuBar1.add(jMenu2);
@@ -89,6 +89,10 @@ public class TicketStatistic extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jListMonthlyByMonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jListMonthlyByMonthActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jListMonthlyByMonthActionPerformed
 
     /**
      * @param args the command line arguments
@@ -134,6 +138,5 @@ public class TicketStatistic extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jPriceByMonth;
-    private javax.swing.JMenuItem jPriceByTimeSlot;
     // End of variables declaration//GEN-END:variables
 }
