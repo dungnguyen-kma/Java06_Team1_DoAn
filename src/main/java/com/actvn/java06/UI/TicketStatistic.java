@@ -27,38 +27,50 @@ public class TicketStatistic extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        jListCurrentDay = new javax.swing.JMenu();
+        jListDailyCurrentDay = new javax.swing.JMenuItem();
+        jListDailyByDate = new javax.swing.JMenuItem();
+        jListDailyByTimeSlot = new javax.swing.JMenuItem();
+        jPriceByTimeSlot = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jListMonthlyByMonth = new javax.swing.JMenuItem();
+        jPriceByMonth = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jMenuBar1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        jMenu1.setText("Vé ngày");
+        jListCurrentDay.setText("Vé ngày");
+        jListCurrentDay.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        jMenuItem5.setText("Danh sách vé trong ngày");
-        jMenu1.add(jMenuItem5);
+        jListDailyCurrentDay.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jListDailyCurrentDay.setText("Danh sách vé trong ngày");
+        jListCurrentDay.add(jListDailyCurrentDay);
 
-        jMenuItem1.setText("Danh sách vé theo ngày");
-        jMenu1.add(jMenuItem1);
+        jListDailyByDate.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jListDailyByDate.setText("Danh sách vé theo ngày");
+        jListCurrentDay.add(jListDailyByDate);
 
-        jMenuItem3.setText("Danh sách vé theo khung giờ");
-        jMenu1.add(jMenuItem3);
+        jListDailyByTimeSlot.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jListDailyByTimeSlot.setText("Danh sách vé theo khung giờ");
+        jListCurrentDay.add(jListDailyByTimeSlot);
 
-        jMenuItem4.setText("Tổng thu nhập");
-        jMenu1.add(jMenuItem4);
+        jPriceByTimeSlot.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jPriceByTimeSlot.setText("Tổng thu nhập theo khung giờ");
+        jListCurrentDay.add(jPriceByTimeSlot);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jListCurrentDay);
 
         jMenu2.setText("Vé tháng");
+        jMenu2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        jMenuItem2.setText("Danh sách theo tháng");
-        jMenu2.add(jMenuItem2);
+        jListMonthlyByMonth.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jListMonthlyByMonth.setText("Danh sách theo tháng");
+        jMenu2.add(jListMonthlyByMonth);
+
+        jPriceByMonth.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jPriceByMonth.setText("Thống kê thu nhập theo tháng");
+        jMenu2.add(jPriceByMonth);
 
         jMenuBar1.add(jMenu2);
 
@@ -72,7 +84,7 @@ public class TicketStatistic extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 143, Short.MAX_VALUE)
+            .addGap(0, 132, Short.MAX_VALUE)
         );
 
         pack();
@@ -114,13 +126,14 @@ public class TicketStatistic extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jListCurrentDay;
+    private javax.swing.JMenuItem jListDailyByDate;
+    private javax.swing.JMenuItem jListDailyByTimeSlot;
+    private javax.swing.JMenuItem jListDailyCurrentDay;
+    private javax.swing.JMenuItem jListMonthlyByMonth;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jPriceByMonth;
+    private javax.swing.JMenuItem jPriceByTimeSlot;
     // End of variables declaration//GEN-END:variables
 }

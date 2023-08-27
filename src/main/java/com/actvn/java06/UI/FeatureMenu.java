@@ -28,7 +28,6 @@ public class FeatureMenu extends javax.swing.JFrame {
 
         jDailyTicketButton = new javax.swing.JButton();
         jMonthlyTicketButton = new javax.swing.JButton();
-        jMangeDailyTicketButton = new javax.swing.JButton();
         jFilterTicket = new javax.swing.JButton();
         jExitButton = new javax.swing.JButton();
 
@@ -48,14 +47,12 @@ public class FeatureMenu extends javax.swing.JFrame {
             }
         });
 
-        jMangeDailyTicketButton.setText("Quản lý vé lượt ngày");
-        jMangeDailyTicketButton.addActionListener(new java.awt.event.ActionListener() {
+        jFilterTicket.setText("Thống kê");
+        jFilterTicket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMangeDailyTicketButtonActionPerformed(evt);
+                jFilterTicketActionPerformed(evt);
             }
         });
-
-        jFilterTicket.setText("Thống kê");
 
         jExitButton.setText("Thoát");
         jExitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -68,15 +65,6 @@ public class FeatureMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(132, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jMangeDailyTicketButton)
-                        .addGap(125, 125, 125))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jFilterTicket)
-                        .addGap(159, 159, 159))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -86,8 +74,11 @@ public class FeatureMenu extends javax.swing.JFrame {
                             .addComponent(jDailyTicketButton)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
-                        .addComponent(jExitButton)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jExitButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(157, 157, 157)
+                        .addComponent(jFilterTicket)))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,11 +87,9 @@ public class FeatureMenu extends javax.swing.JFrame {
                 .addComponent(jDailyTicketButton)
                 .addGap(18, 18, 18)
                 .addComponent(jMonthlyTicketButton)
-                .addGap(27, 27, 27)
-                .addComponent(jMangeDailyTicketButton)
-                .addGap(29, 29, 29)
+                .addGap(18, 18, 18)
                 .addComponent(jFilterTicket)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jExitButton)
                 .addContainerGap())
         );
@@ -113,10 +102,6 @@ public class FeatureMenu extends javax.swing.JFrame {
         daily.setVisible(true);
     }//GEN-LAST:event_jDailyTicketButtonActionPerformed
 
-    private void jMangeDailyTicketButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMangeDailyTicketButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMangeDailyTicketButtonActionPerformed
-
     private void jMonthlyTicketButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMonthlyTicketButtonActionPerformed
         // TODO add your handling code here:
         SellMonthlyTicket monthly = new SellMonthlyTicket();
@@ -127,6 +112,12 @@ public class FeatureMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jExitButtonActionPerformed
+
+    private void jFilterTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFilterTicketActionPerformed
+        // TODO add your handling code here:
+        TicketStatistic ticketStatistic = new TicketStatistic();
+        ticketStatistic.setVisible(true);
+    }//GEN-LAST:event_jFilterTicketActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,7 +158,6 @@ public class FeatureMenu extends javax.swing.JFrame {
     private javax.swing.JButton jDailyTicketButton;
     private javax.swing.JButton jExitButton;
     private javax.swing.JButton jFilterTicket;
-    private javax.swing.JButton jMangeDailyTicketButton;
     private javax.swing.JButton jMonthlyTicketButton;
     // End of variables declaration//GEN-END:variables
 }
