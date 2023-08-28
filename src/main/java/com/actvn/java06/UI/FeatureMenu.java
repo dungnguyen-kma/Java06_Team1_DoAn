@@ -98,8 +98,8 @@ public class FeatureMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jDailyTicketButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDailyTicketButtonActionPerformed
-        SellDailyTicket daily = new SellDailyTicket();
-        daily.setVisible(true);
+        SellDailyTicket sellDailyTicket = new SellDailyTicket();
+        sellDailyTicket.setVisible(true);
     }//GEN-LAST:event_jDailyTicketButtonActionPerformed
 
     private void jMonthlyTicketButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMonthlyTicketButtonActionPerformed

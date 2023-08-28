@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -23,44 +24,41 @@ public class FileSave {
 
     private static final String CURRENT = System.getProperty("user.dir");
     private static final String SEPERATOR = File.separator;
-    //private static final String PATH_CSV_FILE_INPUT = CURRENT + SEPERATOR + "diemthi_input.csv";
-    private static final String PATH_CSV_FILE_OUTPUT = CURRENT + SEPERATOR + "Danh Sach Ve Ngay";
+    private static final String PATH_CSV_FILE_INPUT = CURRENT + SEPERATOR + "Danh_Sach_Ve_Ngay_IN.csv";
+    private static final String PATH_CSV_FILE_OUTPUT = CURRENT + SEPERATOR + "Danh_Sach_Ve_Ngay_OUT.csv";
+    private static final String FILE_HEADER = "ID,Age,VIP,TimeslotID,StartTime,EndTime,Price\n";
+    private static final String PATH_JSON_FILE = CURRENT + SEPERATOR + "";
 
-    /*public static <E> void saveFile(ArrayList<E> arrayList) {
-        
+    public static void saveFile(ArrayList<DailyTicket> arrayList) throws IOException {
         BufferedWriter bw;
         try {
             bw = new BufferedWriter(new FileWriter(PATH_CSV_FILE_OUTPUT));
+            bw.append(FILE_HEADER);
             for (int i = 0; i < arrayList.size(); i++) {
-                for (E ts : arrayList.get(i))) {
-                    bw.append(ts.toString());
+                for (DailyTicket ts : arrayList) {
+                    bw.append(ts.writeCSV());
                 }
-                bw.close();
             }
-        } catch (IOException e) {
+            bw.close();
+        } catch (NumberFormatException | IOException e) {
             e.printStackTrace();
         }
-    }*/
+    }
 
-    public static void main(String[] args) throws FileNotFoundException, IOException {
-        Scanner input = new Scanner(System.in);
+    public static void ReadFile(ArrayList<DailyTicket> arrayList) throws IOException {
 
-        //ArrayList<DailyTicket> tickets = new ArrayList<>();
         BufferedReader bf = new BufferedReader(new FileReader(PATH_CSV_FILE_OUTPUT));
         String line;
         bf.readLine();
-        //đọc file
-        /*try {
+        try {
             while ((line = bf.readLine()) != null) {
                 String[] str = line.split(",");
-                ThiSinh ts = new ThiSinh(Integer.parseInt(str[0]), str[1], str[2], str[3], Double.parseDouble(str[4]));
-                list.add(ts);
+                DailyTicket ticket = new DailyTicket(str[0], Integer.parseInt(str[1]), str[2], str[3], LocalDateTime.parse(str[4]), LocalDateTime.parse(str[5]), Double.parseDouble(str[6]));
+                arrayList.add(ticket);
             }
             bf.close();
         } catch (NumberFormatException | IOException e) {
             e.printStackTrace();
-        }*/
-
-        //ghi file
+        }
     }
 }

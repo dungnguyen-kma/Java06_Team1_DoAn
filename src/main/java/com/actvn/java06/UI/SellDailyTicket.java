@@ -4,6 +4,11 @@
  */
 package com.actvn.java06.UI;
 
+import com.actvn.java06.DailyTicket;
+import com.actvn.java06.PoolManage;
+import static com.actvn.java06.PoolManage.dailyTickets;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.WindowConstants;
 
 /**
@@ -11,6 +16,7 @@ import javax.swing.WindowConstants;
  * @author thepo
  */
 public class SellDailyTicket extends javax.swing.JFrame {
+
     /**
      * Creates new form SellDailyTicket
      */
@@ -28,174 +34,22 @@ public class SellDailyTicket extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jTicketIDValue = new javax.swing.JLabel();
-        jStartTimeValue = new javax.swing.JLabel();
-        jTimeSlotValue = new javax.swing.JLabel();
-        jEndTimeValue = new javax.swing.JLabel();
-        jPriceValue = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
-        jSelectNormalTicket = new javax.swing.JRadioButton();
-        jSelectVipTicket = new javax.swing.JRadioButton();
+        jButton1 = new javax.swing.JButton();
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jLabel6 = new javax.swing.JLabel();
         jExitButton = new javax.swing.JButton();
-        jSubmitButton = new javax.swing.JButton();
+        buttonSave = new javax.swing.JButton();
         jResetButton = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        txtAge = new javax.swing.JTextField();
+        cbBoxVip = new javax.swing.JRadioButton();
+        cbBoxNormal = new javax.swing.JRadioButton();
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin vé", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
-        jPanel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("Mã vé:");
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setText("Thời gian bắt đầu:");
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setText("Khung giờ:");
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel4.setText("Thời gian kết thúc: ");
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel5.setText("Giá vé: ");
-
-        jTicketIDValue.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jTicketIDValue.setText("jLabel7");
-
-        jStartTimeValue.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jStartTimeValue.setText("jLabel8");
-
-        jTimeSlotValue.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jTimeSlotValue.setText("jLabel9");
-
-        jEndTimeValue.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jEndTimeValue.setText("jLabel10");
-
-        jPriceValue.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jPriceValue.setText("jLabel11");
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel7.setText("Tuổi: ");
-
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jTextField1.setText("jTextField1");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTimeSlotValue))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jStartTimeValue))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTicketIDValue)))
-                        .addGap(136, 136, 136))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPriceValue))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 395, Short.MAX_VALUE)
-                                .addComponent(jEndTimeValue)))
-                        .addGap(130, 130, 130))))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTicketIDValue))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jStartTimeValue))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTimeSlotValue))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jEndTimeValue))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jPriceValue))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Loại vé", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
-
-        jSelectNormalTicket.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jSelectNormalTicket.setText("Thường");
-        jSelectNormalTicket.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jSelectNormalTicketActionPerformed(evt);
-            }
-        });
-
-        jSelectVipTicket.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jSelectVipTicket.setText("Vip");
-        jSelectVipTicket.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jSelectVipTicketActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSelectVipTicket)
-                    .addComponent(jSelectNormalTicket))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(jSelectNormalTicket)
-                .addGap(29, 29, 29)
-                .addComponent(jSelectVipTicket)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -209,55 +63,83 @@ public class SellDailyTicket extends javax.swing.JFrame {
             }
         });
 
-        jSubmitButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jSubmitButton.setText("Xác nhận");
-        jSubmitButton.addActionListener(new java.awt.event.ActionListener() {
+        buttonSave.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        buttonSave.setText("Xác nhận");
+        buttonSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jSubmitButtonActionPerformed(evt);
+                buttonSaveActionPerformed(evt);
             }
         });
 
         jResetButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jResetButton.setText("Hủy");
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel8.setText("Tuổi");
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel9.setText("Chọn vé vip hoặc vé thường");
+
+        txtAge.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        buttonGroup1.add(cbBoxVip);
+        cbBoxVip.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        cbBoxVip.setText("VIP");
+
+        buttonGroup1.add(cbBoxNormal);
+        cbBoxNormal.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        cbBoxNormal.setText("Thường");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addContainerGap(872, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jSubmitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jResetButton))
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(20, 20, 20))))
+                                .addGap(118, 118, 118)
+                                .addComponent(cbBoxVip, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cbBoxNormal, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(30, 30, 30)
+                                        .addComponent(jResetButton))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(177, 177, 177)
+                        .addComponent(jLabel6)))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addGap(75, 75, 75)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(71, 71, 71)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(cbBoxVip)
+                    .addComponent(cbBoxNormal))
+                .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jExitButton)
-                    .addComponent(jSubmitButton)
+                    .addComponent(buttonSave)
                     .addComponent(jResetButton))
-                .addGap(22, 22, 22))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
@@ -267,22 +149,14 @@ public class SellDailyTicket extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jExitButtonActionPerformed
 
-    private void jSelectNormalTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSelectNormalTicketActionPerformed
-        jSelectNormalTicket.setSelected(true);
-        jSelectVipTicket.setSelected(false);
-    }//GEN-LAST:event_jSelectNormalTicketActionPerformed
 
-    private void jSelectVipTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSelectVipTicketActionPerformed
-        jSelectVipTicket.setSelected(true);
-        jSelectNormalTicket.setSelected(false);
-    }//GEN-LAST:event_jSelectVipTicketActionPerformed
+    private void buttonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveActionPerformed
 
-    private void jSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSubmitButtonActionPerformed
-        PopupConfirm popupConfirm = new PopupConfirm();
-        popupConfirm.setVisible(true);
-    }//GEN-LAST:event_jSubmitButtonActionPerformed
+        FormDailyTicket formDailyTicket = new FormDailyTicket(Integer.parseInt(txtAge.getText()), cbBoxVip.isSelected());
+        formDailyTicket.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_buttonSaveActionPerformed
 
-    
     /**
      * @param args the command line arguments
      */
@@ -293,7 +167,7 @@ public class SellDailyTicket extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
         
          */
-        
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -316,30 +190,24 @@ public class SellDailyTicket extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new SellDailyTicket().setVisible(true);
+
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jEndTimeValue;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JButton buttonSave;
+    private javax.swing.JRadioButton cbBoxNormal;
+    private javax.swing.JRadioButton cbBoxVip;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jExitButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel jPriceValue;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JButton jResetButton;
-    private javax.swing.JRadioButton jSelectNormalTicket;
-    private javax.swing.JRadioButton jSelectVipTicket;
-    private javax.swing.JLabel jStartTimeValue;
-    private javax.swing.JButton jSubmitButton;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JLabel jTicketIDValue;
-    private javax.swing.JLabel jTimeSlotValue;
+    private javax.swing.JTextField txtAge;
     // End of variables declaration//GEN-END:variables
+
 }

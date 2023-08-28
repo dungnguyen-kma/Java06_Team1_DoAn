@@ -19,7 +19,7 @@ public class DailyTicket extends Ticket {
         super(age, isTicketVip);
     }
 
-    public DailyTicket(String timeSlotID, LocalDateTime startTime, LocalDateTime endTime, double dailyPrice, String ticketID, int age, String isTicketVip) {
+    public DailyTicket(String ticketID, int age, String isTicketVip, String timeSlotID, LocalDateTime startTime, LocalDateTime endTime, double dailyPrice) {
         super(ticketID, age, isTicketVip);
         this.timeSlotID = timeSlotID;
         this.startTime = startTime;
@@ -48,6 +48,12 @@ public class DailyTicket extends Ticket {
 
     public void setStartTime(LocalDateTime startTime) {
         this.startTime = startTime;
+    }
+    
+    public void mySetStartTime(String startTime) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
+        LocalDateTime start = LocalDateTime.parse(startTime, formatter);
+        this.startTime = start;
     }
 
     public double getDailyPrice() {
@@ -108,7 +114,7 @@ public class DailyTicket extends Ticket {
         if (quatity == 23) {
             index = 1;
         }
-        super.setTicketID(String.format("DAY-" + "%03d", index));
+        super.setTicketID(String.format("DAY - " + "%03d", index));
         return super.getTicketID();
     }
 
@@ -132,32 +138,32 @@ public class DailyTicket extends Ticket {
         }
     }
 
-    public LocalDateTime checkStartTime(LocalDateTime time) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+    public String checkStartTime(LocalDateTime time) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
         String str = time.format(formatter);
-        LocalDateTime result = LocalDateTime.parse(str, formatter);
-        return result;
+        //LocalDateTime result = LocalDateTime.parse(str, formatter);
+        return str;
     }
 
-    public LocalDateTime checkEndTime(LocalDateTime time) {
+    public String checkEndTime(LocalDateTime time) {
         if (checkTimeSlotID().equals("SANG")) {
             this.setEndTime(time.withHour(10).withMinute(00).withSecond(00));
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
             String str = this.getEndTime().format(formatter);
-            LocalDateTime result = LocalDateTime.parse(str, formatter);
-            return result;
+            //LocalDateTime result = LocalDateTime.parse(str, formatter);
+            return str;
         } else if (checkTimeSlotID().equals("CHIEU")) {
             this.setEndTime(time.withHour(17).withMinute(30).withSecond(00));
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
             String str = this.getEndTime().format(formatter);
-            LocalDateTime result = LocalDateTime.parse(str, formatter);
-            return result;
+            //LocalDateTime result = LocalDateTime.parse(str, formatter);
+            return str;
         } else {
             this.setEndTime(time.withHour(22).withMinute(00).withSecond(00));
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
             String str = this.getEndTime().format(formatter);
-            LocalDateTime result = LocalDateTime.parse(str, formatter);
-            return result;
+            //LocalDateTime result = LocalDateTime.parse(str, formatter);
+            return str;
         }
     }
 
@@ -172,4 +178,8 @@ public class DailyTicket extends Ticket {
         return getDailyPrice();
     }
 
+    public String writeCSV() {
+        String str = String.format("%s,%d,%s,%s,%s,%s,%.0f\n", super.getTicketID(), super.getAge(), super.getIsTicketVip(), getTimeSlotID(), getStartTime().toString(), getEndTime().toString(), getDailyPrice());
+        return str;
+    }
 }

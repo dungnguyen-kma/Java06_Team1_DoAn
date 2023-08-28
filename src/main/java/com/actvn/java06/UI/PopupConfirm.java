@@ -4,6 +4,12 @@
  */
 package com.actvn.java06.UI;
 
+import static com.actvn.java06.PoolManage.dailyTickets;
+import com.actvn.java06.FileSave;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author thepo
@@ -36,6 +42,11 @@ public class PopupConfirm extends javax.swing.JFrame {
         jLabel1.setText("Bạn có chắc chắn không?");
 
         jButton1.setText("chắc chắn rồi!");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Đoán xem!");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -78,6 +89,11 @@ public class PopupConfirm extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
