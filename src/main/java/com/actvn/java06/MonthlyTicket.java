@@ -10,6 +10,7 @@ public class MonthlyTicket extends Ticket {
 
     private String customerName;
     private String customerAddress;
+    private int customerPhone;
     private LocalDate registereDate;
     private LocalDate expiedDate;
     private double monthlyPrice;
@@ -41,6 +42,65 @@ public class MonthlyTicket extends Ticket {
         super(age, isTicketVip);
         this.customerName = customerName;
         this.customerAddress = customerAddress;
+    }
+
+    public MonthlyTicket(String customerName, String customerAddress, int customerPhone, int customerAge, LocalDate registereDate, LocalDate expiedDate, double monthlyPrice, String customerAvatar) {
+        this.customerName = customerName;
+        this.customerAddress = customerAddress;
+        this.customerPhone = customerPhone;
+        this.registereDate = registereDate;
+        this.expiedDate = expiedDate;
+        this.monthlyPrice = monthlyPrice;
+        this.customerAvatar = customerAvatar;
+    }
+
+    public MonthlyTicket(String customerName, String customerAddress, int customerPhone, int customerAge, LocalDate registereDate, LocalDate expiedDate, double monthlyPrice, String customerAvatar, String ticketID, int age, String isTicketVip) {
+        super(ticketID, age, isTicketVip);
+        this.customerName = customerName;
+        this.customerAddress = customerAddress;
+        this.customerPhone = customerPhone;
+        this.registereDate = registereDate;
+        this.expiedDate = expiedDate;
+        this.monthlyPrice = monthlyPrice;
+        this.customerAvatar = customerAvatar;
+    }
+
+    public MonthlyTicket(String customerName, String customerAddress, int customerPhone, int customerAge, LocalDate registereDate, LocalDate expiedDate, double monthlyPrice, String customerAvatar, int age, String isTicketVip) {
+        super(age, isTicketVip);
+        this.customerName = customerName;
+        this.customerAddress = customerAddress;
+        this.customerPhone = customerPhone;
+        this.registereDate = registereDate;
+        this.expiedDate = expiedDate;
+        this.monthlyPrice = monthlyPrice;
+        this.customerAvatar = customerAvatar;
+    }
+
+    public MonthlyTicket(String customerName, String customerAddress, int customerPhone, int customerAge, LocalDate registereDate, LocalDate expiedDate) {
+        this.customerName = customerName;
+        this.customerAddress = customerAddress;
+        this.customerPhone = customerPhone;
+        this.registereDate = registereDate;
+        this.expiedDate = expiedDate;
+    }
+
+    public MonthlyTicket(String customerName, String customerAddress, int customerPhone, LocalDate registereDate, LocalDate expiedDate, double monthlyPrice, String ticketID, int age, String isTicketVip) {
+        super(ticketID, age, isTicketVip);
+        this.customerName = customerName;
+        this.customerAddress = customerAddress;
+        this.customerPhone = customerPhone;
+        this.registereDate = registereDate;
+        this.expiedDate = expiedDate;
+        this.monthlyPrice = monthlyPrice;
+    }
+  
+
+    public int getCustomerPhone() {
+        return customerPhone;
+    }
+
+    public void setCustomerPhone(int customerPhone) {
+        this.customerPhone = customerPhone;
     }
 
     public String getCustomerName() {
@@ -140,30 +200,12 @@ public class MonthlyTicket extends Ticket {
 
     @Override
     public String creatTicketID(int index) {
-        LocalDate start = LocalDate.now();
-        LocalDate normal = LocalDate.now().plusMonths(1);
-        LocalDate vip = LocalDate.now().plusMonths(2);
-
         super.setTicketID(String.format("THANG-" + "%03d", index));
-
-        if (this.checkIsTicketVip().equalsIgnoreCase("V")) {
-            Period period = Period.between(start, vip);
-            if (period.getDays() == 0) {
-                index = 1;
-                return "Het han";
-            }
-        } else {
-            Period period = Period.between(start, normal);
-            if (period.getDays() == 0) {
-                index = 1;
-                return "Het han";
-            }
-        }
         return super.getTicketID();
     }
 
     public String checkIsTicketVip() {
-        if (super.getIsTicketVip().equalsIgnoreCase("N")) {
+        if (super.getIsTicketVip().equalsIgnoreCase("Normal")) {
             return "NORMAL";
         } else {
             return "VIP";
@@ -177,9 +219,15 @@ public class MonthlyTicket extends Ticket {
         return result;
     }
 
-    public LocalDate checkExpiedDate(LocalDate time) {
-        if (this.getIsTicketVip().equalsIgnoreCase("V")) {
-            this.setExpiedDate(time.plusMonths(2));
+    public LocalDate checkExpiedDate(LocalDate time, int extend) {
+        if (extend == 6) {
+            this.setExpiedDate(time.plusMonths(6));
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            String str = getExpiedDate().format(formatter);
+            LocalDate result = LocalDate.parse(str, formatter);
+            return result;
+        } else if (extend == 3) {
+            this.setExpiedDate(time.plusMonths(3));
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
             String str = getExpiedDate().format(formatter);
             LocalDate result = LocalDate.parse(str, formatter);
@@ -193,12 +241,12 @@ public class MonthlyTicket extends Ticket {
         }
     }
 
-    public double caculatorMonthlyPrice() {
+    public double caculatorMonthlyPrice(String data, int age) {
         setMonthlyPrice(300000);
-        if (this.getIsTicketVip().equalsIgnoreCase("V")) {
+        if (data.equalsIgnoreCase("V")) {
             this.monthlyPrice += 150000;
         }
-        if (super.getAge() >= 3 && super.getAge() <= 12) {
+        if (age >= 3 && age <= 12) {
             this.monthlyPrice -= 50000;
         }
         return getMonthlyPrice();
@@ -207,5 +255,10 @@ public class MonthlyTicket extends Ticket {
     public String checkCustomerAvata() {
         //đọc file và trả về URL
         return "path";
+    }
+    
+    public String writeCSV() {
+        String str = String.format("%s,%s,%s,%d,%d,%s,%s,%s,%.0f\n",super.getTicketID(),this.getCustomerName(), this.getCustomerAddress(), this.getCustomerPhone(), super.getAge(),super.getIsTicketVip(), this.getRegistereDate().toString(), this.getExpiedDate().toString(), this.getMonthlyPrice());
+        return str;
     }
 }

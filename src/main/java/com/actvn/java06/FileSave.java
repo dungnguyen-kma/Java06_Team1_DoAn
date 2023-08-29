@@ -12,9 +12,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 /**
  *
@@ -24,10 +27,10 @@ public class FileSave {
 
     private static final String CURRENT = System.getProperty("user.dir");
     private static final String SEPERATOR = File.separator;
-    private static final String PATH_CSV_FILE_INPUT = CURRENT + SEPERATOR + "Danh_Sach_Ve_Ngay_IN.csv";
+    private static final String PATH_JSON_MONTHLY_OUTPUT = CURRENT + SEPERATOR + "Danh_Sach_Ve_Thang_OUT.csv";
     private static final String PATH_CSV_FILE_OUTPUT = CURRENT + SEPERATOR + "Danh_Sach_Ve_Ngay_OUT.csv";
     private static final String FILE_HEADER = "ID,Age,VIP,TimeslotID,StartTime,EndTime,Price\n";
-    private static final String PATH_JSON_FILE = CURRENT + SEPERATOR + "";
+    private static final String MONTHLY_HEADER = "ID,Name,Address,Phone,Age,VIP,RegisterDate,ExpiredDate,Price\n";
 
     public static void saveFile(ArrayList<DailyTicket> arrayList) throws IOException {
         BufferedWriter bw;
@@ -46,7 +49,6 @@ public class FileSave {
     }
 
     public static void ReadFile(ArrayList<DailyTicket> arrayList) throws IOException {
-
         BufferedReader bf = new BufferedReader(new FileReader(PATH_CSV_FILE_OUTPUT));
         String line;
         bf.readLine();
@@ -59,6 +61,26 @@ public class FileSave {
             bf.close();
         } catch (NumberFormatException | IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void saveMonthlyJson(ArrayList<MonthlyTicket> arrayList) {
+        FileWriter fw = null;
+        try {
+            fw = new FileWriter(PATH_JSON_MONTHLY_OUTPUT);
+            Gson gson = new Gson();
+            String data = gson.toJson(arrayList);
+            fw.write(data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            if(fw!=null){
+                try {
+                    fw.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
     }
 }

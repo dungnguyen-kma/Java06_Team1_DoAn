@@ -8,6 +8,14 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
+import com.actvn.java06.*;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import static com.actvn.java06.PoolManage.monthlyTickets;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,25 +26,36 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
     /**
      * Creates new form SellMonthlyTicket
      */
+    String customerNameValue;
+    String customerAddressValue;
+    String ticketIdValue;
+    int customerPhoneValue;
+    int customerAgeValue;
+    LocalDate registerDate;
+    LocalDate expiredDate;
+    String isVipTicket;
+    double ticketPrice;
+
     public SellMonthlyTicket() {
         initComponents();
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setJDateChooser();
         addPlaceholder(jInputName);
         addPlaceholder(jInputAddress);
         addPlaceholder(jInputPhone);
         addPlaceholder(jInputAge);
     }
-    
-    public void addPlaceholder(JTextField textField){
+
+    public void addPlaceholder(JTextField textField) {
         Font font = textField.getFont();
         font = font.deriveFont(Font.ITALIC);
         textField.setFont(font);
         textField.setForeground(Color.gray);
     }
-    
-    public void removePlaceholder(JTextField textField){
+
+    public void removePlaceholder(JTextField textField) {
         Font font = textField.getFont();
-        font = font.deriveFont(Font.PLAIN|Font.BOLD);
+        font = font.deriveFont(Font.PLAIN | Font.BOLD);
         textField.setFont(font);
         textField.setForeground(Color.black);
     }
@@ -60,13 +79,14 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
         jInputPhone = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jInputAge = new javax.swing.JTextField();
+        txtWarnName = new javax.swing.JLabel();
+        txtWarnAddress = new javax.swing.JLabel();
+        txtWarnPhone = new javax.swing.JLabel();
+        txtWarnAge = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jRegisterDate = new com.toedter.calendar.JDateChooser();
         jLabel8 = new javax.swing.JLabel();
-        jExpiredDate = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jSelectOneMonth = new javax.swing.JRadioButton();
         jSelectThreeMonth = new javax.swing.JRadioButton();
@@ -74,8 +94,11 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jSelectNormalTicket = new javax.swing.JRadioButton();
         jSelectVipTicket = new javax.swing.JRadioButton();
-        jPrice = new javax.swing.JLabel();
-        jTicketIdValue = new javax.swing.JLabel();
+        txtExpiredDate = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtPrice = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtTicketId = new javax.swing.JLabel();
         jExitButton = new javax.swing.JButton();
         jSubmitButton = new javax.swing.JButton();
         jResetButton = new javax.swing.JButton();
@@ -191,6 +214,10 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
                     .addComponent(jInputName)
                     .addComponent(jInputAddress)
                     .addComponent(jInputPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
+                    .addComponent(txtWarnName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtWarnAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtWarnPhone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtWarnAge, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jInputAge))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -201,37 +228,36 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jInputName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtWarnName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jInputAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtWarnAddress)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jInputPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtWarnPhone)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jInputAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtWarnAge)
+                .addContainerGap())
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin vé", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel5.setText("Mã vé:");
-
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setText("Ngày bắt đầu:");
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel7.setText("Giá vé:");
-
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel8.setText("ngày kết thúc: ");
-
-        jExpiredDate.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jExpiredDate.setText("jTextField1");
+        jLabel8.setText("Ngày kết thúc: ");
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gia hạn", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
 
@@ -322,11 +348,17 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
                 .addGap(25, 25, 25))
         );
 
-        jPrice.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jPrice.setText("jLabel9");
+        txtExpiredDate.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        jTicketIdValue.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jTicketIdValue.setText("jLabel9");
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel5.setText("Giá vé:");
+
+        txtPrice.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel7.setText("Mã vé:");
+
+        txtTicketId.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -337,19 +369,19 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(jLabel8)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel7))
                 .addGap(58, 58, 58)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTicketIdValue)
-                    .addComponent(jPrice)
-                    .addComponent(jExpiredDate, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
-                    .addComponent(jRegisterDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
+                    .addComponent(jRegisterDate, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+                    .addComponent(txtExpiredDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtTicketId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(28, 28, 28)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -357,26 +389,24 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTicketIdValue)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel6))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRegisterDate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jExpiredDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(jPrice))))
+                            .addComponent(txtTicketId))
+                        .addGap(9, 9, 9)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6)
+                            .addComponent(jRegisterDate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtExpiredDate)
+                            .addComponent(jLabel8))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(txtPrice))))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -390,6 +420,11 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
 
         jSubmitButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jSubmitButton.setText("Xác nhận");
+        jSubmitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSubmitButtonActionPerformed(evt);
+            }
+        });
 
         jResetButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jResetButton.setText("Hủy");
@@ -402,15 +437,16 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jExitButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jSubmitButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jResetButton))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jResetButton)
+                        .addGap(2, 2, 2)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -420,12 +456,12 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jExitButton)
                     .addComponent(jSubmitButton)
                     .addComponent(jResetButton))
-                .addGap(17, 17, 17))
+                .addGap(18, 18, 18))
         );
 
         pack();
@@ -445,7 +481,7 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
 
     private void jInputNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jInputNameFocusGained
         // TODO add your handling code here:
-        if(jInputName.getText().equals("Họ và tên*")){
+        if (jInputName.getText().equals("Họ và tên*")) {
             jInputName.setText(null);
             jInputName.requestFocus();
             removePlaceholder(jInputName);
@@ -454,7 +490,7 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
 
     private void jInputAddressFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jInputAddressFocusGained
         // TODO add your handling code here:
-        if(jInputAddress.getText().equals("Địa chỉ*")){
+        if (jInputAddress.getText().equals("Địa chỉ*")) {
             jInputAddress.setText(null);
             jInputAddress.requestFocus();
             removePlaceholder(jInputAddress);
@@ -463,7 +499,7 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
 
     private void jInputPhoneFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jInputPhoneFocusGained
         // TODO add your handling code here:
-        if(jInputPhone.getText().equals("Số điện thoại*")){
+        if (jInputPhone.getText().equals("Số điện thoại*")) {
             jInputPhone.setText(null);
             jInputPhone.requestFocus();
             removePlaceholder(jInputPhone);
@@ -472,7 +508,7 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
 
     private void jInputNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jInputNameFocusLost
         // TODO add your handling code here:
-        if(jInputName.getText().length()==0){
+        if (jInputName.getText().length() == 0) {
             addPlaceholder(jInputName);
             jInputName.setText("Họ và tên*");
         }
@@ -480,7 +516,7 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
 
     private void jInputAddressFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jInputAddressFocusLost
         // TODO add your handling code here:
-        if(jInputAddress.getText().length()==0){
+        if (jInputAddress.getText().length() == 0) {
             addPlaceholder(jInputAddress);
             jInputAddress.setText("Địa chỉ*");
         }
@@ -488,7 +524,7 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
 
     private void jInputPhoneFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jInputPhoneFocusLost
         // TODO add your handling code here:
-        if(jInputPhone.getText().length()==0){
+        if (jInputPhone.getText().length() == 0) {
             addPlaceholder(jInputPhone);
             jInputPhone.setText("Số điện thoại*");
         }
@@ -513,6 +549,13 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
         jSelectOneMonth.setSelected(true);
         jSelectThreeMonth.setSelected(false);
         jSelectSixMonth.setSelected(false);
+        if (jRegisterDate.getDate() != null) {
+            registerDate = fromDatetoLocalDate(jRegisterDate.getDate());
+            expiredDate = new MonthlyTicket().checkExpiedDate(registerDate, 1);
+            String expiedDateString = dateFormaterApp(expiredDate);
+            txtExpiredDate.setText(expiedDateString);
+            txtTicketId.setText(handleTicketId());
+        }
     }//GEN-LAST:event_jSelectOneMonthActionPerformed
 
     private void jSelectThreeMonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSelectThreeMonthActionPerformed
@@ -520,6 +563,13 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
         jSelectThreeMonth.setSelected(true);
         jSelectOneMonth.setSelected(false);
         jSelectSixMonth.setSelected(false);
+        if (jRegisterDate.getDate() != null) {
+            registerDate = fromDatetoLocalDate(jRegisterDate.getDate());
+            expiredDate = new MonthlyTicket().checkExpiedDate(registerDate, 3);
+            String expiedDateString = dateFormaterApp(expiredDate);
+            txtExpiredDate.setText(expiedDateString);
+            txtTicketId.setText(handleTicketId());
+        }
     }//GEN-LAST:event_jSelectThreeMonthActionPerformed
 
     private void jSelectSixMonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSelectSixMonthActionPerformed
@@ -527,18 +577,48 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
         jSelectSixMonth.setSelected(true);
         jSelectOneMonth.setSelected(false);
         jSelectThreeMonth.setSelected(false);
+        if (jRegisterDate.getDate() != null) {
+            registerDate = fromDatetoLocalDate(jRegisterDate.getDate());
+            expiredDate = new MonthlyTicket().checkExpiedDate(registerDate, 6);
+            String expiedDateString = dateFormaterApp(expiredDate);
+            txtExpiredDate.setText(expiedDateString);
+            txtTicketId.setText(handleTicketId());
+            
+        }
     }//GEN-LAST:event_jSelectSixMonthActionPerformed
 
     private void jSelectNormalTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSelectNormalTicketActionPerformed
         // TODO add your handling code here:
         jSelectNormalTicket.setSelected(true);
         jSelectVipTicket.setSelected(false);
+        if (jRegisterDate.getDate() != null && jSelectSixMonth.isSelected()) {
+            ticketPrice = new MonthlyTicket().caculatorMonthlyPrice("N", Integer.parseInt(jInputAge.getText())) * 6 - 200000;
+            txtPrice.setText(String.valueOf(ticketPrice));
+        } else if (jRegisterDate.getDate() != null && jSelectThreeMonth.isSelected()) {
+            ticketPrice = new MonthlyTicket().caculatorMonthlyPrice("N", Integer.parseInt(jInputAge.getText())) * 3 - 100000;
+            txtPrice.setText(String.valueOf(ticketPrice));
+        } else {
+            ticketPrice = new MonthlyTicket().caculatorMonthlyPrice("N", Integer.parseInt(jInputAge.getText()));
+            txtPrice.setText(String.valueOf(ticketPrice));
+        }
+        isVipTicket = "Normal";
     }//GEN-LAST:event_jSelectNormalTicketActionPerformed
 
     private void jSelectVipTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSelectVipTicketActionPerformed
         // TODO add your handling code here:
         jSelectVipTicket.setSelected(true);
         jSelectNormalTicket.setSelected(false);
+        if (jRegisterDate.getDate() != null && jSelectSixMonth.isSelected()) {
+            ticketPrice = new MonthlyTicket().caculatorMonthlyPrice("V", Integer.parseInt(jInputAge.getText())) * 6 - 200000;
+            txtPrice.setText(String.valueOf(ticketPrice));
+        } else if (jRegisterDate.getDate() != null && jSelectThreeMonth.isSelected()) {
+            ticketPrice = new MonthlyTicket().caculatorMonthlyPrice("V", Integer.parseInt(jInputAge.getText())) * 3 - 100000;
+            txtPrice.setText(String.valueOf(ticketPrice));
+        } else {
+            ticketPrice = new MonthlyTicket().caculatorMonthlyPrice("V", Integer.parseInt(jInputAge.getText()));
+            txtPrice.setText(String.valueOf(ticketPrice));
+        }
+        isVipTicket = "Vip";
     }//GEN-LAST:event_jSelectVipTicketActionPerformed
 
     private void jInputAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jInputAgeActionPerformed
@@ -547,7 +627,7 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
 
     private void jInputAgeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jInputAgeFocusGained
         // TODO add your handling code here:
-        if(jInputAge.getText().equals("Tuổi*")){
+        if (jInputAge.getText().equals("Tuổi*")) {
             jInputAge.setText(null);
             jInputAge.requestFocus();
             removePlaceholder(jInputAge);
@@ -556,15 +636,76 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
 
     private void jInputAgeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jInputAgeFocusLost
         // TODO add your handling code here:
-        if(jInputAge.getText().length()==0){
+        if (jInputAge.getText().length() == 0) {
             addPlaceholder(jInputAge);
             jInputAge.setText("Tuổi*");
         }
     }//GEN-LAST:event_jInputAgeFocusLost
 
+    private void jSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSubmitButtonActionPerformed
+        // TODO add your handling code here: 
+        if (jSelectNormalTicket.isSelected()) {
+            isVipTicket = "Normal";
+        } else {
+            isVipTicket = "Vip";
+        }
+        getCustomerValue();
+        MonthlyTicket monthly = new MonthlyTicket(customerNameValue, customerAddressValue, customerAgeValue, isVipTicket);
+        monthly.setCustomerPhone(customerPhoneValue);
+        monthly.setRegistereDate(registerDate);
+        monthly.setExpiedDate(expiredDate);
+        monthly.setTicketID(handleTicketId());
+        monthly.setMonthlyPrice(ticketPrice);
+        monthlyTickets.add(monthly);
+        try {
+            FileSave.saveMonthlyJson(monthlyTickets);
+        } catch (Exception e) {
+            Logger.getLogger(PopupConfirm.class.getName()).log(Level.SEVERE, null, e);
+        }
+        dispose();
+    }//GEN-LAST:event_jSubmitButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
+    public LocalDate fromDatetoLocalDate(Date date) {
+        return date.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+    }
+
+    public void setJDateChooser() {
+        jRegisterDate.setDateFormatString("dd-MM-yyyy");
+    }
+
+    public String dateFormaterApp(LocalDate date) {
+        DateTimeFormatter formatString = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String result = date.format(formatString);
+        return result;
+    }
+
+    public LocalDate fromStringToLocalDate(String data) {
+        DateTimeFormatter formatString = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate result = LocalDate.parse(data, formatString);
+        return result;
+    }
+
+    public void getCustomerValue() {
+        customerNameValue = jInputName.getText().toString();
+        customerAddressValue = jInputAddress.getText().toString();
+        customerPhoneValue = Integer.parseInt(jInputPhone.getText());
+        customerAgeValue = Integer.parseInt(jInputAge.getText());
+        ticketIdValue = txtTicketId.getText().toString();
+    }
+
+    public String handleTicketId() {
+        getCustomerValue();
+        MonthlyTicket monthly = new MonthlyTicket();
+        int size = monthlyTickets.size();
+        String ticketId = monthly.creatTicketID(size + 1);
+        return ticketId;
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -599,7 +740,6 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jExitButton;
-    private javax.swing.JTextField jExpiredDate;
     private javax.swing.JTextField jInputAddress;
     private javax.swing.JTextField jInputAge;
     private javax.swing.JTextField jInputName;
@@ -617,7 +757,6 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JLabel jPrice;
     private com.toedter.calendar.JDateChooser jRegisterDate;
     private javax.swing.JButton jResetButton;
     private javax.swing.JRadioButton jSelectNormalTicket;
@@ -626,6 +765,12 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
     private javax.swing.JRadioButton jSelectThreeMonth;
     private javax.swing.JRadioButton jSelectVipTicket;
     private javax.swing.JButton jSubmitButton;
-    private javax.swing.JLabel jTicketIdValue;
+    private javax.swing.JLabel txtExpiredDate;
+    private javax.swing.JLabel txtPrice;
+    private javax.swing.JLabel txtTicketId;
+    private javax.swing.JLabel txtWarnAddress;
+    private javax.swing.JLabel txtWarnAge;
+    private javax.swing.JLabel txtWarnName;
+    private javax.swing.JLabel txtWarnPhone;
     // End of variables declaration//GEN-END:variables
 }
