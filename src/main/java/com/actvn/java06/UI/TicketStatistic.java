@@ -4,6 +4,8 @@
  */
 package com.actvn.java06.UI;
 
+import javax.swing.WindowConstants;
+
 /**
  *
  * @author thepo
@@ -15,6 +17,7 @@ public class TicketStatistic extends javax.swing.JFrame {
      */
     public TicketStatistic() {
         initComponents();
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**

@@ -4,6 +4,8 @@
  */
 package com.actvn.java06.UI;
 
+import javax.swing.WindowConstants;
+
 /**
  *
  * @author thepo
@@ -15,6 +17,7 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
      */
     public DailyTicketStatistic() {
         initComponents();
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -310,14 +313,14 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
 
     private void jSelectChieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSelectChieuActionPerformed
         // TODO add your handling code here:
-         jSelectSang.setSelected(false);
+        jSelectSang.setSelected(false);
         jSelectChieu.setSelected(true);
         jSelectToi.setSelected(false);
     }//GEN-LAST:event_jSelectChieuActionPerformed
 
     private void jSelectToiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSelectToiActionPerformed
         // TODO add your handling code here:
-         jSelectSang.setSelected(false);
+        jSelectSang.setSelected(false);
         jSelectChieu.setSelected(false);
         jSelectToi.setSelected(true);
     }//GEN-LAST:event_jSelectToiActionPerformed
