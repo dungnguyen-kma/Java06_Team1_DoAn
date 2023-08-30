@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -27,20 +28,27 @@ public class FileSave {
 
     private static final String CURRENT = System.getProperty("user.dir");
     private static final String SEPERATOR = File.separator;
-    private static final String PATH_JSON_MONTHLY_OUTPUT = CURRENT + SEPERATOR + "Danh_Sach_Ve_Thang_OUT.csv";
+    private static final String PATH_JSON_MONTHLY_OUTPUT = CURRENT + SEPERATOR + "Danh_Sach_Ve_Thang_OUT.json";
+    private static final String PATH_CSV_MONTHLY_OUTPUT = CURRENT + SEPERATOR + "Danh_Sach_Ve_Thang_OUT.csv";
     private static final String PATH_CSV_FILE_OUTPUT = CURRENT + SEPERATOR + "Danh_Sach_Ve_Ngay_OUT.csv";
     private static final String FILE_HEADER = "ID,Age,VIP,TimeslotID,StartTime,EndTime,Price\n";
-    private static final String MONTHLY_HEADER = "ID,Name,Address,Phone,Age,VIP,RegisterDate,ExpiredDate,Price\n";
+    private static final String MONTHLY_HEADER = "ID,Name,Address,Phone,Age,VIP,RegisterDate,ExpiredDate,Price";
+    private static final String NEW_LINE_SPETATOR = "\n";
+    private static final String COMMA_DELIMITER = ",";
+
+    public static String dateFormaterApp(LocalDate date) {
+        DateTimeFormatter formatString = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String result = date.format(formatString);
+        return result;
+    }
 
     public static void saveFile(ArrayList<DailyTicket> arrayList) throws IOException {
         BufferedWriter bw;
         try {
             bw = new BufferedWriter(new FileWriter(PATH_CSV_FILE_OUTPUT));
             bw.append(FILE_HEADER);
-            for (int i = 0; i < arrayList.size(); i++) {
-                for (DailyTicket ts : arrayList) {
-                    bw.append(ts.writeCSV());
-                }
+            for (DailyTicket ts : arrayList) {
+                bw.append(ts.writeCSV());
             }
             bw.close();
         } catch (NumberFormatException | IOException e) {
@@ -64,17 +72,37 @@ public class FileSave {
         }
     }
 
-    public static void saveMonthlyJson(ArrayList<MonthlyTicket> arrayList) {
+    public static void saveMonthlyCSV(ArrayList<MonthlyTicket> arrayList) {
         FileWriter fw = null;
         try {
-            fw = new FileWriter(PATH_JSON_MONTHLY_OUTPUT);
-            Gson gson = new Gson();
-            String data = gson.toJson(arrayList);
-            fw.write(data);
+            fw = new FileWriter(PATH_CSV_MONTHLY_OUTPUT);
+            fw.append(MONTHLY_HEADER);
+            fw.append(NEW_LINE_SPETATOR);
+//            Gson gson = new Gson();
+            for (MonthlyTicket item : arrayList) {
+                fw.append(item.getTicketID());
+                fw.append(COMMA_DELIMITER);
+                fw.append(item.getCustomerName());
+                fw.append(COMMA_DELIMITER);
+                fw.append(item.getCustomerAddress());
+                fw.append(COMMA_DELIMITER);
+                fw.append(String.valueOf(item.getCustomerPhone()));
+                fw.append(COMMA_DELIMITER);
+                fw.append(String.valueOf(item.getAge()));
+                fw.append(COMMA_DELIMITER);
+                fw.append(item.getIsTicketVip());
+                fw.append(COMMA_DELIMITER);
+                fw.append(dateFormaterApp(item.getRegistereDate()));
+                fw.append(COMMA_DELIMITER);
+                fw.append(dateFormaterApp(item.getExpiedDate()));
+                fw.append(COMMA_DELIMITER);
+                fw.append(String.valueOf(item.getMonthlyPrice()));
+            }
+            fw.close();
         } catch (Exception e) {
             e.printStackTrace();
-        }finally{
-            if(fw!=null){
+        } finally {
+            if (fw != null) {
                 try {
                     fw.close();
                 } catch (IOException ex) {

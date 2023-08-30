@@ -28,11 +28,8 @@ public class TicketStatistic extends javax.swing.JFrame {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         jListCurrentDay = new javax.swing.JMenu();
-        jListDailyCurrentDay = new javax.swing.JMenuItem();
         jListDailyByDate = new javax.swing.JMenuItem();
-        jListDailyByTimeSlot = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jListMonthlyByMonth = new javax.swing.JMenuItem();
         jPriceByMonth = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -42,31 +39,14 @@ public class TicketStatistic extends javax.swing.JFrame {
         jListCurrentDay.setText("Vé ngày");
         jListCurrentDay.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        jListDailyCurrentDay.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jListDailyCurrentDay.setText("Danh sách vé trong ngày");
-        jListCurrentDay.add(jListDailyCurrentDay);
-
         jListDailyByDate.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jListDailyByDate.setText("Danh sách vé theo ngày");
         jListCurrentDay.add(jListDailyByDate);
-
-        jListDailyByTimeSlot.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jListDailyByTimeSlot.setText("Danh sách vé theo khung giờ");
-        jListCurrentDay.add(jListDailyByTimeSlot);
 
         jMenuBar1.add(jListCurrentDay);
 
         jMenu2.setText("Vé tháng");
         jMenu2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-
-        jListMonthlyByMonth.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jListMonthlyByMonth.setText("Danh sách trong tháng");
-        jListMonthlyByMonth.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jListMonthlyByMonthActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jListMonthlyByMonth);
 
         jPriceByMonth.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jPriceByMonth.setText("Danh sách theo tháng");
@@ -89,10 +69,6 @@ public class TicketStatistic extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jListMonthlyByMonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jListMonthlyByMonthActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jListMonthlyByMonthActionPerformed
 
     /**
      * @param args the command line arguments
@@ -132,9 +108,6 @@ public class TicketStatistic extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jListCurrentDay;
     private javax.swing.JMenuItem jListDailyByDate;
-    private javax.swing.JMenuItem jListDailyByTimeSlot;
-    private javax.swing.JMenuItem jListDailyCurrentDay;
-    private javax.swing.JMenuItem jListMonthlyByMonth;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jPriceByMonth;

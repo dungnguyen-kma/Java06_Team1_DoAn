@@ -150,6 +150,8 @@ public class MonthlyTicket extends Ticket {
     public void setCustomerAvatar(String customerAvatar) {
         this.customerAvatar = customerAvatar;
     }
+    
+    
 
     @Override
     public String toString() {
@@ -257,8 +259,17 @@ public class MonthlyTicket extends Ticket {
         return "path";
     }
     
-    public String writeCSV() {
-        String str = String.format("%s,%s,%s,%d,%d,%s,%s,%s,%.0f\n",super.getTicketID(),this.getCustomerName(), this.getCustomerAddress(), this.getCustomerPhone(), super.getAge(),super.getIsTicketVip(), this.getRegistereDate().toString(), this.getExpiedDate().toString(), this.getMonthlyPrice());
-        return str;
-    }
+//    public String writeCSV() {
+//        String str = String.format("%s,%s,%s,%d,%d,%s,%s,%s,%.0f\n",
+//                super.getTicketID(),
+//                this.getCustomerName(), 
+//                this.getCustomerAddress(), 
+//                this.getCustomerPhone(), 
+//                super.getAge(),
+//                super.getIsTicketVip(), 
+//                this.getRegistereDate().toString(), 
+//                this.getExpiedDate().toString(), 
+//                this.getMonthlyPrice());
+//        return str;
+//    }
 }

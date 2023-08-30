@@ -658,7 +658,8 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
         monthly.setMonthlyPrice(ticketPrice);
         monthlyTickets.add(monthly);
         try {
-            FileSave.saveMonthlyJson(monthlyTickets);
+            FileSave.saveMonthlyCSV(monthlyTickets);
+            System.out.println("Lưu dữ diệu tháng thành công!");
         } catch (Exception e) {
             Logger.getLogger(PopupConfirm.class.getName()).log(Level.SEVERE, null, e);
         }
