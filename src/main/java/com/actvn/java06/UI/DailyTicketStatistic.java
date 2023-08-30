@@ -155,12 +155,27 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
 
         jSelectSang.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jSelectSang.setText("Sáng");
+        jSelectSang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSelectSangActionPerformed(evt);
+            }
+        });
 
         jSelectChieu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jSelectChieu.setText("Chiều");
+        jSelectChieu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSelectChieuActionPerformed(evt);
+            }
+        });
 
         jSelectToi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jSelectToi.setText("Tối");
+        jSelectToi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSelectToiActionPerformed(evt);
+            }
+        });
 
         jSubmitTimeSlot.setText("Xác nhận");
 
@@ -285,6 +300,27 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jSelectSangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSelectSangActionPerformed
+        // TODO add your handling code here:
+        jSelectSang.setSelected(true);
+        jSelectChieu.setSelected(false);
+        jSelectToi.setSelected(false);
+    }//GEN-LAST:event_jSelectSangActionPerformed
+
+    private void jSelectChieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSelectChieuActionPerformed
+        // TODO add your handling code here:
+         jSelectSang.setSelected(false);
+        jSelectChieu.setSelected(true);
+        jSelectToi.setSelected(false);
+    }//GEN-LAST:event_jSelectChieuActionPerformed
+
+    private void jSelectToiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSelectToiActionPerformed
+        // TODO add your handling code here:
+         jSelectSang.setSelected(false);
+        jSelectChieu.setSelected(false);
+        jSelectToi.setSelected(true);
+    }//GEN-LAST:event_jSelectToiActionPerformed
 
     /**
      * @param args the command line arguments

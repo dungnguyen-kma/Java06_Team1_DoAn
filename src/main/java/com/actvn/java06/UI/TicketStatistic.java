@@ -41,6 +41,11 @@ public class TicketStatistic extends javax.swing.JFrame {
 
         jListDailyByDate.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jListDailyByDate.setText("Danh sách vé theo ngày");
+        jListDailyByDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jListDailyByDateActionPerformed(evt);
+            }
+        });
         jListCurrentDay.add(jListDailyByDate);
 
         jMenuBar1.add(jListCurrentDay);
@@ -50,6 +55,11 @@ public class TicketStatistic extends javax.swing.JFrame {
 
         jPriceByMonth.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jPriceByMonth.setText("Danh sách theo tháng");
+        jPriceByMonth.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPriceByMonthActionPerformed(evt);
+            }
+        });
         jMenu2.add(jPriceByMonth);
 
         jMenuBar1.add(jMenu2);
@@ -69,6 +79,18 @@ public class TicketStatistic extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jListDailyByDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jListDailyByDateActionPerformed
+        // TODO add your handling code here:
+        DailyTicketStatistic dailyStatistic = new DailyTicketStatistic();
+        dailyStatistic.setVisible(true);
+    }//GEN-LAST:event_jListDailyByDateActionPerformed
+
+    private void jPriceByMonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPriceByMonthActionPerformed
+        // TODO add your handling code here:
+        MonthlyTicketStatistic monthlyStatistic = new MonthlyTicketStatistic();
+        monthlyStatistic.setVisible(true);
+    }//GEN-LAST:event_jPriceByMonthActionPerformed
 
     /**
      * @param args the command line arguments
