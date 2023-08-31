@@ -25,28 +25,26 @@ import java.time.format.DateTimeFormatter;
  * @author Tatcataiso
  */
 public class FileSave {
-
+    
     private static final String CURRENT = System.getProperty("user.dir");
     private static final String SEPERATOR = File.separator;
-    private static final String PATH_JSON_MONTHLY_OUTPUT = CURRENT + SEPERATOR + "Danh_Sach_Ve_Thang_OUT.json";
     private static final String PATH_CSV_MONTHLY_OUTPUT = CURRENT + SEPERATOR + "Danh_Sach_Ve_Thang_OUT.csv";
     private static final String PATH_CSV_FILE_OUTPUT = CURRENT + SEPERATOR + "Danh_Sach_Ve_Ngay_OUT.csv";
     private static final String FILE_HEADER = "ID,Age,VIP,TimeslotID,StartTime,EndTime,Price\n";
     private static final String MONTHLY_HEADER = "ID,Name,Address,Phone,Age,VIP,RegisterDate,ExpiredDate,Price";
     private static final String NEW_LINE_SPETATOR = "\n";
     private static final String COMMA_DELIMITER = ",";
-
+    
     public static String dateFormaterApp(LocalDate date) {
         DateTimeFormatter formatString = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String result = date.format(formatString);
         return result;
     }
-
+    
     public static void saveFile(ArrayList<DailyTicket> arrayList) throws IOException {
         BufferedWriter bw;
         try {
-            bw = new BufferedWriter(new FileWriter(PATH_CSV_FILE_OUTPUT));
-            bw.append(FILE_HEADER);
+            bw = new BufferedWriter(new FileWriter(PATH_CSV_FILE_OUTPUT, true));
             for (DailyTicket ts : arrayList) {
                 bw.append(ts.writeCSV());
             }
@@ -55,7 +53,7 @@ public class FileSave {
             e.printStackTrace();
         }
     }
-
+    
     public static void ReadFile(ArrayList<DailyTicket> arrayList) throws IOException {
         BufferedReader bf = new BufferedReader(new FileReader(PATH_CSV_FILE_OUTPUT));
         String line;
@@ -75,10 +73,8 @@ public class FileSave {
     public static void saveMonthlyCSV(ArrayList<MonthlyTicket> arrayList) {
         FileWriter fw = null;
         try {
-            fw = new FileWriter(PATH_CSV_MONTHLY_OUTPUT);
-            fw.append(MONTHLY_HEADER);
+            fw = new FileWriter(PATH_CSV_MONTHLY_OUTPUT, true);
             fw.append(NEW_LINE_SPETATOR);
-//            Gson gson = new Gson();
             for (MonthlyTicket item : arrayList) {
                 fw.append(item.getTicketID());
                 fw.append(COMMA_DELIMITER);
