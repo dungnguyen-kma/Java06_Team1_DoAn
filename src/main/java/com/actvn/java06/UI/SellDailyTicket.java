@@ -7,8 +7,12 @@ package com.actvn.java06.UI;
 import com.actvn.java06.DailyTicket;
 import com.actvn.java06.PoolManage;
 import static com.actvn.java06.PoolManage.dailyTickets;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
 /**
@@ -151,10 +155,17 @@ public class SellDailyTicket extends javax.swing.JFrame {
 
 
     private void buttonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveActionPerformed
-
-        FormDailyTicket formDailyTicket = new FormDailyTicket(Integer.parseInt(txtAge.getText()), cbBoxVip.isSelected());
-        formDailyTicket.setVisible(true);
-        dispose();
+        if (txtAge.getText().equals("") == false) {
+            try {
+                FormDailyTicket formDailyTicket = new FormDailyTicket(Integer.parseInt(txtAge.getText()), cbBoxVip.isSelected());
+                formDailyTicket.setVisible(true);
+                dispose();
+            } catch (IOException ex) {
+                Logger.getLogger(SellDailyTicket.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Không được để trống thông tin");
+        }
     }//GEN-LAST:event_buttonSaveActionPerformed
 
     /**

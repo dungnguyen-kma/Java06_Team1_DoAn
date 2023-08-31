@@ -6,6 +6,7 @@ package com.actvn.java06.UI;
 
 import com.actvn.java06.DailyTicket;
 import com.actvn.java06.FileSave;
+import com.actvn.java06.PoolManage;
 import static com.actvn.java06.PoolManage.dailyTickets;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -22,26 +23,32 @@ public class FormDailyTicket extends javax.swing.JFrame {
     /**
      * Creates new form FormDailyTicket
      */
-    public FormDailyTicket(int age, boolean isVip) {
+    private DailyTicket ticket = new DailyTicket();
+
+    public FormDailyTicket(int age, boolean isVip) throws IOException {
         initComponents();
-        
+
         String isTicketVip;
         if (isVip == true) {
             isTicketVip = "VIp";
         } else {
             isTicketVip = "Normal";
         }
-        DailyTicket ticket = new DailyTicket(age, isTicketVip);
-        
+        ticket = new DailyTicket(age, isTicketVip);
+
         LocalDateTime time = LocalDateTime.now();
-        
+
         String start = ticket.checkStartTime(time);
         String end = ticket.checkEndTime(time);
         String timeSlotID = ticket.checkTimeSlotID();
-        int size = dailyTickets.size();
-        String IDTicket = ticket.creatTicketID(size + 1);
+        String IDTicket;
+        int index = -1;
+        index = FileSave.ReadIndexOfDailyTicket(index);
+        index++;
+        IDTicket = ticket.creatTicketID(index);
+
         double price = ticket.caculatorDailyPrice();
-        
+
         txtAge.setText(String.valueOf(age));
         txtStartTime.setText(start);
         txtEndTime.setText(end);
@@ -49,7 +56,7 @@ public class FormDailyTicket extends javax.swing.JFrame {
         txtIDTicket.setText(IDTicket);
         txtPrice.setText(String.valueOf(price));
         txtIsVip.setText(isTicketVip);
-        
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
         LocalDateTime startTime = LocalDateTime.parse(start, formatter);
         LocalDateTime endTime = LocalDateTime.parse(end, formatter);
@@ -57,10 +64,10 @@ public class FormDailyTicket extends javax.swing.JFrame {
         ticket.setEndTime(endTime);
         ticket.setTimeSlotID(timeSlotID);
         ticket.setTicketID(IDTicket);
-        
+
         dailyTickets.add(ticket);
     }
-    
+
     private FormDailyTicket() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -236,7 +243,7 @@ public class FormDailyTicket extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             // TODO add your handling code here:
-            FileSave.saveFile(dailyTickets);
+            FileSave.saveDailyTicket(ticket);
         } catch (IOException ex) {
             Logger.getLogger(PopupConfirm.class.getName()).log(Level.SEVERE, null, ex);
         }

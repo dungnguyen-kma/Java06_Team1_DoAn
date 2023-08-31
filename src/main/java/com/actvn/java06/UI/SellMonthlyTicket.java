@@ -14,6 +14,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import static com.actvn.java06.PoolManage.monthlyTickets;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -58,6 +59,20 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
         font = font.deriveFont(Font.PLAIN | Font.BOLD);
         textField.setFont(font);
         textField.setForeground(Color.black);
+    }
+
+    public int getTicketId() throws IOException {
+        getCustomerValue();
+        int index = -1;
+        index = FileSave.ReadIndexOfMonthlyTicket(index);
+        index++;
+        return index;
+    }
+
+    public String handleTicketId() throws IOException {
+        int index = getTicketId();
+        ticketIdValue = new MonthlyTicket().creatTicketID(index);
+        return ticketIdValue;
     }
 
     /**
@@ -554,7 +569,7 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
             expiredDate = new MonthlyTicket().checkExpiedDate(registerDate, 1);
             String expiedDateString = dateFormaterApp(expiredDate);
             txtExpiredDate.setText(expiedDateString);
-            txtTicketId.setText(handleTicketId());
+            txtTicketId.setText(ticketIdValue);
         }
     }//GEN-LAST:event_jSelectOneMonthActionPerformed
 
@@ -568,7 +583,7 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
             expiredDate = new MonthlyTicket().checkExpiedDate(registerDate, 3);
             String expiedDateString = dateFormaterApp(expiredDate);
             txtExpiredDate.setText(expiedDateString);
-            txtTicketId.setText(handleTicketId());
+            txtTicketId.setText(ticketIdValue);
         }
     }//GEN-LAST:event_jSelectThreeMonthActionPerformed
 
@@ -582,8 +597,8 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
             expiredDate = new MonthlyTicket().checkExpiedDate(registerDate, 6);
             String expiedDateString = dateFormaterApp(expiredDate);
             txtExpiredDate.setText(expiedDateString);
-            txtTicketId.setText(handleTicketId());
-            
+            txtTicketId.setText(ticketIdValue);
+
         }
     }//GEN-LAST:event_jSelectSixMonthActionPerformed
 
@@ -643,7 +658,7 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jInputAgeFocusLost
 
     private void jSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSubmitButtonActionPerformed
-        // TODO add your handling code here: 
+        // TODO add your handling code here:
         if (jSelectNormalTicket.isSelected()) {
             isVipTicket = "Normal";
         } else {
@@ -654,11 +669,11 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
         monthly.setCustomerPhone(customerPhoneValue);
         monthly.setRegistereDate(registerDate);
         monthly.setExpiedDate(expiredDate);
-        monthly.setTicketID(handleTicketId());
+        monthly.setTicketID(ticketIdValue);
         monthly.setMonthlyPrice(ticketPrice);
         monthlyTickets.add(monthly);
         try {
-            FileSave.saveMonthlyCSV(monthlyTickets);
+            FileSave.saveMonthlyTicket(monthly);
             System.out.println("Lưu dữ diệu tháng thành công!");
         } catch (Exception e) {
             Logger.getLogger(PopupConfirm.class.getName()).log(Level.SEVERE, null, e);
@@ -697,14 +712,6 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
         customerPhoneValue = Integer.parseInt(jInputPhone.getText());
         customerAgeValue = Integer.parseInt(jInputAge.getText());
         ticketIdValue = txtTicketId.getText().toString();
-    }
-
-    public String handleTicketId() {
-        getCustomerValue();
-        MonthlyTicket monthly = new MonthlyTicket();
-        int size = monthlyTickets.size();
-        String ticketId = monthly.creatTicketID(size + 1);
-        return ticketId;
     }
 
     public static void main(String args[]) {

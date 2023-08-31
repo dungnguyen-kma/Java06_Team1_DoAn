@@ -25,7 +25,7 @@ import java.time.format.DateTimeFormatter;
  * @author Tatcataiso
  */
 public class FileSave {
-    
+
     private static final String CURRENT = System.getProperty("user.dir");
     private static final String SEPERATOR = File.separator;
     private static final String PATH_CSV_MONTHLY_OUTPUT = CURRENT + SEPERATOR + "Danh_Sach_Ve_Thang_OUT.csv";
@@ -34,27 +34,39 @@ public class FileSave {
     private static final String MONTHLY_HEADER = "ID,Name,Address,Phone,Age,VIP,RegisterDate,ExpiredDate,Price";
     private static final String NEW_LINE_SPETATOR = "\n";
     private static final String COMMA_DELIMITER = ",";
-    
+
     public static String dateFormaterApp(LocalDate date) {
         DateTimeFormatter formatString = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String result = date.format(formatString);
         return result;
     }
-    
-    public static void saveFile(ArrayList<DailyTicket> arrayList) throws IOException {
+
+    public static void saveArrayDailyTickets(ArrayList<DailyTicket> arrayList) throws IOException {
         BufferedWriter bw;
         try {
             bw = new BufferedWriter(new FileWriter(PATH_CSV_FILE_OUTPUT, true));
-            for (DailyTicket ts : arrayList) {
-                bw.append(ts.writeCSV());
+            //bw.write(FILE_HEADER);
+            for (DailyTicket ticket : arrayList) {
+                bw.append(ticket.writeCSV());
             }
             bw.close();
         } catch (NumberFormatException | IOException e) {
             e.printStackTrace();
         }
     }
-    
-    public static void ReadFile(ArrayList<DailyTicket> arrayList) throws IOException {
+
+    public static void saveDailyTicket(DailyTicket ticket) throws IOException {
+        BufferedWriter bw;
+        try {
+            bw = new BufferedWriter(new FileWriter(PATH_CSV_FILE_OUTPUT, true));
+            bw.append(ticket.writeCSV());
+            bw.close();
+        } catch (NumberFormatException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void ReadArrayDailyTickets(ArrayList<DailyTicket> arrayList) throws IOException {
         BufferedReader bf = new BufferedReader(new FileReader(PATH_CSV_FILE_OUTPUT));
         String line;
         bf.readLine();
@@ -68,6 +80,91 @@ public class FileSave {
         } catch (NumberFormatException | IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static int ReadIndexOfDailyTicket(int index) throws IOException {
+        BufferedReader bf = new BufferedReader(new FileReader(PATH_CSV_FILE_OUTPUT));
+        String line;
+        bf.readLine();
+        int sign = 0;
+        try {
+            while ((line = bf.readLine()) != null) {
+                String[] str = line.split(",");
+                String str2 = str[0].substring(6, 9);
+                index = Integer.parseInt(str2);
+                sign = 1;
+            }
+            bf.close();
+        } catch (NumberFormatException | IOException e) {
+            e.printStackTrace();
+        }
+        if (sign == 0) {
+            return index = 0;
+        }
+        return index;
+    }
+
+    public static void saveArrayMonthlyTickets(ArrayList<MonthlyTicket> arrayList) throws IOException {
+        BufferedWriter bw;
+        try {
+            bw = new BufferedWriter(new FileWriter(PATH_CSV_MONTHLY_OUTPUT, true));
+            //bw.write(FILE_HEADER);
+            for (MonthlyTicket ticket : arrayList) {
+                bw.append(ticket.writeCSV());
+            }
+            bw.close();
+        } catch (NumberFormatException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void saveMonthlyTicket(MonthlyTicket ticket) throws IOException {
+        BufferedWriter bw;
+        try {
+            bw = new BufferedWriter(new FileWriter(PATH_CSV_MONTHLY_OUTPUT, true));
+            bw.append(ticket.writeCSV());
+            bw.close();
+        } catch (NumberFormatException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void ReadArrayMonthlyTickets(ArrayList<MonthlyTicket> arrayList) throws IOException {
+        BufferedReader bf = new BufferedReader(new FileReader(PATH_CSV_MONTHLY_OUTPUT));
+        String line;
+        bf.readLine();
+        try {
+            while ((line = bf.readLine()) != null) {
+                String[] str = line.split(",");
+                MonthlyTicket ticket = new MonthlyTicket(str[0], Integer.parseInt(str[1]), str[2], str[3], str[4], Integer.parseInt(str[5]), LocalDate.parse(str[6]), LocalDate.parse(str[7]), Double.parseDouble(str[8]), str[9]);
+                arrayList.add(ticket);
+            }
+            bf.close();
+        } catch (NumberFormatException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static int ReadIndexOfMonthlyTicket(int index) throws IOException {
+        BufferedReader bf = new BufferedReader(new FileReader(PATH_CSV_MONTHLY_OUTPUT));
+        String line;
+        bf.readLine();
+        int sign = 0;
+        try {
+            while ((line = bf.readLine()) != null) {
+                String[] str = line.split(",");
+                String str2 = str[0].substring(6, 9);
+                index = Integer.parseInt(str2);
+                sign = 1;
+            }
+            bf.close();
+        } catch (NumberFormatException | IOException e) {
+            e.printStackTrace();
+        }
+        if (sign == 0) {
+            return index = 0;
+        }
+        return index;
     }
 
     public static void saveMonthlyCSV(ArrayList<MonthlyTicket> arrayList) {

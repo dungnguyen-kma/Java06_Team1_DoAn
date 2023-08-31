@@ -84,7 +84,17 @@ public class MonthlyTicket extends Ticket {
         this.expiedDate = expiedDate;
     }
 
-    public MonthlyTicket(String customerName, String customerAddress, int customerPhone, LocalDate registereDate, LocalDate expiedDate, double monthlyPrice, String ticketID, int age, String isTicketVip) {
+    public MonthlyTicket(String customerName, String customerAddress, int customerPhone, LocalDate registereDate, LocalDate expiedDate, double monthlyPrice, String customerAvatar) {
+        this.customerName = customerName;
+        this.customerAddress = customerAddress;
+        this.customerPhone = customerPhone;
+        this.registereDate = registereDate;
+        this.expiedDate = expiedDate;
+        this.monthlyPrice = monthlyPrice;
+        this.customerAvatar = customerAvatar;
+    }
+
+    public MonthlyTicket(String ticketID, int age, String isTicketVip, String customerName, String customerAddress, int customerPhone, LocalDate registereDate, LocalDate expiedDate, double monthlyPrice, String customerAvatar) {
         super(ticketID, age, isTicketVip);
         this.customerName = customerName;
         this.customerAddress = customerAddress;
@@ -92,8 +102,19 @@ public class MonthlyTicket extends Ticket {
         this.registereDate = registereDate;
         this.expiedDate = expiedDate;
         this.monthlyPrice = monthlyPrice;
+        this.customerAvatar = customerAvatar;
     }
-  
+
+    public MonthlyTicket(String customerName, String customerAddress, int customerPhone, LocalDate registereDate, LocalDate expiedDate, double monthlyPrice, String customerAvatar, int age, String isTicketVip) {
+        super(age, isTicketVip);
+        this.customerName = customerName;
+        this.customerAddress = customerAddress;
+        this.customerPhone = customerPhone;
+        this.registereDate = registereDate;
+        this.expiedDate = expiedDate;
+        this.monthlyPrice = monthlyPrice;
+        this.customerAvatar = customerAvatar;
+    }
 
     public int getCustomerPhone() {
         return customerPhone;
@@ -150,8 +171,6 @@ public class MonthlyTicket extends Ticket {
     public void setCustomerAvatar(String customerAvatar) {
         this.customerAvatar = customerAvatar;
     }
-    
-    
 
     @Override
     public String toString() {
@@ -258,18 +277,10 @@ public class MonthlyTicket extends Ticket {
         //đọc file và trả về URL
         return "path";
     }
-    
-//    public String writeCSV() {
-//        String str = String.format("%s,%s,%s,%d,%d,%s,%s,%s,%.0f\n",
-//                super.getTicketID(),
-//                this.getCustomerName(), 
-//                this.getCustomerAddress(), 
-//                this.getCustomerPhone(), 
-//                super.getAge(),
-//                super.getIsTicketVip(), 
-//                this.getRegistereDate().toString(), 
-//                this.getExpiedDate().toString(), 
-//                this.getMonthlyPrice());
-//        return str;
-//    }
+
+    public String writeCSV() {
+        String str = String.format("%s,%d,%s,%s,%s,%d,%s,%s,%.0f,%s\n", super.getTicketID(), super.getAge(), super.getIsTicketVip(), getCustomerName(), getCustomerAddress(), getCustomerPhone(), getRegistereDate().toString(), getExpiedDate().toString(), getMonthlyPrice(), getCustomerAvatar());
+        return str;
+    }
+
 }
