@@ -31,7 +31,7 @@ public class FileSave {
     private static final String PATH_CSV_MONTHLY_OUTPUT = CURRENT + SEPERATOR + "Danh_Sach_Ve_Thang_OUT.csv";
     private static final String PATH_CSV_FILE_OUTPUT = CURRENT + SEPERATOR + "Danh_Sach_Ve_Ngay_OUT.csv";
     private static final String FILE_HEADER = "ID,Age,VIP,TimeslotID,StartTime,EndTime,Price\n";
-    private static final String MONTHLY_HEADER = "ID,Name,Address,Phone,Age,VIP,RegisterDate,ExpiredDate,Price";
+    private static final String MONTHLY_HEADER = "ID,Age,VIP,Name,Address,Phone,RegisterDate,ExpiredDate,Price,Avata\n";
     private static final String NEW_LINE_SPETATOR = "\n";
     private static final String COMMA_DELIMITER = ",";
 
