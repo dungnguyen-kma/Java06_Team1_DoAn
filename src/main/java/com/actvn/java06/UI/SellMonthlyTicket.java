@@ -47,6 +47,13 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
         addPlaceholder(jInputAddress);
         addPlaceholder(jInputPhone);
         addPlaceholder(jInputAge);
+        try {
+            ticketIdValue = handleTicketId();
+            txtTicketId.setText(ticketIdValue);
+        } catch (IOException ex) {
+            Logger.getLogger(SellMonthlyTicket.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     public void addPlaceholder(JTextField textField) {
@@ -64,7 +71,6 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
     }
 
     public int getTicketId() throws IOException {
-        getCustomerValue();
         int index = -1;
         index = FileSave.ReadIndexOfMonthlyTicket(index);
         index++;
@@ -567,16 +573,13 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
         jSelectThreeMonth.setSelected(false);
         jSelectSixMonth.setSelected(false);
         if (jRegisterDate.getDate() != null) {
-            try {
+            
                 registerDate = fromDatetoLocalDate(jRegisterDate.getDate());
                 expiredDate = ticket.checkExpiedDate(registerDate, 1);
                 String expiedDateString = dateFormaterApp(expiredDate);
                 txtExpiredDate.setText(expiedDateString);
-                ticketIdValue = handleTicketId();
                 txtTicketId.setText(ticketIdValue);
-            } catch (IOException ex) {
-                Logger.getLogger(SellMonthlyTicket.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            
         }
     }//GEN-LAST:event_jSelectOneMonthActionPerformed
 
@@ -586,16 +589,14 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
         jSelectOneMonth.setSelected(false);
         jSelectSixMonth.setSelected(false);
         if (jRegisterDate.getDate() != null) {
-            try {
+            
                 registerDate = fromDatetoLocalDate(jRegisterDate.getDate());
                 expiredDate = new MonthlyTicket().checkExpiedDate(registerDate, 3);
                 String expiedDateString = dateFormaterApp(expiredDate);
                 txtExpiredDate.setText(expiedDateString);
-                ticketIdValue = handleTicketId();
+                
                 txtTicketId.setText(ticketIdValue);
-            } catch (IOException ex) {
-                Logger.getLogger(SellMonthlyTicket.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            
         }
     }//GEN-LAST:event_jSelectThreeMonthActionPerformed
 
@@ -605,16 +606,12 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
         jSelectOneMonth.setSelected(false);
         jSelectThreeMonth.setSelected(false);
         if (jRegisterDate.getDate() != null) {
-            try {
-                registerDate = fromDatetoLocalDate(jRegisterDate.getDate());
-                expiredDate = new MonthlyTicket().checkExpiedDate(registerDate, 6);
-                String expiedDateString = dateFormaterApp(expiredDate);
-                txtExpiredDate.setText(expiedDateString);
-                ticketIdValue = handleTicketId();
-                txtTicketId.setText(ticketIdValue);
-            } catch (IOException ex) {
-                Logger.getLogger(SellMonthlyTicket.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
+            registerDate = fromDatetoLocalDate(jRegisterDate.getDate());
+            expiredDate = new MonthlyTicket().checkExpiedDate(registerDate, 6);
+            String expiedDateString = dateFormaterApp(expiredDate);
+            txtExpiredDate.setText(expiedDateString);
+            txtTicketId.setText(ticketIdValue);
 
         }
     }//GEN-LAST:event_jSelectSixMonthActionPerformed
@@ -675,36 +672,32 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_jInputAgeFocusLost
 
     private void jSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSubmitButtonActionPerformed
-        try {
-            // TODO add your handling code here:
-            if (jSelectNormalTicket.isSelected()) {
-                isVipTicket = "Normal";
-            } else {
-                isVipTicket = "Vip";
-            }
-            getCustomerValue();
-            ticket.setCustomerName(customerNameValue);
-            ticket.setCustomerAddress(customerAddressValue);
-            ticket.setAge(customerAgeValue);
-            ticket.setIsTicketVip(isVipTicket);
-            //MonthlyTicket monthly = new MonthlyTicket(customerNameValue, customerAddressValue, customerAgeValue, isVipTicket);
-            ticket.setCustomerPhone(customerPhoneValue);
-            ticket.setRegistereDate(registerDate);
-            ticket.setExpiedDate(expiredDate);
-            ticket.setMonthlyPrice(ticketPrice);
-            ticketIdValue = handleTicketId();
-            ticket.setTicketID(ticketIdValue);
-            monthlyTickets.add(ticket);
-            try {
-                FileSave.saveMonthlyTicket(ticket);
-                System.out.println("Lưu dữ diệu tháng thành công!");
-            } catch (Exception e) {
-                Logger.getLogger(PopupConfirm.class.getName()).log(Level.SEVERE, null, e);
-            }
-            dispose();
-        } catch (IOException ex) {
-            Logger.getLogger(SellMonthlyTicket.class.getName()).log(Level.SEVERE, null, ex);
+
+        // TODO add your handling code here:
+        if (jSelectNormalTicket.isSelected()) {
+            isVipTicket = "Normal";
+        } else {
+            isVipTicket = "Vip";
         }
+        getCustomerValue();
+        ticket.setTicketID(ticketIdValue);
+        ticket.setCustomerName(customerNameValue);
+        ticket.setCustomerAddress(customerAddressValue);
+        ticket.setAge(customerAgeValue);
+        ticket.setIsTicketVip(isVipTicket);
+        ticket.setCustomerPhone(customerPhoneValue);
+        ticket.setRegistereDate(registerDate);
+        ticket.setExpiedDate(expiredDate);
+        ticket.setMonthlyPrice(ticketPrice);
+        monthlyTickets.add(ticket);
+        try {
+            FileSave.saveMonthlyTicket(ticket);
+            System.out.println("Lưu dữ diệu tháng thành công!");
+        } catch (Exception e) {
+            Logger.getLogger(PopupConfirm.class.getName()).log(Level.SEVERE, null, e);
+        }
+        dispose();
+
     }//GEN-LAST:event_jSubmitButtonActionPerformed
 
     /**

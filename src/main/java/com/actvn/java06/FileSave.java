@@ -170,7 +170,8 @@ public class FileSave {
     public static void saveMonthlyCSV(ArrayList<MonthlyTicket> arrayList) {
         FileWriter fw = null;
         try {
-            fw = new FileWriter(PATH_CSV_MONTHLY_OUTPUT, true);
+            fw = new FileWriter(PATH_CSV_MONTHLY_OUTPUT);
+            fw.append(MONTHLY_HEADER);
             fw.append(NEW_LINE_SPETATOR);
             for (MonthlyTicket item : arrayList) {
                 fw.append(item.getTicketID());
