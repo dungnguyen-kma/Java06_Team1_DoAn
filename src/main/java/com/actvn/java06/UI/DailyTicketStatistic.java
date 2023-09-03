@@ -4,7 +4,16 @@
  */
 package com.actvn.java06.UI;
 
+import com.actvn.java06.DailyTicket;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import javax.swing.WindowConstants;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,11 +24,15 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
     /**
      * Creates new form DailyTicketStatistic
      */
+    private final ArrayList<DailyTicket> arrayList;
+    DefaultTableModel model;
+
     public DailyTicketStatistic() {
         initComponents();
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        arrayList = new ArrayList<>();
+        model = (DefaultTableModel) jTableDaily.getModel();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -61,6 +74,11 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
         jDateChooser.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jDateSubmit.setText("Xác nhận");
+        jDateSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jDateSubmitActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Tổng thu nhập: ");
@@ -325,6 +343,39 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
         jSelectToi.setSelected(true);
     }//GEN-LAST:event_jSelectToiActionPerformed
 
+    private void jDateSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDateSubmitActionPerformed
+        // TODO add your handling code here:
+         String csvFile = "Danh_Sach_Ve_Ngay_OUT.csv";
+
+        File file = new File(csvFile);
+
+        String line;
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+            while ((line = br.readLine()) != null && !line.isEmpty()) {
+                String[] str = line.split(",");
+                DailyTicket ticket = new DailyTicket(str[0], Integer.parseInt(str[1]), str[2], str[3], LocalDateTime.parse(str[4]), LocalDateTime.parse(str[5]), Double.parseDouble(str[6]));
+                arrayList.add(ticket);
+                showResultOfDailyTable();
+            }
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (NumberFormatException | IOException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_jDateSubmitActionPerformed
+
+    public void showResultOfDailyTable() {
+        for (int i = 0; i < arrayList.size(); i++) {
+            DailyTicket dailyTicket = arrayList.get(i);
+            if (dailyTicket.getStartTime().equals(jDateChooser.toString())) {
+                model.addRow(new Object[]{
+                    i, dailyTicket.getTicketID(), dailyTicket.getAge(), dailyTicket.getClass(), dailyTicket.getTimeSlotID(), dailyTicket.getStartTime(), dailyTicket.getEndTime(), dailyTicket.getDailyPrice()
+                });
+            }
+        }
+
+    }
+    
     /**
      * @param args the command line arguments
      */
