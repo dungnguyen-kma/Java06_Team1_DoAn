@@ -5,6 +5,12 @@
 package com.actvn.java06.UI;
 
 import com.actvn.java06.DailyTicket;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
@@ -68,6 +74,11 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
         jDateChooser.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jDateSubmit.setText("Xác nhận");
+        jDateSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jDateSubmitActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Tổng thu nhập: ");
@@ -76,7 +87,7 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
         txtTotalPrice.setText("jLabel4");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel4.setText("VN�?");
+        jLabel4.setText("VNĐ");
 
         jTableDaily.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -102,7 +113,7 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã vé", "Tuổi", "Loại vé", "Khung gi�?", "Th�?i gian bắt đầu", "Th�?i gian kết thúc", "Giá vé"
+                "Mã vé", "Tuổi", "Loại vé", "Khung giờ", "Thời gian bắt đầu", "Thời gian kết thúc", "Giá vé"
             }
         ) {
             Class[] types = new Class [] {
@@ -158,10 +169,10 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Khung gi�?", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Khung giờ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setText("Khung gi�?: ");
+        jLabel2.setText("Khung giờ: ");
 
         jSelectSang.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jSelectSang.setText("Sáng");
@@ -172,7 +183,7 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
         });
 
         jSelectChieu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jSelectChieu.setText("Chi�?u");
+        jSelectChieu.setText("Chiều");
         jSelectChieu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jSelectChieuActionPerformed(evt);
@@ -190,13 +201,13 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
         jSubmitTimeSlot.setText("Xác nhận");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel5.setText("Thu nhập theo khung gi�?");
+        jLabel5.setText("Thu nhập theo khung giờ");
 
         txtTimeSlot.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtTimeSlot.setText("(Tối):");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel6.setText("VN�?");
+        jLabel6.setText("VNĐ");
 
         txtTimeSlotPrice.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtTimeSlotPrice.setText("jLabel7");
@@ -225,7 +236,7 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã vé", "Tuổi", "Loại vé", "Khung gi�?", "Th�?i gian bắt đầu", "Th�?i gian kết thúc", "Giá vé"
+                "Mã vé", "Tuổi", "Loại vé", "Khung giờ", "Thời gian bắt đầu", "Thời gian kết thúc", "Giá vé"
             }
         ));
         jScrollPane6.setViewportView(jTableTimeSlot);
@@ -332,6 +343,39 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
         jSelectToi.setSelected(true);
     }//GEN-LAST:event_jSelectToiActionPerformed
 
+    private void jDateSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDateSubmitActionPerformed
+        // TODO add your handling code here:
+         String csvFile = "Danh_Sach_Ve_Ngay_OUT.csv";
+
+        File file = new File(csvFile);
+
+        String line;
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+            while ((line = br.readLine()) != null && !line.isEmpty()) {
+                String[] str = line.split(",");
+                DailyTicket ticket = new DailyTicket(str[0], Integer.parseInt(str[1]), str[2], str[3], LocalDateTime.parse(str[4]), LocalDateTime.parse(str[5]), Double.parseDouble(str[6]));
+                arrayList.add(ticket);
+                showResultOfDailyTable();
+            }
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (NumberFormatException | IOException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_jDateSubmitActionPerformed
+
+    public void showResultOfDailyTable() {
+        for (int i = 0; i < arrayList.size(); i++) {
+            DailyTicket dailyTicket = arrayList.get(i);
+            if (dailyTicket.getStartTime().equals(jDateChooser.toString())) {
+                model.addRow(new Object[]{
+                    i, dailyTicket.getTicketID(), dailyTicket.getAge(), dailyTicket.getClass(), dailyTicket.getTimeSlotID(), dailyTicket.getStartTime(), dailyTicket.getEndTime(), dailyTicket.getDailyPrice()
+                });
+            }
+        }
+
+    }
+    
     /**
      * @param args the command line arguments
      */

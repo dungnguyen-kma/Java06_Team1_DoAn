@@ -87,6 +87,11 @@ public class MonthlyTicketStatistic extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jMonthSubmit.setText("Xác nhận");
+        jMonthSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMonthSubmitActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Tổng thu nhập");
@@ -164,6 +169,10 @@ public class MonthlyTicketStatistic extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMonthSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMonthSubmitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMonthSubmitActionPerformed
 
     /**
      * @param args the command line arguments
