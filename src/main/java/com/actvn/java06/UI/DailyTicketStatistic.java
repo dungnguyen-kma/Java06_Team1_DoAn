@@ -4,7 +4,10 @@
  */
 package com.actvn.java06.UI;
 
+import com.actvn.java06.DailyTicket;
+import java.util.ArrayList;
 import javax.swing.WindowConstants;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,11 +18,15 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
     /**
      * Creates new form DailyTicketStatistic
      */
+    private final ArrayList<DailyTicket> arrayList;
+    DefaultTableModel model;
+
     public DailyTicketStatistic() {
         initComponents();
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        arrayList = new ArrayList<>();
+        model = (DefaultTableModel) jTableDaily.getModel();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -69,7 +76,7 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
         txtTotalPrice.setText("jLabel4");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel4.setText("VNĐ");
+        jLabel4.setText("VN�?");
 
         jTableDaily.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -95,7 +102,7 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã vé", "Tuổi", "Loại vé", "Khung giờ", "Thời gian bắt đầu", "Thời gian kết thúc", "Giá vé"
+                "Mã vé", "Tuổi", "Loại vé", "Khung gi�?", "Th�?i gian bắt đầu", "Th�?i gian kết thúc", "Giá vé"
             }
         ) {
             Class[] types = new Class [] {
@@ -151,10 +158,10 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Khung giờ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Khung gi�?", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setText("Khung giờ: ");
+        jLabel2.setText("Khung gi�?: ");
 
         jSelectSang.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jSelectSang.setText("Sáng");
@@ -165,7 +172,7 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
         });
 
         jSelectChieu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jSelectChieu.setText("Chiều");
+        jSelectChieu.setText("Chi�?u");
         jSelectChieu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jSelectChieuActionPerformed(evt);
@@ -183,13 +190,13 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
         jSubmitTimeSlot.setText("Xác nhận");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel5.setText("Thu nhập theo khung giờ");
+        jLabel5.setText("Thu nhập theo khung gi�?");
 
         txtTimeSlot.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtTimeSlot.setText("(Tối):");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel6.setText("VNĐ");
+        jLabel6.setText("VN�?");
 
         txtTimeSlotPrice.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtTimeSlotPrice.setText("jLabel7");
@@ -218,7 +225,7 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã vé", "Tuổi", "Loại vé", "Khung giờ", "Thời gian bắt đầu", "Thời gian kết thúc", "Giá vé"
+                "Mã vé", "Tuổi", "Loại vé", "Khung gi�?", "Th�?i gian bắt đầu", "Th�?i gian kết thúc", "Giá vé"
             }
         ));
         jScrollPane6.setViewportView(jTableTimeSlot);
