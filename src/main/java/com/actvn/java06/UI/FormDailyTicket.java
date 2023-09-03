@@ -30,11 +30,12 @@ public class FormDailyTicket extends javax.swing.JFrame {
 
         String isTicketVip;
         if (isVip == true) {
-            isTicketVip = "VIp";
+            isTicketVip = "Vip";
         } else {
             isTicketVip = "Normal";
         }
-        ticket = new DailyTicket(age, isTicketVip);
+        ticket.setAge(age);
+        ticket.setIsTicketVip(isTicketVip);
 
         LocalDateTime time = LocalDateTime.now();
 
@@ -60,7 +61,7 @@ public class FormDailyTicket extends javax.swing.JFrame {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
         LocalDateTime startTime = LocalDateTime.parse(start, formatter);
         LocalDateTime endTime = LocalDateTime.parse(end, formatter);
-        ticket.mySetStartTime(start);
+        ticket.setStartTime(startTime);
         ticket.setEndTime(endTime);
         ticket.setTimeSlotID(timeSlotID);
         ticket.setTicketID(IDTicket);

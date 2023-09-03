@@ -5,6 +5,7 @@
 package com.actvn.java06.UI;
 
 import com.actvn.java06.DailyTicket;
+import com.actvn.java06.FileSave;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,6 +15,14 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
+import static com.actvn.java06.PoolManage.dailyTickets;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,15 +33,13 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
     /**
      * Creates new form DailyTicketStatistic
      */
-    private final ArrayList<DailyTicket> arrayList;
-    DefaultTableModel model;
-
     public DailyTicketStatistic() {
         initComponents();
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        arrayList = new ArrayList<>();
-        model = (DefaultTableModel) jTableDaily.getModel();
     }
+
+    private ArrayList<DailyTicket> ticketOnDay = new ArrayList<>();
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -84,7 +91,6 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
         jLabel3.setText("Tổng thu nhập: ");
 
         txtTotalPrice.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtTotalPrice.setText("jLabel4");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setText("VNĐ");
@@ -343,39 +349,67 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
         jSelectToi.setSelected(true);
     }//GEN-LAST:event_jSelectToiActionPerformed
 
+
     private void jDateSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDateSubmitActionPerformed
-        // TODO add your handling code here:
-         String csvFile = "Danh_Sach_Ve_Ngay_OUT.csv";
 
-        File file = new File(csvFile);
+        Date date = jDateChooser.getDate();
+        if (date == null) {
+            JOptionPane.showMessageDialog(null, "Chọn lại ngày cần thống kê vé!");
+        } else {
+            LocalDateTime dateTime = fromDatetoLocalDateTime(date);
+            //System.out.println(dateTime.getMonthValue());
 
-        String line;
-        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-            while ((line = br.readLine()) != null && !line.isEmpty()) {
-                String[] str = line.split(",");
-                DailyTicket ticket = new DailyTicket(str[0], Integer.parseInt(str[1]), str[2], str[3], LocalDateTime.parse(str[4]), LocalDateTime.parse(str[5]), Double.parseDouble(str[6]));
-                arrayList.add(ticket);
-                showResultOfDailyTable();
+            dailyTickets.clear();
+            // LocalDateTime date = LocalDateTime.now();
+
+            try {
+                FileSave.ReadArrayDailyTickets(dailyTickets);
+            } catch (IOException ex) {
+                Logger.getLogger(DailyTicketStatistic.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        } catch (NumberFormatException | IOException ex) {
-            ex.printStackTrace();
+            ticketOnDay.clear();
+            for (DailyTicket ticket : dailyTickets) {
+                if (dateTime.getMonthValue() == ticket.getStartTime().getMonthValue()) {
+                    if (dateTime.getDayOfMonth() == ticket.getStartTime().getDayOfMonth()) {
+                        //System.out.println(ticket.toString());
+                        ticketOnDay.add(ticket);
+                    }
+                }
+            }
+
+            DefaultTableModel model = (DefaultTableModel) jTableDaily.getModel();
+            model.setRowCount(0);
+            /* for (int i = 0; i < ticketOnDay.size(); i++) {
+                Vector v = new Vector();
+                v.add(dailyTickets.get(i).getTicketID());
+                v.add(dailyTickets.get(i).getAge());
+                v.add(dailyTickets.get(i).getIsTicketVip());
+                v.add(dailyTickets.get(i).getTimeSlotID());
+                v.add(dailyTickets.get(i).getStartTime());
+                v.add(dailyTickets.get(i).getEndTime());
+                v.add(dailyTickets.get(i).getDailyPrice());
+                
+                model.addRow(v);
+            }*/
+
+            for (DailyTicket ticket : ticketOnDay) {
+                model.addRow(new Object[]{ticket.getTicketID(), ticket.getAge(), ticket.getIsTicketVip(), ticket.getTimeSlotID(), ticket.getStartTime(), ticket.getEndTime(), ticket.getDailyPrice()});
+            }
+            int totalPrice = 0;
+            for (DailyTicket ticket : ticketOnDay) {
+                int price = (int) ticket.getDailyPrice();
+                totalPrice += price;
+            }
+            txtTotalPrice.setText(String.valueOf(totalPrice));
         }
     }//GEN-LAST:event_jDateSubmitActionPerformed
 
-    public void showResultOfDailyTable() {
-        for (int i = 0; i < arrayList.size(); i++) {
-            DailyTicket dailyTicket = arrayList.get(i);
-            if (dailyTicket.getStartTime().equals(jDateChooser.toString())) {
-                model.addRow(new Object[]{
-                    i, dailyTicket.getTicketID(), dailyTicket.getAge(), dailyTicket.getClass(), dailyTicket.getTimeSlotID(), dailyTicket.getStartTime(), dailyTicket.getEndTime(), dailyTicket.getDailyPrice()
-                });
-            }
-        }
-
+    public LocalDateTime fromDatetoLocalDateTime(Date date) {
+        return date.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDateTime();
     }
-    
+
     /**
      * @param args the command line arguments
      */

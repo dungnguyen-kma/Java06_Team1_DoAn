@@ -169,7 +169,7 @@ public class DailyTicket extends Ticket {
 
     public double caculatorDailyPrice() {
         setDailyPrice(40000);
-        if (getIsTicketVip().equalsIgnoreCase("V")) {
+        if (getIsTicketVip().equalsIgnoreCase("VIP")) {
             this.dailyPrice += 20000;
         }
         if (super.getAge() >= 3 && super.getAge() <= 12) {
