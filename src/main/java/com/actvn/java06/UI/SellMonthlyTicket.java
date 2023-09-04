@@ -41,6 +41,7 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
 
     public SellMonthlyTicket() {
         initComponents();
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setJDateChooser();
         addPlaceholder(jInputName);
@@ -53,7 +54,7 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(SellMonthlyTicket.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     public void addPlaceholder(JTextField textField) {
@@ -451,6 +452,11 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
 
         jResetButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jResetButton.setText("Hủy");
+        jResetButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jResetButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -573,13 +579,13 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
         jSelectThreeMonth.setSelected(false);
         jSelectSixMonth.setSelected(false);
         if (jRegisterDate.getDate() != null) {
-            
-                registerDate = fromDatetoLocalDate(jRegisterDate.getDate());
-                expiredDate = ticket.checkExpiedDate(registerDate, 1);
-                String expiedDateString = dateFormaterApp(expiredDate);
-                txtExpiredDate.setText(expiedDateString);
-                txtTicketId.setText(ticketIdValue);
-            
+
+            registerDate = fromDatetoLocalDate(jRegisterDate.getDate());
+            expiredDate = ticket.checkExpiedDate(registerDate, 1);
+            String expiedDateString = dateFormaterApp(expiredDate);
+            txtExpiredDate.setText(expiedDateString);
+            txtTicketId.setText(ticketIdValue);
+
         }
     }//GEN-LAST:event_jSelectOneMonthActionPerformed
 
@@ -589,14 +595,14 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
         jSelectOneMonth.setSelected(false);
         jSelectSixMonth.setSelected(false);
         if (jRegisterDate.getDate() != null) {
-            
-                registerDate = fromDatetoLocalDate(jRegisterDate.getDate());
-                expiredDate = new MonthlyTicket().checkExpiedDate(registerDate, 3);
-                String expiedDateString = dateFormaterApp(expiredDate);
-                txtExpiredDate.setText(expiedDateString);
-                
-                txtTicketId.setText(ticketIdValue);
-            
+
+            registerDate = fromDatetoLocalDate(jRegisterDate.getDate());
+            expiredDate = new MonthlyTicket().checkExpiedDate(registerDate, 3);
+            String expiedDateString = dateFormaterApp(expiredDate);
+            txtExpiredDate.setText(expiedDateString);
+
+            txtTicketId.setText(ticketIdValue);
+
         }
     }//GEN-LAST:event_jSelectThreeMonthActionPerformed
 
@@ -692,13 +698,17 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
         monthlyTickets.add(ticket);
         try {
             FileSave.saveMonthlyTicket(ticket);
-            System.out.println("Lưu dữ diệu tháng thành công!");
+            System.out.println("Luu du lieu thang thanh cong!");
         } catch (Exception e) {
-            Logger.getLogger(PopupConfirm.class.getName()).log(Level.SEVERE, null, e);
+            e.printStackTrace();
         }
         dispose();
 
     }//GEN-LAST:event_jSubmitButtonActionPerformed
+
+    private void jResetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jResetButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jResetButtonActionPerformed
 
     /**
      * @param args the command line arguments

@@ -35,6 +35,7 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
      */
     public DailyTicketStatistic() {
         initComponents();
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
 
@@ -357,11 +358,7 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Chọn lại ngày cần thống kê vé!");
         } else {
             LocalDateTime dateTime = fromDatetoLocalDateTime(date);
-            //System.out.println(dateTime.getMonthValue());
-
             dailyTickets.clear();
-            // LocalDateTime date = LocalDateTime.now();
-
             try {
                 FileSave.ReadArrayDailyTickets(dailyTickets);
             } catch (IOException ex) {
@@ -371,7 +368,6 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
             for (DailyTicket ticket : dailyTickets) {
                 if (dateTime.getMonthValue() == ticket.getStartTime().getMonthValue()) {
                     if (dateTime.getDayOfMonth() == ticket.getStartTime().getDayOfMonth()) {
-                        //System.out.println(ticket.toString());
                         ticketOnDay.add(ticket);
                     }
                 }
@@ -379,18 +375,6 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
 
             DefaultTableModel model = (DefaultTableModel) jTableDaily.getModel();
             model.setRowCount(0);
-            /* for (int i = 0; i < ticketOnDay.size(); i++) {
-                Vector v = new Vector();
-                v.add(dailyTickets.get(i).getTicketID());
-                v.add(dailyTickets.get(i).getAge());
-                v.add(dailyTickets.get(i).getIsTicketVip());
-                v.add(dailyTickets.get(i).getTimeSlotID());
-                v.add(dailyTickets.get(i).getStartTime());
-                v.add(dailyTickets.get(i).getEndTime());
-                v.add(dailyTickets.get(i).getDailyPrice());
-                
-                model.addRow(v);
-            }*/
 
             for (DailyTicket ticket : ticketOnDay) {
                 model.addRow(new Object[]{ticket.getTicketID(), ticket.getAge(), ticket.getIsTicketVip(), ticket.getTimeSlotID(), ticket.getStartTime(), ticket.getEndTime(), ticket.getDailyPrice()});

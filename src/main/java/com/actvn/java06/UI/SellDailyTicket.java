@@ -26,6 +26,7 @@ public class SellDailyTicket extends javax.swing.JFrame {
      */
     public SellDailyTicket() {
         initComponents();
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
 
@@ -77,6 +78,11 @@ public class SellDailyTicket extends javax.swing.JFrame {
 
         jResetButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jResetButton.setText("Hủy");
+        jResetButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jResetButtonActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel8.setText("Tuổi");
@@ -167,6 +173,13 @@ public class SellDailyTicket extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Không được để trống thông tin");
         }
     }//GEN-LAST:event_buttonSaveActionPerformed
+
+    private void jResetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jResetButtonActionPerformed
+        // TODO add your handling code here:
+        txtAge.setText("");
+        cbBoxNormal.setSelected(false);
+        cbBoxVip.setSelected(false);
+    }//GEN-LAST:event_jResetButtonActionPerformed
 
     /**
      * @param args the command line arguments

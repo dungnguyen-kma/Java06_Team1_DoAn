@@ -17,6 +17,7 @@ public class MonthlyTicketStatistic extends javax.swing.JFrame {
      */
     public MonthlyTicketStatistic() {
         initComponents();
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
 

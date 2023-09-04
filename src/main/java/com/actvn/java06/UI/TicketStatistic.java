@@ -17,6 +17,7 @@ public class TicketStatistic extends javax.swing.JFrame {
      */
     public TicketStatistic() {
         initComponents();
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
 

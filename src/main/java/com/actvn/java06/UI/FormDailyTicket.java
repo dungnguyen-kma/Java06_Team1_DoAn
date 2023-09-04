@@ -27,6 +27,7 @@ public class FormDailyTicket extends javax.swing.JFrame {
 
     public FormDailyTicket(int age, boolean isVip) throws IOException {
         initComponents();
+        setLocationRelativeTo(null);
 
         String isTicketVip;
         if (isVip == true) {
@@ -245,8 +246,9 @@ public class FormDailyTicket extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             FileSave.saveDailyTicket(ticket);
+            System.out.println("Luu du lieu ngay thanh cong!");
         } catch (IOException ex) {
-            Logger.getLogger(PopupConfirm.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         dispose();
     }//GEN-LAST:event_buttonExitActionPerformed

@@ -15,6 +15,7 @@ public class FeatureMenu extends javax.swing.JFrame {
      */
     public FeatureMenu() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
