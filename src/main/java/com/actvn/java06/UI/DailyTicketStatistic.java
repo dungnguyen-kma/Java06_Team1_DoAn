@@ -384,7 +384,7 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
             model.setRowCount(0);
 
             for (DailyTicket ticket : ticketOnDay) {
-                model.addRow(new Object[]{ticket.getTicketID(), ticket.getAge(), ticket.getIsTicketVip(), ticket.getTimeSlotID(), ticket.getStartTime(), ticket.getEndTime(), ticket.getDailyPrice()});             
+                model.addRow(new Object[]{ticket.getTicketID(), ticket.getAge(), ticket.getIsTicketVip(), ticket.getTimeSlotID(), ticket.getStartTime(), ticket.getEndTime(), ticket.getDailyPrice()});
             }
             int totalPrice = 0;
             for (DailyTicket ticket : ticketOnDay) {
@@ -396,24 +396,28 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
     }//GEN-LAST:event_jDateSubmitActionPerformed
 
     private void jSubmitTimeSlotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSubmitTimeSlotActionPerformed
-       
-        
-        for (DailyTicket timeSlot : ticketOnDay) {
-
-            if (timeSlot.getTimeSlotID().compareTo("SANG") == 0) {
-                
-                timeSlotOfTicket.add(timeSlot);
-                txtTimeSlot.setText("Sáng");
-            }
-            if (timeSlot.getTimeSlotID().compareTo("CHIEU") == 0) {
-                timeSlotOfTicket.add(timeSlot);
-                txtTimeSlot.setText("Chiều");
-            }
-            if (timeSlot.getTimeSlotID().compareTo("TOI") == 0) {
-                timeSlotOfTicket.add(timeSlot);
-                txtTimeSlot.setText("Tối");
-            }
+        String timeSlotValue = null;
+        String timeSlotText = null;
+        if (jSelectSang.isSelected()) {
+            timeSlotValue = "SANG";
+            timeSlotText = "Sáng";
         }
+        if (jSelectChieu.isSelected()) {
+            timeSlotValue = "CHIEU";
+            timeSlotText = "Chiều";
+        }
+        if (jSelectToi.isSelected()) {
+            timeSlotValue = "TOI";
+            timeSlotText = "Tối";
+        }
+        timeSlotOfTicket.clear();
+        for (DailyTicket timeSlot : ticketOnDay) {
+            if (timeSlot.getTimeSlotID().compareTo(timeSlotValue) == 0) {             
+                timeSlotOfTicket.add(timeSlot);
+                txtTimeSlot.setText("(" + timeSlotText + "):");
+            }       
+        }
+        
 
         DefaultTableModel model = (DefaultTableModel) jTableTimeSlot.getModel();
         model.setRowCount(0);
@@ -436,7 +440,7 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
                 .atZone(ZoneId.systemDefault())
                 .toLocalDateTime();
     }
-
+   
     /**
      * @param args the command line arguments
      */
