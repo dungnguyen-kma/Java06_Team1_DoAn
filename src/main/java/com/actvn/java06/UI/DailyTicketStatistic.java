@@ -73,6 +73,7 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
         txtTimeSlotPrice = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTableTimeSlot = new javax.swing.JTable();
+        jExitButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -218,13 +219,11 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
         jLabel5.setText("Thu nhập theo khung giờ");
 
         txtTimeSlot.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtTimeSlot.setText("(Tối):");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setText("VNĐ");
 
         txtTimeSlotPrice.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtTimeSlotPrice.setText("jLabel7");
 
         jTableTimeSlot.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -304,13 +303,21 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
                     .addComponent(txtTimeSlot)
                     .addComponent(jLabel6)
                     .addComponent(txtTimeSlotPrice))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(42, 42, 42)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(43, Short.MAX_VALUE)))
+                    .addContainerGap(71, Short.MAX_VALUE)))
         );
+
+        jExitButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jExitButton.setText("Quay lại");
+        jExitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jExitButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -322,6 +329,10 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jExitButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -329,8 +340,10 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jExitButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -435,6 +448,11 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
         txtTimeSlotPrice.setText(String.valueOf(totalPrice));        // TODO add your handling code here:
     }//GEN-LAST:event_jSubmitTimeSlotActionPerformed
 
+    private void jExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExitButtonActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jExitButtonActionPerformed
+
     public LocalDateTime fromDatetoLocalDateTime(Date date) {
         return date.toInstant()
                 .atZone(ZoneId.systemDefault())
@@ -479,6 +497,7 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser jDateChooser;
     private javax.swing.JButton jDateSubmit;
+    private javax.swing.JButton jExitButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

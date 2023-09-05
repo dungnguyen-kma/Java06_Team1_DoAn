@@ -40,6 +40,7 @@ public class MonthlyTicketStatistic extends javax.swing.JFrame {
         txtMonth = new javax.swing.JLabel();
         txtTotalMonthlyPrice = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jExitButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -151,6 +152,14 @@ public class MonthlyTicketStatistic extends javax.swing.JFrame {
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
+        jExitButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jExitButton.setText("Quay lại");
+        jExitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jExitButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -159,13 +168,19 @@ public class MonthlyTicketStatistic extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jExitButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jExitButton)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
@@ -174,6 +189,11 @@ public class MonthlyTicketStatistic extends javax.swing.JFrame {
     private void jMonthSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMonthSubmitActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMonthSubmitActionPerformed
+
+    private void jExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExitButtonActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jExitButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,6 +231,7 @@ public class MonthlyTicketStatistic extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jExitButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
