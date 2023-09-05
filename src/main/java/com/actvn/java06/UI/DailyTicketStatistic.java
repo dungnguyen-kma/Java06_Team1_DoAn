@@ -40,6 +40,7 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
     }
 
     private ArrayList<DailyTicket> ticketOnDay = new ArrayList<>();
+    private ArrayList<DailyTicket> timeSlotOfTicket = new ArrayList<>();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -206,6 +207,11 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
         });
 
         jSubmitTimeSlot.setText("Xác nhận");
+        jSubmitTimeSlot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSubmitTimeSlotActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("Thu nhập theo khung giờ");
@@ -387,6 +393,42 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
             txtTotalPrice.setText(String.valueOf(totalPrice));
         }
     }//GEN-LAST:event_jDateSubmitActionPerformed
+
+    private void jSubmitTimeSlotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSubmitTimeSlotActionPerformed
+       
+        
+        for (DailyTicket timeSlot : ticketOnDay) {
+
+            if (timeSlot.getTimeSlotID().compareTo("SANG") == 0) {
+                
+                timeSlotOfTicket.add(timeSlot);
+                txtTimeSlot.setText("Sáng");
+            }
+            if (timeSlot.getTimeSlotID().compareTo("CHIEU") == 0) {
+                timeSlotOfTicket.add(timeSlot);
+                txtTimeSlot.setText("Chiều");
+            }
+            if (timeSlot.getTimeSlotID().compareTo("TOI") == 0) {
+                timeSlotOfTicket.add(timeSlot);
+                txtTimeSlot.setText("Tối");
+            }
+        }
+
+        DefaultTableModel model = (DefaultTableModel) jTableTimeSlot.getModel();
+        model.setRowCount(0);
+
+        for (DailyTicket timeSlot : timeSlotOfTicket) {
+            model.addRow(new Object[]{timeSlot.getTicketID(), timeSlot.getAge(), timeSlot.getIsTicketVip(), timeSlot.getTimeSlotID(), timeSlot.getStartTime(), timeSlot.getEndTime(), timeSlot.getDailyPrice()});
+        }
+
+        int totalPrice = 0;
+        for (DailyTicket dailyTicket : timeSlotOfTicket) {
+            int price = (int) dailyTicket.getDailyPrice();
+            totalPrice += price;
+        }
+
+        txtTimeSlotPrice.setText(String.valueOf(totalPrice));        // TODO add your handling code here:
+    }//GEN-LAST:event_jSubmitTimeSlotActionPerformed
 
     public LocalDateTime fromDatetoLocalDateTime(Date date) {
         return date.toInstant()
