@@ -108,7 +108,6 @@ public class FileSave {
         BufferedWriter bw;
         try {
             bw = new BufferedWriter(new FileWriter(PATH_CSV_MONTHLY_OUTPUT, true));
-            //bw.write(FILE_HEADER);
             for (MonthlyTicket ticket : arrayList) {
                 bw.append(ticket.writeCSV());
             }

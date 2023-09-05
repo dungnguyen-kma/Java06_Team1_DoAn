@@ -23,6 +23,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 /**
  *
@@ -377,7 +378,7 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
             model.setRowCount(0);
 
             for (DailyTicket ticket : ticketOnDay) {
-                model.addRow(new Object[]{ticket.getTicketID(), ticket.getAge(), ticket.getIsTicketVip(), ticket.getTimeSlotID(), ticket.getStartTime(), ticket.getEndTime(), ticket.getDailyPrice()});
+                model.addRow(new Object[]{ticket.getTicketID(), ticket.getAge(), ticket.getIsTicketVip(), ticket.getTimeSlotID(), ticket.getStartTime(), ticket.getEndTime(), ticket.getDailyPrice()});             
             }
             int totalPrice = 0;
             for (DailyTicket ticket : ticketOnDay) {
