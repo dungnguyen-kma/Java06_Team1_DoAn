@@ -229,19 +229,18 @@ private ArrayList<MonthlyTicket> ticketOnMonth = new ArrayList<>();
 
     private void jMonthSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMonthSubmitActionPerformed
         // TODO add your handling code here:
-        int date = jMonthChooser1.getMonth();
-        LocalDateTime dateTime = fromDatetoLocalDateTime(date);
-        System.out.println(dateTime);
-        monthlyTicket.clear();
+        Month month = Month.of(jMonthChooser1.getMonth() + 1);
+        monthlyTickets.clear();
         
         try {
             FileSave.ReadArrayMonthlyTickets(monthlyTickets);
         } catch (IOException ex) {
             Logger.getLogger(MonthlyTicketStatistic.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println(date);
         for(MonthlyTicket ticket :monthlyTickets){
-            if(dateTime == ticket.getRegistereDate()){
+            System.out.println(month);
+//            System.out.println(ticket.getRegistereDate().getMonth());
+            if(month == ticket.getRegistereDate().getMonth()){
                 ticketOnMonth.add(ticket);
             }
         }
