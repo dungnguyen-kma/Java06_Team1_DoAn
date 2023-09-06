@@ -4,11 +4,12 @@
  */
 package com.actvn.java06.UI;
 
+import com.actvn.java06.FileSave;
+import com.actvn.java06.MonthlyTicket;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
-import com.actvn.java06.*;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -43,7 +44,7 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        setJDateChooser();
+        //setJDateChooser();
         addPlaceholder(jInputName);
         addPlaceholder(jInputAddress);
         addPlaceholder(jInputPhone);
@@ -579,13 +580,14 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
         jSelectThreeMonth.setSelected(false);
         jSelectSixMonth.setSelected(false);
         if (jRegisterDate.getDate() != null) {
-
             registerDate = fromDatetoLocalDate(jRegisterDate.getDate());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            String formattedDate = registerDate.format(formatter);
+            registerDate = LocalDate.parse(formattedDate, formatter);
             expiredDate = ticket.checkExpiedDate(registerDate, 1);
             String expiedDateString = dateFormaterApp(expiredDate);
             txtExpiredDate.setText(expiedDateString);
             txtTicketId.setText(ticketIdValue);
-
         }
     }//GEN-LAST:event_jSelectOneMonthActionPerformed
 
@@ -595,14 +597,14 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
         jSelectOneMonth.setSelected(false);
         jSelectSixMonth.setSelected(false);
         if (jRegisterDate.getDate() != null) {
-
             registerDate = fromDatetoLocalDate(jRegisterDate.getDate());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            String formattedDate = registerDate.format(formatter);
+            registerDate = LocalDate.parse(formattedDate, formatter);
             expiredDate = new MonthlyTicket().checkExpiedDate(registerDate, 3);
             String expiedDateString = dateFormaterApp(expiredDate);
             txtExpiredDate.setText(expiedDateString);
-
             txtTicketId.setText(ticketIdValue);
-
         }
     }//GEN-LAST:event_jSelectThreeMonthActionPerformed
 
@@ -612,8 +614,10 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
         jSelectOneMonth.setSelected(false);
         jSelectThreeMonth.setSelected(false);
         if (jRegisterDate.getDate() != null) {
-
             registerDate = fromDatetoLocalDate(jRegisterDate.getDate());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            String formattedDate = registerDate.format(formatter);
+            registerDate = LocalDate.parse(formattedDate, formatter);
             expiredDate = new MonthlyTicket().checkExpiedDate(registerDate, 6);
             String expiedDateString = dateFormaterApp(expiredDate);
             txtExpiredDate.setText(expiedDateString);
@@ -719,10 +723,10 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
                 .toLocalDate();
     }
 
-    public void setJDateChooser() {
-        jRegisterDate.setDateFormatString("dd-MM-yyyy");
-    }
 
+    /*  public void setJDateChooser() {
+        jRegisterDate.setDateFormatString("dd-MM-yyyy");
+    }*/
     public String dateFormaterApp(LocalDate date) {
         DateTimeFormatter formatString = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String result = date.format(formatString);
@@ -730,9 +734,12 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
     }
 
     public LocalDate fromStringToLocalDate(String data) {
-        DateTimeFormatter formatString = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        LocalDate result = LocalDate.parse(data, formatString);
-        return result;
+        //DateTimeFormatter formatString = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        //LocalDate result = LocalDate.parse(data, formatString);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate date = LocalDate.parse(data, formatter);
+        //return result;
+        return date;
     }
 
     public void getCustomerValue() {
