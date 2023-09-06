@@ -44,8 +44,8 @@ public class FileSave {
     public static void saveArrayDailyTickets(ArrayList<DailyTicket> arrayList) throws IOException {
         BufferedWriter bw;
         try {
-            bw = new BufferedWriter(new FileWriter(PATH_CSV_FILE_OUTPUT, true));
-            //bw.write(FILE_HEADER);
+            bw = new BufferedWriter(new FileWriter(PATH_CSV_FILE_OUTPUT));
+            bw.write(FILE_HEADER);
             for (DailyTicket ticket : arrayList) {
                 bw.append(ticket.writeCSV());
             }
@@ -107,8 +107,8 @@ public class FileSave {
     public static void saveArrayMonthlyTickets(ArrayList<MonthlyTicket> arrayList) throws IOException {
         BufferedWriter bw;
         try {
-            bw = new BufferedWriter(new FileWriter(PATH_CSV_MONTHLY_OUTPUT, true));
-            //bw.write(FILE_HEADER);
+            bw = new BufferedWriter(new FileWriter(PATH_CSV_MONTHLY_OUTPUT));
+            bw.write(MONTHLY_HEADER);
             for (MonthlyTicket ticket : arrayList) {
                 bw.append(ticket.writeCSV());
             }
