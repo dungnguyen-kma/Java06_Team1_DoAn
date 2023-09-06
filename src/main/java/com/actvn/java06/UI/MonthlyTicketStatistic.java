@@ -3,14 +3,54 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.actvn.java06.UI;
-
+import com.actvn.java06.DailyTicket;
+import java.time.Month;
+import java.time.LocalDateTime;
+import com.actvn.java06.FileSave;
+import com.actvn.java06.MonthlyTicket;
+import static com.actvn.java06.PoolManage.dailyTickets;
+import static com.actvn.java06.PoolManage.monthlyTickets;
+import java.awt.Component;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.WindowConstants;
+import javax.swing.table.DefaultTableModel;
+import com.actvn.java06.DailyTicket;
+import com.actvn.java06.FileSave;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import javax.swing.WindowConstants;
+import javax.swing.table.DefaultTableModel;
+import static com.actvn.java06.PoolManage.dailyTickets;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 
 /**
  *
  * @author thepo
  */
 public class MonthlyTicketStatistic extends javax.swing.JFrame {
+
 
     /**
      * Creates new form MonthlyTicketStatistic
@@ -20,7 +60,7 @@ public class MonthlyTicketStatistic extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
-
+private ArrayList<MonthlyTicket> ticketOnMonth = new ArrayList<>();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -112,38 +152,39 @@ public class MonthlyTicketStatistic extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtMonth)
+                .addGap(30, 30, 30)
+                .addComponent(txtTotalMonthlyPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jMonthChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
-                .addComponent(jMonthSubmit)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel3)
+                .addContainerGap(434, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 882, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtMonth)
-                        .addGap(30, 30, 30)
-                        .addComponent(txtTotalMonthlyPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jMonthChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jMonthSubmit)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jMonthChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jMonthSubmit))
-                .addGap(18, 18, 18)
+                    .addComponent(jMonthSubmit)
+                    .addComponent(jMonthChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtMonth)
@@ -188,8 +229,41 @@ public class MonthlyTicketStatistic extends javax.swing.JFrame {
 
     private void jMonthSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMonthSubmitActionPerformed
         // TODO add your handling code here:
+        int date = jMonthChooser1.getMonth();
+        LocalDateTime dateTime = fromDatetoLocalDateTime(date);
+        System.out.println(dateTime);
+        monthlyTicket.clear();
+        
+        try {
+            FileSave.ReadArrayMonthlyTickets(monthlyTickets);
+        } catch (IOException ex) {
+            Logger.getLogger(MonthlyTicketStatistic.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println(date);
+        for(MonthlyTicket ticket :monthlyTickets){
+            if(dateTime == ticket.getRegistereDate()){
+                ticketOnMonth.add(ticket);
+            }
+        }
+         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+        for(MonthlyTicket ticket :ticketOnMonth){
+         model.addRow(new Object[]{ticket.getTicketID(),ticket.getCustomerName(),ticket.getCustomerAddress(),ticket.getCustomerPhone(),ticket.getAge(),ticket.getIsTicketVip(),ticket.getRegistereDate(),ticket.getExpiedDate(),ticket.getMonthlyPrice()});
+        }
+         int totalPrice = 0;
+            for (MonthlyTicket ticket : ticketOnMonth) {
+                int price = (int) ticket.getMonthlyPrice();
+                totalPrice += price;
+            }
+            txtTotalMonthlyPrice.setText(String.valueOf(totalPrice));
+        
     }//GEN-LAST:event_jMonthSubmitActionPerformed
-
+   
+     public LocalDateTime fromDatetoLocalDateTime(Date date) {
+        return date.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDateTime();
+    }
     private void jExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExitButtonActionPerformed
         // TODO add your handling code here:
         dispose();
@@ -243,4 +317,12 @@ public class MonthlyTicketStatistic extends javax.swing.JFrame {
     private javax.swing.JLabel txtMonth;
     private javax.swing.JLabel txtTotalMonthlyPrice;
     // End of variables declaration//GEN-END:variables
+
+    private LocalDateTime fromDatetoLocalDateTime(int date) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private LocalDateTime fromDatetoLocalDateTime(Component date) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

@@ -8,6 +8,10 @@ import java.util.Objects;
 
 public class MonthlyTicket extends Ticket {
 
+    public static void clear() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     private String customerName;
     private String customerAddress;
     private int customerPhone;
@@ -281,6 +285,10 @@ public class MonthlyTicket extends Ticket {
     public String writeCSV() {
         String str = String.format("%s,%d,%s,%s,%s,%d,%s,%s,%.0f,%s\n", super.getTicketID(), super.getAge(), super.getIsTicketVip(), getCustomerName(), getCustomerAddress(), getCustomerPhone(), getRegistereDate().toString(), getExpiedDate().toString(), getMonthlyPrice(), getCustomerAvatar());
         return str;
+    }
+
+    public Object getStartTime() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }
