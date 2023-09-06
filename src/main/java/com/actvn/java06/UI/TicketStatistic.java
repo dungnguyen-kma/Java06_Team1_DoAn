@@ -30,11 +30,16 @@ public class TicketStatistic extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenu1 = new javax.swing.JMenu();
         jMenuBar1 = new javax.swing.JMenuBar();
         jListCurrentDay = new javax.swing.JMenu();
         jListDailyByDate = new javax.swing.JMenuItem();
+        jMenuSearchDaily = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jPriceByMonth = new javax.swing.JMenuItem();
+        jMenuSearchMonthly = new javax.swing.JMenuItem();
+
+        jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,6 +57,15 @@ public class TicketStatistic extends javax.swing.JFrame {
         });
         jListCurrentDay.add(jListDailyByDate);
 
+        jMenuSearchDaily.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenuSearchDaily.setText("Quản lí vé ngày");
+        jMenuSearchDaily.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuSearchDailyActionPerformed(evt);
+            }
+        });
+        jListCurrentDay.add(jMenuSearchDaily);
+
         jMenuBar1.add(jListCurrentDay);
 
         jMenu2.setText("Vé tháng");
@@ -65,6 +79,15 @@ public class TicketStatistic extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jPriceByMonth);
+
+        jMenuSearchMonthly.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenuSearchMonthly.setText("Quản lí vé tháng");
+        jMenuSearchMonthly.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuSearchMonthlyActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuSearchMonthly);
 
         jMenuBar1.add(jMenu2);
 
@@ -95,6 +118,18 @@ public class TicketStatistic extends javax.swing.JFrame {
         MonthlyTicketStatistic monthlyStatistic = new MonthlyTicketStatistic();
         monthlyStatistic.setVisible(true);
     }//GEN-LAST:event_jPriceByMonthActionPerformed
+
+    private void jMenuSearchDailyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSearchDailyActionPerformed
+        // TODO add your handling code here:
+        SearchDailyTicket dailyTicket = new SearchDailyTicket();
+        dailyTicket.setVisible(true);
+    }//GEN-LAST:event_jMenuSearchDailyActionPerformed
+
+    private void jMenuSearchMonthlyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSearchMonthlyActionPerformed
+        // TODO add your handling code here:
+        SearchMonthlyTicket monthlyTicket = new SearchMonthlyTicket();
+        monthlyTicket.setVisible(true);
+    }//GEN-LAST:event_jMenuSearchMonthlyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -134,8 +169,11 @@ public class TicketStatistic extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jListCurrentDay;
     private javax.swing.JMenuItem jListDailyByDate;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuSearchDaily;
+    private javax.swing.JMenuItem jMenuSearchMonthly;
     private javax.swing.JMenuItem jPriceByMonth;
     // End of variables declaration//GEN-END:variables
 }

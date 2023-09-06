@@ -107,8 +107,12 @@ public class FileSave {
     public static void saveArrayMonthlyTickets(ArrayList<MonthlyTicket> arrayList) throws IOException {
         BufferedWriter bw;
         try {
+<<<<<<< HEAD
+            bw = new BufferedWriter(new FileWriter(PATH_CSV_MONTHLY_OUTPUT, true));
+=======
             bw = new BufferedWriter(new FileWriter(PATH_CSV_MONTHLY_OUTPUT));
             bw.write(MONTHLY_HEADER);
+>>>>>>> 75fc725c62a46e9012837136984cb919c012a015
             for (MonthlyTicket ticket : arrayList) {
                 bw.append(ticket.writeCSV());
             }

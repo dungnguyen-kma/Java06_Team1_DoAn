@@ -1,0 +1,18 @@
+ID,Age,VIP,Name,Address,Phone,RegisterDate,ExpiredDate,Price,Avata
+<<<<<<< HEAD
+THANG-001,12,Normal,hung,hai duong,2134,9/15/2023,10/15/2023,250000,null
+THANG-002,13,Vip,tan voi,hai duong,123214,9/8/2023,12/8/2023,1250000,null
+THANG-003,14,Normal,nguyen van a,ha noi,135234,9/15/2023,12/15/2023,800000,null
+THANG-004,15,Normal,nguyen van b,hai phong,134832,9/15/2023,3/15/2024,1600000,null
+THANG-005,16,Normal,tran van c,nam dinh,21483412,9/15/2023,12/15/2023,800000,null
+THANG-006,22,Vip,test,test,123456789,2023-09-18,2023-10-18,450000,null
+THANG-007,25,Normal,nguyen tan dung test,ha noi,111111111,2023-09-24,2024-03-24,1600000,null
+THANG-008,30,Normal,test,test,123456789,2023-09-05,2023-12-05,800000,null
+THANG-009,23,Normal,nguyen van test,test,123456789,2023-09-19,2024-03-19,1600000,null
+=======
+THANG-001,26,Vip,nguyen tan dung,ha noi,1234123,2023-09-06,2023-10-06,450000,null
+THANG-002,12,Normal,vu duy khanh,ha noi,342234,2023-09-06,2023-12-06,650000,null
+THANG-003,43,Vip,vi phuong nam,ha noi,43834324,2023-09-06,2024-03-06,2500000,null
+THANG-004,21,Vip,hoang ba cong,ha noi,893743,2023-09-06,2023-12-06,1250000,null
+THANG-006,23,Vip,tan voi,ha noi,347832,2023-09-12,2023-12-12,1250000,null
+>>>>>>> 75fc725c62a46e9012837136984cb919c012a015
