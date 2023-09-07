@@ -139,10 +139,8 @@ private ArrayList<MonthlyTicket> ticketOnMonth = new ArrayList<>();
         jLabel2.setText("Tổng thu nhập");
 
         txtMonth.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtMonth.setText("(tháng 8):");
 
         txtTotalMonthlyPrice.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtTotalMonthlyPrice.setText("jLabel4");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("VNĐ");
@@ -159,7 +157,7 @@ private ArrayList<MonthlyTicket> ticketOnMonth = new ArrayList<>();
                 .addComponent(txtTotalMonthlyPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
-                .addContainerGap(434, Short.MAX_VALUE))
+                .addContainerGap(509, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,6 +228,7 @@ private ArrayList<MonthlyTicket> ticketOnMonth = new ArrayList<>();
     private void jMonthSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMonthSubmitActionPerformed
         // TODO add your handling code here:
         Month month = Month.of(jMonthChooser1.getMonth() + 1);
+        int monthText = jMonthChooser1.getMonth() +1;
         monthlyTickets.clear();
         
         try {
@@ -238,8 +237,6 @@ private ArrayList<MonthlyTicket> ticketOnMonth = new ArrayList<>();
             Logger.getLogger(MonthlyTicketStatistic.class.getName()).log(Level.SEVERE, null, ex);
         }
         for(MonthlyTicket ticket :monthlyTickets){
-            System.out.println(month);
-//            System.out.println(ticket.getRegistereDate().getMonth());
             if(month == ticket.getRegistereDate().getMonth()){
                 ticketOnMonth.add(ticket);
             }
@@ -254,7 +251,9 @@ private ArrayList<MonthlyTicket> ticketOnMonth = new ArrayList<>();
                 int price = (int) ticket.getMonthlyPrice();
                 totalPrice += price;
             }
+            txtMonth.setText("(Tháng "+monthText+"):");
             txtTotalMonthlyPrice.setText(String.valueOf(totalPrice));
+            ticketOnMonth.clear();
         
     }//GEN-LAST:event_jMonthSubmitActionPerformed
    

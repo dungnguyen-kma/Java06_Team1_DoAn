@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -246,7 +247,7 @@ public class FormDailyTicket extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             FileSave.saveDailyTicket(ticket);
-            System.out.println("Luu du lieu ngay thanh cong!");
+            JOptionPane.showMessageDialog(null,"Lưu dữ liệu thành công");
         } catch (IOException ex) {
             ex.printStackTrace();
         }
