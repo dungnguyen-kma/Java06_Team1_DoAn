@@ -54,6 +54,11 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
         addPlaceholder(jInputAddress);
         addPlaceholder(jInputPhone);
         addPlaceholder(jInputAge);
+        buttonGroup1.add(jSelectOneMonth);
+        buttonGroup1.add(jSelectThreeMonth);
+        buttonGroup1.add(jSelectSixMonth);
+        buttonGroup2.add(jSelectNormalTicket);
+        buttonGroup2.add(jSelectVipTicket);
         try {
             ticketIdValue = handleTicketId();
             txtTicketId.setText(ticketIdValue);
@@ -108,6 +113,8 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -468,15 +475,13 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
         });
 
         jResetButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jResetButton.setText("Hủy");
+        jResetButton.setText("Nhập lại");
         jResetButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jResetButtonActionPerformed(evt);
             }
         });
 
-        labelAvata.setIcon(new javax.swing.ImageIcon("D:\\Image\\Anh_mac_dinh.png")); // NOI18N
-        labelAvata.setText("jLabel10");
         labelAvata.setToolTipText("");
 
         chooseAvata.setText("Chọn ảnh");
@@ -750,13 +755,29 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
                 e.printStackTrace();
             }
             dispose();
-        } else {
-            JOptionPane.showMessageDialog(null, "Không được để trống thông tin");
         }
     }//GEN-LAST:event_jSubmitButtonActionPerformed
 
     private void jResetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jResetButtonActionPerformed
         // TODO add your handling code here:
+        addPlaceholder(jInputName);
+        jInputName.setText("Họ và tên*");
+        addPlaceholder(jInputAddress);
+        jInputAddress.setText("Địa chỉ*");
+        addPlaceholder(jInputPhone);
+        jInputPhone.setText("Số điện thoại*");
+        addPlaceholder(jInputAge);
+        jInputAge.setText("Tuổi*");
+        jRegisterDate.setDate(null);
+        txtExpiredDate.setText(null);
+        txtPrice.setText(null);
+        buttonGroup1.clearSelection();
+        jSelectOneMonth.setSelected(false);
+        jSelectThreeMonth.setSelected(false);
+        jSelectSixMonth.setSelected(false);
+        buttonGroup2.clearSelection();
+        jSelectNormalTicket.setSelected(false);
+        jSelectVipTicket.setSelected(false);
     }//GEN-LAST:event_jResetButtonActionPerformed
 
     private void chooseAvataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseAvataActionPerformed
@@ -808,12 +829,42 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
     }
 
     public boolean validateMonthlyForm() {
-
-        if (jInputName.equals("Họ và tên*")
-                || jInputAddress.equals("Địa chỉ*")
-                || jInputPhone.getText().equals("Số điện thoại*")
-                || jInputAge.getText().equals("Tuổi*")
-                || jRegisterDate.getDate() == null) {
+        if (jInputName.getText().equals("Họ và tên*")
+                && jInputAddress.getText().equals("Địa chỉ*")
+                && jInputPhone.getText().equals("Số điện thoại*")
+                && jInputAge.getText().equals("Tuổi*")
+                && jRegisterDate.getDate() == null) {
+            JOptionPane.showMessageDialog(null, "Không được để trống thông tin!");
+            return false;
+        } else if (jInputName.getText().equals("Họ và tên*")) {
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập họ tên!");
+            return false;
+        } else if (jInputAddress.getText().equals("Địa chỉ*")) {
+            JOptionPane.showMessageDialog(null, "Vui Lòng nhập địa chỉ!");
+            return false;
+        } else if (jInputPhone.getText().equals("Số điện thoại*")) {
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập số điện thoại!");
+            return false;
+        } else if (!jInputPhone.getText().matches("^\\d{10}$")) {
+            JOptionPane.showMessageDialog(null, "Số điện thoại không đúng!");
+            return false;
+        } else if (jInputAge.getText().equals("Tuổi*")) {
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập tuổi");
+            return false;
+        } else if (!jInputAge.getText().matches("[0-9]+")) {
+            JOptionPane.showMessageDialog(null, "Tuổi không đúng!");
+            return false;
+        } else if (jRegisterDate.getDate() == null) {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn ngày đăng ký!");
+            return false;
+        } else if (buttonGroup1.getSelection() == null) {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn thời gian gia hạn!");
+            return false;
+        } else if (buttonGroup2.getSelection() == null) {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn loại vé!");
+            return false;
+        } else if (labelAvata.getText() == null) {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn ảnh!");
             return false;
         } else {
             return true;
@@ -853,6 +904,8 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton chooseAvata;
     private javax.swing.JButton jExitButton;
     private javax.swing.JTextField jInputAddress;

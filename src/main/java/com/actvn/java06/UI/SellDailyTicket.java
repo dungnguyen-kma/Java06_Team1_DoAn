@@ -28,6 +28,8 @@ public class SellDailyTicket extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        buttonGroup.add(cbBoxVip);
+        buttonGroup.add(cbBoxVip);
     }
 
     /**
@@ -40,8 +42,7 @@ public class SellDailyTicket extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup = new javax.swing.ButtonGroup();
         jLabel6 = new javax.swing.JLabel();
         jExitButton = new javax.swing.JButton();
         buttonSave = new javax.swing.JButton();
@@ -77,7 +78,7 @@ public class SellDailyTicket extends javax.swing.JFrame {
         });
 
         jResetButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jResetButton.setText("Hủy");
+        jResetButton.setText("Nhập lại");
         jResetButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jResetButtonActionPerformed(evt);
@@ -92,11 +93,11 @@ public class SellDailyTicket extends javax.swing.JFrame {
 
         txtAge.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        buttonGroup1.add(cbBoxVip);
+        buttonGroup.add(cbBoxVip);
         cbBoxVip.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         cbBoxVip.setText("VIP");
 
-        buttonGroup1.add(cbBoxNormal);
+        buttonGroup.add(cbBoxNormal);
         cbBoxNormal.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         cbBoxNormal.setText("Thường");
 
@@ -186,6 +187,7 @@ public class SellDailyTicket extends javax.swing.JFrame {
     private void jResetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jResetButtonActionPerformed
         // TODO add your handling code here:
         txtAge.setText("");
+        buttonGroup.clearSelection();
         cbBoxNormal.setSelected(false);
         cbBoxVip.setSelected(false);
     }//GEN-LAST:event_jResetButtonActionPerformed
@@ -200,7 +202,7 @@ public class SellDailyTicket extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
         
          */
-        
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -223,14 +225,13 @@ public class SellDailyTicket extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new SellDailyTicket().setVisible(true);
-                
+
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup;
     private javax.swing.JButton buttonSave;
     private javax.swing.JRadioButton cbBoxNormal;
     private javax.swing.JRadioButton cbBoxVip;
