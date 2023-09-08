@@ -8,7 +8,6 @@ import com.actvn.java06.MonthlyTicket;
 import com.actvn.java06.FileSave;
 import javax.swing.JOptionPane;
 import static com.actvn.java06.PoolManage.monthlyTickets;
-import java.awt.Image;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -16,7 +15,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 
@@ -24,15 +22,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Tatcataiso
  */
-public class SearchMonthlyTicket extends javax.swing.JFrame {
+public class TicketExtension extends javax.swing.JFrame {
 
     /**
-     * Creates new form SearchMonthlyTicket
+     * Creates new form TicketExtension
      */
-    public SearchMonthlyTicket() {
+    public TicketExtension() {
         initComponents();
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -44,39 +40,16 @@ public class SearchMonthlyTicket extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPopupMenu = new javax.swing.JPopupMenu();
-        popupXoa = new javax.swing.JMenuItem();
-        popupSua = new javax.swing.JMenuItem();
         txtName = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        labelAvata = new javax.swing.JLabel();
-        buttonAvata = new javax.swing.JButton();
-
-        jPopupMenu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPopupMenuMouseClicked(evt);
-            }
-        });
-
-        popupXoa.setText("Xóa");
-        popupXoa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                popupXoaActionPerformed(evt);
-            }
-        });
-        jPopupMenu.add(popupXoa);
-
-        popupSua.setText("Sửa");
-        popupSua.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                popupSuaActionPerformed(evt);
-            }
-        });
-        jPopupMenu.add(popupSua);
+        jPanel5 = new javax.swing.JPanel();
+        jSelectOneMonth = new javax.swing.JRadioButton();
+        jSelectThreeMonth = new javax.swing.JRadioButton();
+        jSelectSixMonth = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,7 +66,7 @@ public class SearchMonthlyTicket extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setText("Nhập vào họ tên khách hàng cần tìm kiếm:");
+        jLabel1.setText("Nhập vào họ tên khách hàng cần gia hạn vé:");
 
         jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -151,60 +124,96 @@ public class SearchMonthlyTicket extends javax.swing.JFrame {
             }
         });
 
-        labelAvata.setIcon(new javax.swing.ImageIcon("D:\\Image\\Anh_mac_dinh.png")); // NOI18N
-        labelAvata.setText("jLabel10");
-        labelAvata.setToolTipText("");
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gia hạn", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
 
-        buttonAvata.setText("Hiển thị ảnh khách hàng");
-        buttonAvata.addActionListener(new java.awt.event.ActionListener() {
+        jSelectOneMonth.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jSelectOneMonth.setText("1 tháng");
+        jSelectOneMonth.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonAvataActionPerformed(evt);
+                jSelectOneMonthActionPerformed(evt);
             }
         });
+
+        jSelectThreeMonth.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jSelectThreeMonth.setText("3 tháng");
+        jSelectThreeMonth.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSelectThreeMonthActionPerformed(evt);
+            }
+        });
+
+        jSelectSixMonth.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jSelectSixMonth.setText("6 tháng");
+        jSelectSixMonth.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSelectSixMonthActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSelectOneMonth)
+                    .addComponent(jSelectSixMonth)
+                    .addComponent(jSelectThreeMonth))
+                .addContainerGap(76, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jSelectOneMonth)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSelectThreeMonth)
+                .addGap(44, 44, 44)
+                .addComponent(jSelectSixMonth)
+                .addGap(17, 17, 17))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 873, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(172, 172, 172)
                         .addComponent(jLabel1)
-                        .addGap(56, 56, 56)
-                        .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(290, 290, 290)
-                        .addComponent(jButton1)
-                        .addGap(245, 245, 245)
-                        .addComponent(jButton2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 854, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelAvata, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buttonAvata))))
-                .addContainerGap(30, Short.MAX_VALUE))
+                        .addGap(42, 42, 42)
+                        .addComponent(txtName)))
+                .addGap(12, 12, 12)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(304, 304, 304)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(309, 309, 309))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelAvata)
-                        .addGap(35, 35, 35)
-                        .addComponent(buttonAvata)))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(jButton2)
+                    .addComponent(jButton1))
+                .addGap(28, 28, 28))
         );
 
         pack();
@@ -225,7 +234,6 @@ public class SearchMonthlyTicket extends javax.swing.JFrame {
     private void txtNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyReleased
         // TODO add your handling code here:
         String key = txtName.getText();
-
         if (key.equals("")) {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập họ tên khách hàng cần tìm kiếm!");
         } else {
@@ -236,7 +244,6 @@ public class SearchMonthlyTicket extends javax.swing.JFrame {
                 Logger.getLogger(SearchMonthlyTicket.class.getName()).log(Level.SEVERE, null, ex);
             }
             arrayList.clear();
-
             String subKey = "";
             for (MonthlyTicket ticket : monthlyTickets) {
                 subKey = getLastWord(ticket.getCustomerName());
@@ -253,112 +260,8 @@ public class SearchMonthlyTicket extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtNameKeyReleased
 
-    private void popupSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popupSuaActionPerformed
-        // TODO add your handling code here:
-        int ret = JOptionPane.showConfirmDialog(this, "Bạn muốn sửa thông tin hay không", "Thông Báo", JOptionPane.YES_NO_OPTION);
-        if (ret == JOptionPane.YES_OPTION) {
-            String ID;
-            int row;
-            row = jTable.getSelectedRow();
-            ID = (String) jTable.getValueAt(row, 0);
-            ArrayList<MonthlyTicket> copy = new ArrayList<>(arrayList);
-            int age = 0;
-            String isTicketVip = null;
-            String name = null;
-            String address = null;
-            int phone = 0;
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            String date1 = null;
-            String date2 = null;
-            LocalDate startTime = null;
-            LocalDate endTime = null;
-
-            for (MonthlyTicket ticket : copy) {
-                if (ID.equals(ticket.getTicketID())) {
-                    age = (int) jTable.getValueAt(row, 1);
-                    isTicketVip = (String) jTable.getValueAt(row, 2);
-                    name = (String) jTable.getValueAt(row, 3);
-                    address = (String) jTable.getValueAt(row, 4);
-                    phone = (int) jTable.getValueAt(row, 5);
-                    date1 = (String) jTable.getValueAt(row, 6);
-                    date2 = (String) jTable.getValueAt(row, 7);
-                    startTime = LocalDate.parse(date1, formatter);
-                    endTime = LocalDate.parse(date2, formatter);
-                    ticket.setCustomerName(name);
-                    ticket.setCustomerAddress(address);
-                    ticket.setCustomerPhone(phone);
-                    ticket.setAge(age);
-                    ticket.setIsTicketVip(isTicketVip);
-                    ticket.setRegistereDate(startTime);
-                    ticket.setExpiedDate(endTime);
-                }
-            }
-            for (MonthlyTicket ticket : monthlyTickets) {
-                if (ID.equals(ticket.getTicketID())) {
-                    ticket.setCustomerName(name);
-                    ticket.setCustomerAddress(address);
-                    ticket.setCustomerPhone(phone);
-                    ticket.setAge(age);
-                    ticket.setIsTicketVip(isTicketVip);
-                    ticket.setRegistereDate(startTime);
-                    ticket.setExpiedDate(endTime);
-                }
-            }
-
-            //jTableDaily.removeAll();
-            DefaultTableModel model = (DefaultTableModel) jTable.getModel();
-            model.setRowCount(0);
-
-            for (MonthlyTicket ticket : arrayList) {
-                model.addRow(new Object[]{ticket.getTicketID(), ticket.getAge(), ticket.getIsTicketVip(), ticket.getCustomerName(), ticket.getCustomerAddress(), ticket.getCustomerPhone(), ticket.getRegistereDate(), ticket.getExpiedDate(), ticket.getMonthlyPrice(), ticket.getCustomerAvatar()});
-            }
-            JOptionPane.showMessageDialog(this, "Sửa thành công!");
-        }
-    }//GEN-LAST:event_popupSuaActionPerformed
-
-    private void jPopupMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPopupMenuMouseClicked
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_jPopupMenuMouseClicked
-
-    private void popupXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popupXoaActionPerformed
-        // TODO add your handling code here:
-        int ret = JOptionPane.showConfirmDialog(this, "Bạn muốn xóa hay không", "Thông Báo", JOptionPane.YES_NO_OPTION);
-        if (ret == JOptionPane.YES_OPTION) {
-            String ID;
-            int row;
-            row = jTable.getSelectedRow();
-            ID = (String) jTable.getValueAt(row, 0);
-            ArrayList<MonthlyTicket> copy = new ArrayList<>(arrayList);
-            ArrayList<MonthlyTicket> copy2 = new ArrayList<>(monthlyTickets);
-
-            for (MonthlyTicket ticket : copy) {
-                if (ID.equals(ticket.getTicketID())) {
-                    arrayList.remove(ticket);
-                }
-            }
-            for (MonthlyTicket ticket : copy2) {
-                if (ID.equals(ticket.getTicketID())) {
-                    monthlyTickets.remove(ticket);
-                }
-            }
-
-            DefaultTableModel model = (DefaultTableModel) jTable.getModel();
-
-            model.setRowCount(0);
-            for (MonthlyTicket ticket : arrayList) {
-                model.addRow(new Object[]{ticket.getTicketID(), ticket.getAge(), ticket.getIsTicketVip(), ticket.getCustomerName(), ticket.getCustomerAddress(), ticket.getCustomerPhone(), ticket.getRegistereDate(), ticket.getExpiedDate(), ticket.getMonthlyPrice(), ticket.getCustomerAvatar()});
-            }
-
-            JOptionPane.showMessageDialog(this, "Xóa thành công!");
-        }
-    }//GEN-LAST:event_popupXoaActionPerformed
-
     private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
-        // TODO add your handling code here:
-        if (evt.getClickCount() == 2) {
-            jPopupMenu.show(this, 200, 200 + (jTable.getSelectedRow()) * 5);
-        }
+
     }//GEN-LAST:event_jTableMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -383,29 +286,131 @@ public class SearchMonthlyTicket extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private ImageIcon ResizeImage(String ImagePath) {
-        ImageIcon MyImage = new ImageIcon(ImagePath);
-        Image img = MyImage.getImage();
-        Image newImg = img.getScaledInstance(labelAvata.getWidth(), labelAvata.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon image = new ImageIcon(newImg);
-        return image;
-    }
-    private void buttonAvataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAvataActionPerformed
+    private void jSelectOneMonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSelectOneMonthActionPerformed
         // TODO add your handling code here:
-        String ID;
-        int row;
-        row = jTable.getSelectedRow();
-        ID = (String) jTable.getValueAt(row, 0);
-        ArrayList<MonthlyTicket> copy = new ArrayList<>(arrayList);
+        jSelectOneMonth.setSelected(true);
+        jSelectThreeMonth.setSelected(false);
+        jSelectSixMonth.setSelected(false);
 
-        String avata = "D:\\Image\\Anh_mac_dinh.png";
-        for (MonthlyTicket ticket : copy) {
-            if (ID.equals(ticket.getTicketID())) {
-                avata = ticket.getCustomerAvatar();
+        int ret = JOptionPane.showConfirmDialog(this, "Gia hạn vé này thêm 1 tháng?", "Thông Báo", JOptionPane.YES_NO_OPTION);
+        if (ret == JOptionPane.YES_OPTION) {
+            String ID;
+            int row;
+            row = jTable.getSelectedRow();
+            ID = (String) jTable.getValueAt(row, 0);
+            ArrayList<MonthlyTicket> copy = new ArrayList<>(arrayList);
+
+            LocalDate endTime = null;
+
+            for (MonthlyTicket ticket : copy) {
+                if (ID.equals(ticket.getTicketID())) {
+                    //registerDate = LocalDate.parse(formattedDate, formatter);
+                    endTime = ticket.getExpiedDate();
+                    endTime = ticket.checkExpiedDate(endTime, 1);
+                    ticket.setExpiedDate(endTime);
+                }
             }
+            for (MonthlyTicket ticket : monthlyTickets) {
+                if (ID.equals(ticket.getTicketID())) {
+                    ticket.setExpiedDate(endTime);
+                }
+            }
+
+            //jTableDaily.removeAll();
+            DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+            model.setRowCount(0);
+
+            for (MonthlyTicket ticket : arrayList) {
+                model.addRow(new Object[]{ticket.getTicketID(), ticket.getAge(), ticket.getIsTicketVip(), ticket.getCustomerName(), ticket.getCustomerAddress(), ticket.getCustomerPhone(), ticket.getRegistereDate(), ticket.getExpiedDate(), ticket.getMonthlyPrice(), ticket.getCustomerAvatar()});
+            }
+            JOptionPane.showMessageDialog(this, "Gia hạn thành công!");
+            jSelectOneMonth.setSelected(false);
         }
-        labelAvata.setIcon(ResizeImage(avata));
-    }//GEN-LAST:event_buttonAvataActionPerformed
+    }//GEN-LAST:event_jSelectOneMonthActionPerformed
+
+    private void jSelectThreeMonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSelectThreeMonthActionPerformed
+        // TODO add your handling code here:
+        jSelectThreeMonth.setSelected(true);
+        jSelectOneMonth.setSelected(false);
+        jSelectSixMonth.setSelected(false);
+
+        int ret = JOptionPane.showConfirmDialog(this, "Gia hạn vé này thêm 3 tháng?", "Thông Báo", JOptionPane.YES_NO_OPTION);
+        if (ret == JOptionPane.YES_OPTION) {
+            String ID;
+            int row;
+            row = jTable.getSelectedRow();
+            ID = (String) jTable.getValueAt(row, 0);
+            ArrayList<MonthlyTicket> copy = new ArrayList<>(arrayList);
+
+            LocalDate endTime = null;
+
+            for (MonthlyTicket ticket : copy) {
+                if (ID.equals(ticket.getTicketID())) {
+                    //registerDate = LocalDate.parse(formattedDate, formatter);
+                    endTime = ticket.getExpiedDate();
+                    endTime = ticket.checkExpiedDate(endTime, 3);
+                    ticket.setExpiedDate(endTime);
+                }
+            }
+            for (MonthlyTicket ticket : monthlyTickets) {
+                if (ID.equals(ticket.getTicketID())) {
+                    ticket.setExpiedDate(endTime);
+                }
+            }
+
+            //jTableDaily.removeAll();
+            DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+            model.setRowCount(0);
+
+            for (MonthlyTicket ticket : arrayList) {
+                model.addRow(new Object[]{ticket.getTicketID(), ticket.getAge(), ticket.getIsTicketVip(), ticket.getCustomerName(), ticket.getCustomerAddress(), ticket.getCustomerPhone(), ticket.getRegistereDate(), ticket.getExpiedDate(), ticket.getMonthlyPrice(), ticket.getCustomerAvatar()});
+            }
+            JOptionPane.showMessageDialog(this, "Gia hạn thành công!");
+            jSelectOneMonth.setSelected(false);
+        }
+    }//GEN-LAST:event_jSelectThreeMonthActionPerformed
+
+    private void jSelectSixMonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSelectSixMonthActionPerformed
+        // TODO add your handling code here:
+        jSelectSixMonth.setSelected(true);
+        jSelectOneMonth.setSelected(false);
+        jSelectThreeMonth.setSelected(false);
+
+        int ret = JOptionPane.showConfirmDialog(this, "Gia hạn vé này thêm 6 tháng?", "Thông Báo", JOptionPane.YES_NO_OPTION);
+        if (ret == JOptionPane.YES_OPTION) {
+            String ID;
+            int row;
+            row = jTable.getSelectedRow();
+            ID = (String) jTable.getValueAt(row, 0);
+            ArrayList<MonthlyTicket> copy = new ArrayList<>(arrayList);
+
+            LocalDate endTime = null;
+
+            for (MonthlyTicket ticket : copy) {
+                if (ID.equals(ticket.getTicketID())) {
+                    //registerDate = LocalDate.parse(formattedDate, formatter);
+                    endTime = ticket.getExpiedDate();
+                    endTime = ticket.checkExpiedDate(endTime, 6);
+                    ticket.setExpiedDate(endTime);
+                }
+            }
+            for (MonthlyTicket ticket : monthlyTickets) {
+                if (ID.equals(ticket.getTicketID())) {
+                    ticket.setExpiedDate(endTime);
+                }
+            }
+
+            //jTableDaily.removeAll();
+            DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+            model.setRowCount(0);
+
+            for (MonthlyTicket ticket : arrayList) {
+                model.addRow(new Object[]{ticket.getTicketID(), ticket.getAge(), ticket.getIsTicketVip(), ticket.getCustomerName(), ticket.getCustomerAddress(), ticket.getCustomerPhone(), ticket.getRegistereDate(), ticket.getExpiedDate(), ticket.getMonthlyPrice(), ticket.getCustomerAvatar()});
+            }
+            JOptionPane.showMessageDialog(this, "Gia hạn thành công!");
+            jSelectOneMonth.setSelected(false);
+        }
+    }//GEN-LAST:event_jSelectSixMonthActionPerformed
 
     /**
      * @param args the command line arguments
@@ -421,46 +426,37 @@ public class SearchMonthlyTicket extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SearchMonthlyTicket.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+            java.util.logging.Logger.getLogger(TicketExtension.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SearchMonthlyTicket.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+            java.util.logging.Logger.getLogger(TicketExtension.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SearchMonthlyTicket.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+            java.util.logging.Logger.getLogger(TicketExtension.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SearchMonthlyTicket.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TicketExtension.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SearchMonthlyTicket().setVisible(true);
+                new TicketExtension().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonAvata;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPopupMenu jPopupMenu;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JRadioButton jSelectOneMonth;
+    private javax.swing.JRadioButton jSelectSixMonth;
+    private javax.swing.JRadioButton jSelectThreeMonth;
     private javax.swing.JTable jTable;
-    private javax.swing.JLabel labelAvata;
-    private javax.swing.JMenuItem popupSua;
-    private javax.swing.JMenuItem popupXoa;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
 }

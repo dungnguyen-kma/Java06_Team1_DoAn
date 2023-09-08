@@ -15,9 +15,13 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import static com.actvn.java06.PoolManage.monthlyTickets;
+import java.awt.Image;
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -39,6 +43,7 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
     private String isVipTicket;
     private double ticketPrice;
     private MonthlyTicket ticket = new MonthlyTicket();
+    private String duongDanAnh = "D:\\Image\\Anh_mac_dinh.png";
 
     public SellMonthlyTicket() {
         initComponents();
@@ -56,6 +61,15 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
             Logger.getLogger(SellMonthlyTicket.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    private boolean checkIsNumber(String str) {
+        for (char c : str.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void addPlaceholder(JTextField textField) {
@@ -127,6 +141,8 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
         jExitButton = new javax.swing.JButton();
         jSubmitButton = new javax.swing.JButton();
         jResetButton = new javax.swing.JButton();
+        labelAvata = new javax.swing.JLabel();
+        chooseAvata = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addFocusListener(new java.awt.event.FocusAdapter() {
@@ -459,31 +475,53 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
             }
         });
 
+        labelAvata.setIcon(new javax.swing.ImageIcon("D:\\Image\\Anh_mac_dinh.png")); // NOI18N
+        labelAvata.setText("jLabel10");
+        labelAvata.setToolTipText("");
+
+        chooseAvata.setText("Chọn ảnh");
+        chooseAvata.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chooseAvataActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jResetButton)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jExitButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jSubmitButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(jResetButton)
-                        .addGap(2, 2, 2)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(162, 162, 162))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jExitButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jSubmitButton)))
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelAvata, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(chooseAvata))))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(labelAvata)
+                        .addGap(32, 32, 32)
+                        .addComponent(chooseAvata)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
@@ -677,6 +715,13 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jInputAgeFocusLost
 
+    private ImageIcon ResizeImage(String ImagePath) {
+        ImageIcon MyImage = new ImageIcon(ImagePath);
+        Image img = MyImage.getImage();
+        Image newImg = img.getScaledInstance(labelAvata.getWidth(), labelAvata.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon image = new ImageIcon(newImg);
+        return image;
+    }
     private void jSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSubmitButtonActionPerformed
         boolean validate = validateMonthlyForm();
         if (validate == true) {
@@ -696,6 +741,7 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
             ticket.setRegistereDate(registerDate);
             ticket.setExpiedDate(expiredDate);
             ticket.setMonthlyPrice(ticketPrice);
+            ticket.setCustomerAvatar(duongDanAnh);
             monthlyTickets.add(ticket);
             try {
                 FileSave.saveMonthlyTicket(ticket);
@@ -712,6 +758,22 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
     private void jResetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jResetButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jResetButtonActionPerformed
+
+    private void chooseAvataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseAvataActionPerformed
+        // TODO add your handling code here:
+        try {
+            JFileChooser f = new JFileChooser("D:\\Image");
+            f.setDialogTitle("Mở file");
+            f.showOpenDialog(null);
+            File fTenAnh = f.getSelectedFile();
+            duongDanAnh = fTenAnh.getAbsolutePath();
+            labelAvata.setIcon(ResizeImage(String.valueOf(duongDanAnh)));
+            System.out.println(duongDanAnh);
+        } catch (Exception ex) {
+            System.out.println("Chưa chọn ảnh");
+            System.out.println(duongDanAnh);
+        }
+    }//GEN-LAST:event_chooseAvataActionPerformed
 
     /**
      * @param args the command line arguments
@@ -791,6 +853,7 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton chooseAvata;
     private javax.swing.JButton jExitButton;
     private javax.swing.JTextField jInputAddress;
     private javax.swing.JTextField jInputAge;
@@ -817,6 +880,7 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
     private javax.swing.JRadioButton jSelectThreeMonth;
     private javax.swing.JRadioButton jSelectVipTicket;
     private javax.swing.JButton jSubmitButton;
+    private javax.swing.JLabel labelAvata;
     private javax.swing.JLabel txtExpiredDate;
     private javax.swing.JLabel txtPrice;
     private javax.swing.JLabel txtTicketId;

@@ -38,6 +38,7 @@ public class TicketStatistic extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jPriceByMonth = new javax.swing.JMenuItem();
         jMenuSearchMonthly = new javax.swing.JMenuItem();
+        jMenuExtensionTicket = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -89,6 +90,15 @@ public class TicketStatistic extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuSearchMonthly);
 
+        jMenuExtensionTicket.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jMenuExtensionTicket.setText("Gia hạn vé tháng");
+        jMenuExtensionTicket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuExtensionTicketActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuExtensionTicket);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -131,6 +141,12 @@ public class TicketStatistic extends javax.swing.JFrame {
         monthlyTicket.setVisible(true);
     }//GEN-LAST:event_jMenuSearchMonthlyActionPerformed
 
+    private void jMenuExtensionTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuExtensionTicketActionPerformed
+        // TODO add your handling code here:
+        TicketExtension extension = new TicketExtension();
+        extension.setVisible(true);
+    }//GEN-LAST:event_jMenuExtensionTicketActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -172,6 +188,7 @@ public class TicketStatistic extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuExtensionTicket;
     private javax.swing.JMenuItem jMenuSearchDaily;
     private javax.swing.JMenuItem jMenuSearchMonthly;
     private javax.swing.JMenuItem jPriceByMonth;

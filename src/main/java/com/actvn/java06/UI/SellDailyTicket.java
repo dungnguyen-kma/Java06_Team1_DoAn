@@ -158,10 +158,21 @@ public class SellDailyTicket extends javax.swing.JFrame {
     private void jExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExitButtonActionPerformed
         dispose();
     }//GEN-LAST:event_jExitButtonActionPerformed
-
-
+    private boolean checkIsNumber(String str) {
+        for (char c : str.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                return false;
+            }
+        }
+        return true;
+    }
     private void buttonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveActionPerformed
-        if (txtAge.getText().equals("") == false) {
+        if (txtAge.getText().equals("") == true) {
+            JOptionPane.showMessageDialog(null, "Không được để trống thông tin");
+        } else if (checkIsNumber(txtAge.getText()) == false) {
+            JOptionPane.showMessageDialog(null, "Tuổi nhập vào phải là một số. Vui lòng nhập lại!");
+            txtAge.setText("");
+        } else {
             try {
                 FormDailyTicket formDailyTicket = new FormDailyTicket(Integer.parseInt(txtAge.getText()), cbBoxVip.isSelected());
                 formDailyTicket.setVisible(true);
@@ -169,8 +180,6 @@ public class SellDailyTicket extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(SellDailyTicket.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Không được để trống thông tin");
         }
     }//GEN-LAST:event_buttonSaveActionPerformed
 
@@ -191,7 +200,7 @@ public class SellDailyTicket extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
         
          */
-
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -214,7 +223,7 @@ public class SellDailyTicket extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new SellDailyTicket().setVisible(true);
-
+                
             }
         });
     }

@@ -61,6 +61,7 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTableDaily = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jSelectSang = new javax.swing.JRadioButton();
@@ -136,6 +137,13 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(jTableDaily);
 
+        jButton1.setText("Xuất ra file");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -157,9 +165,10 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
                                 .addGap(39, 39, 39)
                                 .addComponent(txtTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel4)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(jLabel4)
+                                .addGap(151, 151, 151)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,7 +184,8 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtTotalPrice)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(jButton1))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -425,12 +435,11 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
         }
         timeSlotOfTicket.clear();
         for (DailyTicket timeSlot : ticketOnDay) {
-            if (timeSlot.getTimeSlotID().compareTo(timeSlotValue) == 0) {             
+            if (timeSlot.getTimeSlotID().compareTo(timeSlotValue) == 0) {
                 timeSlotOfTicket.add(timeSlot);
                 txtTimeSlot.setText("(" + timeSlotText + "):");
-            }       
+            }
         }
-        
 
         DefaultTableModel model = (DefaultTableModel) jTableTimeSlot.getModel();
         model.setRowCount(0);
@@ -453,12 +462,23 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jExitButtonActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            // TODO add your handling code here:
+            FileSave.saveArrayDailyTickets2(ticketOnDay);
+            JOptionPane.showMessageDialog(this, "Lưu thành công");
+            dispose();
+        } catch (IOException ex) {
+            Logger.getLogger(DailyTicketStatistic.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     public LocalDateTime fromDatetoLocalDateTime(Date date) {
         return date.toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalDateTime();
     }
-   
+
     /**
      * @param args the command line arguments
      */
@@ -495,6 +515,7 @@ public class DailyTicketStatistic extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private com.toedter.calendar.JDateChooser jDateChooser;
     private javax.swing.JButton jDateSubmit;
     private javax.swing.JButton jExitButton;

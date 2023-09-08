@@ -1,7 +1,4 @@
 ID,Age,VIP,Name,Address,Phone,RegisterDate,ExpiredDate,Price,Avata
-THANG-001,26,Vip,nguyen tan dung,ha noi,1234123,2023-09-06,2023-10-06,450000,null
-THANG-002,12,Normal,vu duy khanh,ha noi,342234,2023-09-06,2023-12-06,650000,null
-THANG-003,43,Vip,vi phuong nam,ha noi,43834324,2023-09-06,2024-03-06,2500000,null
-THANG-004,21,Vip,hoang ba cong,ha noi,893743,2023-09-06,2023-12-06,1250000,null
-THANG-006,23,Vip,tan voi,ha noi,347832,2023-09-12,2023-12-12,1250000,null
-THANG-007,24,Normal,test,test,123456789,2023-09-04,2023-10-04,300000,null
+THANG-001,21,Vip,tan voi,hai duong,123,2023-09-08,2023-12-08,1250000,D:\Image\Anh_mac_dinh.png
+THANG-002,19,Vip,nguyen quang huy,nam dinh,1321412,2023-09-08,2023-10-08,450000,D:\Image\Anh_mac_dinh.png
+THANG-003,20,Vip,nguyen quang huy,ha noi,1234124,2023-09-08,2024-03-08,1250000,D:\Image\anh_2.jpg

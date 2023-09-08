@@ -24,9 +24,10 @@ public class PoolManage {
 
     public static void main(String[] args) throws Exception {
         Scanner input = new Scanner(System.in);
-//        FileSave.ReadArrayMonthlyTickets(monthlyTickets);
-//        monthlyTickets.stream().forEach(
-//                ticket -> System.out.println(ticket.toString())
-//        );
+
+        FileSave.ReadArrayMonthlyTickets(monthlyTickets);
+        monthlyTickets.stream().forEach(
+                ticket -> System.out.println(ticket.toString())
+        );
     }
 }

@@ -30,6 +30,7 @@ public class FileSave {
     private static final String SEPERATOR = File.separator;
     private static final String PATH_CSV_MONTHLY_OUTPUT = CURRENT + SEPERATOR + "Danh_Sach_Ve_Thang_OUT.csv";
     private static final String PATH_CSV_FILE_OUTPUT = CURRENT + SEPERATOR + "Danh_Sach_Ve_Ngay_OUT.csv";
+    private static final String PATH_CSV_FILE_OUTPUT_2 = CURRENT + SEPERATOR + "Danh_Sach_Theo_Ngay_OUT.csv";
     private static final String FILE_HEADER = "ID,Age,VIP,TimeslotID,StartTime,EndTime,Price\n";
     private static final String MONTHLY_HEADER = "ID,Age,VIP,Name,Address,Phone,RegisterDate,ExpiredDate,Price,Avata\n";
     private static final String NEW_LINE_SPETATOR = "\n";
@@ -45,6 +46,19 @@ public class FileSave {
         BufferedWriter bw;
         try {
             bw = new BufferedWriter(new FileWriter(PATH_CSV_FILE_OUTPUT));
+            bw.write(FILE_HEADER);
+            for (DailyTicket ticket : arrayList) {
+                bw.append(ticket.writeCSV());
+            }
+            bw.close();
+        } catch (NumberFormatException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void saveArrayDailyTickets2(ArrayList<DailyTicket> arrayList) throws IOException {
+        BufferedWriter bw;
+        try {
+            bw = new BufferedWriter(new FileWriter(PATH_CSV_FILE_OUTPUT_2));
             bw.write(FILE_HEADER);
             for (DailyTicket ticket : arrayList) {
                 bw.append(ticket.writeCSV());
