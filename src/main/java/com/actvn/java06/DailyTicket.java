@@ -15,10 +15,6 @@ public class DailyTicket extends Ticket {
     public DailyTicket() {
     }
 
-    public DailyTicket(int age, String isTicketVip) {
-        super(age, isTicketVip);
-    }
-
     public DailyTicket(String ticketID, int age, String isTicketVip, String timeSlotID, LocalDateTime startTime, LocalDateTime endTime, double dailyPrice) {
         super(ticketID, age, isTicketVip);
         this.timeSlotID = timeSlotID;
@@ -27,12 +23,6 @@ public class DailyTicket extends Ticket {
         this.dailyPrice = dailyPrice;
     }
 
-    public DailyTicket(String timeSlotID, LocalDateTime startTime, LocalDateTime endTime, double dailyPrice) {
-        this.timeSlotID = timeSlotID;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.dailyPrice = dailyPrice;
-    }
 
     public String getTimeSlotID() {
         return timeSlotID;
@@ -50,11 +40,6 @@ public class DailyTicket extends Ticket {
         this.startTime = startTime;
     }
     
-    public void mySetStartTime(String startTime) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
-        LocalDateTime start = LocalDateTime.parse(startTime, formatter);
-        this.startTime = start;
-    }
 
     public double getDailyPrice() {
         return dailyPrice;
@@ -78,42 +63,7 @@ public class DailyTicket extends Ticket {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 83 * hash + Objects.hashCode(this.timeSlotID);
-        hash = 83 * hash + Objects.hashCode(this.startTime);
-        hash = 83 * hash + (int) (Double.doubleToLongBits(this.dailyPrice) ^ (Double.doubleToLongBits(this.dailyPrice) >>> 32));
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final DailyTicket other = (DailyTicket) obj;
-        if (Double.doubleToLongBits(this.dailyPrice) != Double.doubleToLongBits(other.dailyPrice)) {
-            return false;
-        }
-        if (!Objects.equals(this.timeSlotID, other.timeSlotID)) {
-            return false;
-        }
-        return Objects.equals(this.startTime, other.startTime);
-    }
-
-    @Override
     public String creatTicketID(int index) {
-        LocalTime startDay = LocalTime.MIDNIGHT;
-        int quatity = startDay.getHour();
-        if (quatity == 23) {
-            index = 1;
-        }
         super.setTicketID(String.format("DAY - " + "%03d", index));
         return super.getTicketID();
     }
@@ -141,7 +91,6 @@ public class DailyTicket extends Ticket {
     public String checkStartTime(LocalDateTime time) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
         String str = time.format(formatter);
-        //LocalDateTime result = LocalDateTime.parse(str, formatter);
         return str;
     }
 
@@ -150,19 +99,16 @@ public class DailyTicket extends Ticket {
             this.setEndTime(time.withHour(10).withMinute(00).withSecond(00));
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
             String str = this.getEndTime().format(formatter);
-            //LocalDateTime result = LocalDateTime.parse(str, formatter);
             return str;
         } else if (checkTimeSlotID().equals("CHIEU")) {
             this.setEndTime(time.withHour(17).withMinute(30).withSecond(00));
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
             String str = this.getEndTime().format(formatter);
-            //LocalDateTime result = LocalDateTime.parse(str, formatter);
             return str;
         } else {
             this.setEndTime(time.withHour(22).withMinute(00).withSecond(00));
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
             String str = this.getEndTime().format(formatter);
-            //LocalDateTime result = LocalDateTime.parse(str, formatter);
             return str;
         }
     }

@@ -70,8 +70,8 @@
                       <Component id="jScrollPane1" min="-2" pref="854" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="labelAvata" min="-2" pref="138" max="-2" attributes="0"/>
                           <Component id="buttonAvata" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelAvata" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -179,13 +179,12 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="2" name="D:\Image\Anh_mac_dinh.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="jLabel10"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="buttonAvata">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Hi&#x1ec3;n th&#x1ecb; &#x1ea3;nh kh&#xe1;ch h&#xe0;ng"/>
+        <Property name="label" type="java.lang.String" value="Hi&#x1ec3;n th&#x1ecb; &#x1ea3;nh &#xa;kh&#xe1;ch h&#xe0;ng"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAvataActionPerformed"/>

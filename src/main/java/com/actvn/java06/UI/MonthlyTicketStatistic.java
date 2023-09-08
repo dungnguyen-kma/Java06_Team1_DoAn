@@ -3,54 +3,28 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.actvn.java06.UI;
-import com.actvn.java06.DailyTicket;
+
 import java.time.Month;
-import java.time.LocalDateTime;
-import com.actvn.java06.FileSave;
 import com.actvn.java06.MonthlyTicket;
-import static com.actvn.java06.PoolManage.dailyTickets;
 import static com.actvn.java06.PoolManage.monthlyTickets;
 import java.awt.Component;
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.WindowConstants;
-import javax.swing.table.DefaultTableModel;
-import com.actvn.java06.DailyTicket;
 import com.actvn.java06.FileSave;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
-import static com.actvn.java06.PoolManage.dailyTickets;
-import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-
 
 /**
  *
  * @author thepo
  */
 public class MonthlyTicketStatistic extends javax.swing.JFrame {
-
 
     /**
      * Creates new form MonthlyTicketStatistic
@@ -60,7 +34,8 @@ public class MonthlyTicketStatistic extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
-private ArrayList<MonthlyTicket> ticketOnMonth = new ArrayList<>();
+    private ArrayList<MonthlyTicket> ticketOnMonth = new ArrayList<>();
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -81,6 +56,7 @@ private ArrayList<MonthlyTicket> ticketOnMonth = new ArrayList<>();
         txtTotalMonthlyPrice = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jExitButton = new javax.swing.JButton();
+        jExportFile = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -162,7 +138,7 @@ private ArrayList<MonthlyTicket> ticketOnMonth = new ArrayList<>();
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 856, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -199,6 +175,14 @@ private ArrayList<MonthlyTicket> ticketOnMonth = new ArrayList<>();
             }
         });
 
+        jExportFile.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jExportFile.setText("Xuất file");
+        jExportFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jExportFileActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -210,6 +194,8 @@ private ArrayList<MonthlyTicket> ticketOnMonth = new ArrayList<>();
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jExitButton)
+                .addGap(18, 18, 18)
+                .addComponent(jExportFile)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -218,7 +204,9 @@ private ArrayList<MonthlyTicket> ticketOnMonth = new ArrayList<>();
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jExitButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jExitButton)
+                    .addComponent(jExportFile))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -228,36 +216,34 @@ private ArrayList<MonthlyTicket> ticketOnMonth = new ArrayList<>();
     private void jMonthSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMonthSubmitActionPerformed
         // TODO add your handling code here:
         Month month = Month.of(jMonthChooser1.getMonth() + 1);
-        int monthText = jMonthChooser1.getMonth() +1;
+        int monthText = jMonthChooser1.getMonth() + 1;
         monthlyTickets.clear();
-        
+        ticketOnMonth.clear();
         try {
             FileSave.ReadArrayMonthlyTickets(monthlyTickets);
         } catch (IOException ex) {
             Logger.getLogger(MonthlyTicketStatistic.class.getName()).log(Level.SEVERE, null, ex);
         }
-        for(MonthlyTicket ticket :monthlyTickets){
-            if(month == ticket.getRegistereDate().getMonth()){
+        for (MonthlyTicket ticket : monthlyTickets) {
+            if (month == ticket.getRegistereDate().getMonth()) {
                 ticketOnMonth.add(ticket);
             }
         }
-         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-            model.setRowCount(0);
-        for(MonthlyTicket ticket :ticketOnMonth){
-         model.addRow(new Object[]{ticket.getTicketID(),ticket.getCustomerName(),ticket.getCustomerAddress(),ticket.getCustomerPhone(),ticket.getAge(),ticket.getIsTicketVip(),ticket.getRegistereDate(),ticket.getExpiedDate(),ticket.getMonthlyPrice()});
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        for (MonthlyTicket ticket : ticketOnMonth) {
+            model.addRow(new Object[]{ticket.getTicketID(), ticket.getCustomerName(), ticket.getCustomerAddress(), ticket.getCustomerPhone(), ticket.getAge(), ticket.getIsTicketVip(), ticket.getRegistereDate(), ticket.getExpiedDate(), ticket.getMonthlyPrice()});
         }
-         int totalPrice = 0;
-            for (MonthlyTicket ticket : ticketOnMonth) {
-                int price = (int) ticket.getMonthlyPrice();
-                totalPrice += price;
-            }
-            txtMonth.setText("(Tháng "+monthText+"):");
-            txtTotalMonthlyPrice.setText(String.valueOf(totalPrice));
-            ticketOnMonth.clear();
-        
+        int totalPrice = 0;
+        for (MonthlyTicket ticket : ticketOnMonth) {
+            int price = (int) ticket.getMonthlyPrice();
+            totalPrice += price;
+        }
+        txtMonth.setText("(Tháng " + monthText + "):");
+        txtTotalMonthlyPrice.setText(String.valueOf(totalPrice));
     }//GEN-LAST:event_jMonthSubmitActionPerformed
-   
-     public LocalDateTime fromDatetoLocalDateTime(Date date) {
+
+    public LocalDateTime fromDatetoLocalDateTime(Date date) {
         return date.toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalDateTime();
@@ -266,6 +252,17 @@ private ArrayList<MonthlyTicket> ticketOnMonth = new ArrayList<>();
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jExitButtonActionPerformed
+
+    private void jExportFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExportFileActionPerformed
+        // TODO add your handling code here:
+        try {
+            FileSave.saveArrayMonthlyTickets2(ticketOnMonth);
+            JOptionPane.showMessageDialog(null, "Lưu dữ liệu thành công!");
+            dispose();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jExportFileActionPerformed
 
     /**
      * @param args the command line arguments
@@ -304,6 +301,7 @@ private ArrayList<MonthlyTicket> ticketOnMonth = new ArrayList<>();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jExitButton;
+    private javax.swing.JButton jExportFile;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -171,8 +171,11 @@ public class SellDailyTicket extends javax.swing.JFrame {
         if (txtAge.getText().equals("") == true) {
             JOptionPane.showMessageDialog(null, "Không được để trống thông tin");
         } else if (checkIsNumber(txtAge.getText()) == false) {
-            JOptionPane.showMessageDialog(null, "Tuổi nhập vào phải là một số. Vui lòng nhập lại!");
+            JOptionPane.showMessageDialog(null, "Tuổi không đúng!");
             txtAge.setText("");
+        } else if (buttonGroup.getSelection() == null) {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn loại vé!");
+
         } else {
             try {
                 FormDailyTicket formDailyTicket = new FormDailyTicket(Integer.parseInt(txtAge.getText()), cbBoxVip.isSelected());

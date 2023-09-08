@@ -22,12 +22,24 @@ public class PoolManage {
     public static ArrayList<DailyTicket> dailyTickets = new ArrayList<>();
     public static ArrayList<MonthlyTicket> monthlyTickets = new ArrayList<>();
 
-    public static void main(String[] args) throws Exception {
-        Scanner input = new Scanner(System.in);
-
-        FileSave.ReadArrayMonthlyTickets(monthlyTickets);
-        monthlyTickets.stream().forEach(
-                ticket -> System.out.println(ticket.toString())
-        );
+    public PoolManage() {
     }
+
+    public static ArrayList<DailyTicket> getDailyTickets() {
+        return dailyTickets;
+    }
+
+    public static void setDailyTickets(ArrayList<DailyTicket> dailyTickets) {
+        PoolManage.dailyTickets = dailyTickets;
+    }
+
+    public static ArrayList<MonthlyTicket> getMonthlyTickets() {
+        return monthlyTickets;
+    }
+
+    public static void setMonthlyTickets(ArrayList<MonthlyTicket> monthlyTickets) {
+        PoolManage.monthlyTickets = monthlyTickets;
+    }
+
+    
 }

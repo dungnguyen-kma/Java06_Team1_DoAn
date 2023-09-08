@@ -29,6 +29,7 @@ public class FileSave {
     private static final String CURRENT = System.getProperty("user.dir");
     private static final String SEPERATOR = File.separator;
     private static final String PATH_CSV_MONTHLY_OUTPUT = CURRENT + SEPERATOR + "Danh_Sach_Ve_Thang_OUT.csv";
+    private static final String PATH_CSV_MONTHLY_OUTPUT_2 = CURRENT + SEPERATOR + "Danh_Sach_Ve_Thang_OUT_FILTERED.csv";
     private static final String PATH_CSV_FILE_OUTPUT = CURRENT + SEPERATOR + "Danh_Sach_Ve_Ngay_OUT.csv";
     private static final String PATH_CSV_FILE_OUTPUT_2 = CURRENT + SEPERATOR + "Danh_Sach_Theo_Ngay_OUT.csv";
     private static final String FILE_HEADER = "ID,Age,VIP,TimeslotID,StartTime,EndTime,Price\n";
@@ -55,6 +56,7 @@ public class FileSave {
             e.printStackTrace();
         }
     }
+
     public static void saveArrayDailyTickets2(ArrayList<DailyTicket> arrayList) throws IOException {
         BufferedWriter bw;
         try {
@@ -131,7 +133,21 @@ public class FileSave {
             e.printStackTrace();
         }
     }
-
+    
+    public static void saveArrayMonthlyTickets2(ArrayList<MonthlyTicket> arrayList) throws IOException {
+        BufferedWriter bw;
+        try {
+            bw = new BufferedWriter(new FileWriter(PATH_CSV_MONTHLY_OUTPUT_2));
+            bw.write(MONTHLY_HEADER);
+            for (MonthlyTicket ticket : arrayList) {
+                bw.append(ticket.writeCSV());
+            }
+            bw.close();
+        } catch (NumberFormatException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
     public static void saveMonthlyTicket(MonthlyTicket ticket) throws IOException {
         BufferedWriter bw;
         try {
@@ -179,44 +195,5 @@ public class FileSave {
             return index = 0;
         }
         return index;
-    }
-
-    public static void saveMonthlyCSV(ArrayList<MonthlyTicket> arrayList) {
-        FileWriter fw = null;
-        try {
-            fw = new FileWriter(PATH_CSV_MONTHLY_OUTPUT);
-            fw.append(MONTHLY_HEADER);
-            fw.append(NEW_LINE_SPETATOR);
-            for (MonthlyTicket item : arrayList) {
-                fw.append(item.getTicketID());
-                fw.append(COMMA_DELIMITER);
-                fw.append(item.getCustomerName());
-                fw.append(COMMA_DELIMITER);
-                fw.append(item.getCustomerAddress());
-                fw.append(COMMA_DELIMITER);
-                fw.append(String.valueOf(item.getCustomerPhone()));
-                fw.append(COMMA_DELIMITER);
-                fw.append(String.valueOf(item.getAge()));
-                fw.append(COMMA_DELIMITER);
-                fw.append(item.getIsTicketVip());
-                fw.append(COMMA_DELIMITER);
-                fw.append(dateFormaterApp(item.getRegistereDate()));
-                fw.append(COMMA_DELIMITER);
-                fw.append(dateFormaterApp(item.getExpiedDate()));
-                fw.append(COMMA_DELIMITER);
-                fw.append(String.valueOf(item.getMonthlyPrice()));
-            }
-            fw.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (fw != null) {
-                try {
-                    fw.close();
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-            }
-        }
     }
 }

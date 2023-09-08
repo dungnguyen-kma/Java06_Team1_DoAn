@@ -9,9 +9,6 @@ import com.actvn.java06.FileSave;
 import static com.actvn.java06.PoolManage.dailyTickets;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -307,7 +304,6 @@ public class SearchDailyTicket extends javax.swing.JFrame {
                     arrayTimeSlot.add(daily);
                 }
             }
-            //jTableDaily.removeAll();
             DefaultTableModel model = (DefaultTableModel) jTableDaily.getModel();
             model.setRowCount(0);
 
@@ -338,7 +334,6 @@ public class SearchDailyTicket extends javax.swing.JFrame {
                     arrayAge.add(daily);
                 }
             }
-            //jTableDaily1.removeAll();
             DefaultTableModel model = (DefaultTableModel) jTableDaily1.getModel();
             model.setRowCount(0);
 
@@ -351,7 +346,6 @@ public class SearchDailyTicket extends javax.swing.JFrame {
 
     private void popupSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popupSuaActionPerformed
         // TODO add your handling code here:
-        //bảng khung giờ
         int ret = JOptionPane.showConfirmDialog(this, "Bạn muốn sửa thông tin hay không", "Thông Báo", JOptionPane.YES_NO_OPTION);
         if (ret == JOptionPane.YES_OPTION) {
             String ID;
@@ -377,7 +371,6 @@ public class SearchDailyTicket extends javax.swing.JFrame {
                     ticket.setIsTicketVip(isTicketVip);
                 }
             }
-            //jTableDaily.removeAll();
             DefaultTableModel model = (DefaultTableModel) jTableDaily.getModel();
             model.setRowCount(0);
 
@@ -421,7 +414,6 @@ public class SearchDailyTicket extends javax.swing.JFrame {
                     dailyTickets.remove(ticket);
                 }
             }
-            //jTableDaily.removeAll();
             DefaultTableModel model = (DefaultTableModel) jTableDaily.getModel();
 
             model.setRowCount(0);
@@ -472,7 +464,6 @@ public class SearchDailyTicket extends javax.swing.JFrame {
                     dailyTickets.remove(ticket);
                 }
             }
-            //jTableDaily1.removeAll();
             DefaultTableModel model = (DefaultTableModel) jTableDaily1.getModel();
 
             model.setRowCount(0);
@@ -510,7 +501,6 @@ public class SearchDailyTicket extends javax.swing.JFrame {
                     ticket.setIsTicketVip(isTicketVip);
                 }
             }
-            //jTableDaily1.removeAll();
             DefaultTableModel model = (DefaultTableModel) jTableDaily1.getModel();
             model.setRowCount(0);
 

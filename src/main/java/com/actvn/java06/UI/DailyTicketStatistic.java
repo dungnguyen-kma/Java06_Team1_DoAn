@@ -6,24 +6,17 @@ package com.actvn.java06.UI;
 
 import com.actvn.java06.DailyTicket;
 import com.actvn.java06.FileSave;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import static com.actvn.java06.PoolManage.dailyTickets;
-import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 
 /**
  *

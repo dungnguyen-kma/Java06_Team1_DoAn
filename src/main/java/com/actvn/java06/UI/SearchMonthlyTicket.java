@@ -152,10 +152,9 @@ public class SearchMonthlyTicket extends javax.swing.JFrame {
         });
 
         labelAvata.setIcon(new javax.swing.ImageIcon("D:\\Image\\Anh_mac_dinh.png")); // NOI18N
-        labelAvata.setText("jLabel10");
         labelAvata.setToolTipText("");
 
-        buttonAvata.setText("Hiển thị ảnh khách hàng");
+        buttonAvata.setLabel("Hiển thị ảnh \nkhách hàng");
         buttonAvata.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAvataActionPerformed(evt);
@@ -182,8 +181,8 @@ public class SearchMonthlyTicket extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 854, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelAvata, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buttonAvata))))
+                            .addComponent(buttonAvata)
+                            .addComponent(labelAvata))))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

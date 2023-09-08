@@ -6,13 +6,10 @@ package com.actvn.java06.UI;
 
 import com.actvn.java06.DailyTicket;
 import com.actvn.java06.FileSave;
-import com.actvn.java06.PoolManage;
 import static com.actvn.java06.PoolManage.dailyTickets;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -257,6 +254,8 @@ public class FormDailyTicket extends javax.swing.JFrame {
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
         // TODO add your handling code here:
         dispose();
+        SellDailyTicket daily = new SellDailyTicket();
+        daily.setVisible(true);
     }//GEN-LAST:event_buttonCancelActionPerformed
 
     /**

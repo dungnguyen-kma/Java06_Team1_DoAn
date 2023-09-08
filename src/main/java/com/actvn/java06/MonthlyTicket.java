@@ -23,94 +23,8 @@ public class MonthlyTicket extends Ticket {
     public MonthlyTicket() {
     }
 
-    public MonthlyTicket(String customerName, String customerAddress, LocalDate registereDate, LocalDate expiedDate, double monthlyPrice, String customerAvatar) {
-        this.customerName = customerName;
-        this.customerAddress = customerAddress;
-        this.registereDate = registereDate;
-        this.expiedDate = expiedDate;
-        this.monthlyPrice = monthlyPrice;
-        this.customerAvatar = customerAvatar;
-    }
-
-    public MonthlyTicket(String customerName, String customerAddress, LocalDate registereDate, LocalDate expiedDate, double monthlyPrice, String customerAvatar, String ticketID, int age, String isTicketVip) {
-        super(ticketID, age, isTicketVip);
-        this.customerName = customerName;
-        this.customerAddress = customerAddress;
-        this.registereDate = registereDate;
-        this.expiedDate = expiedDate;
-        this.monthlyPrice = monthlyPrice;
-        this.customerAvatar = customerAvatar;
-    }
-
-    public MonthlyTicket(String customerName, String customerAddress, int age, String isTicketVip) {
-        super(age, isTicketVip);
-        this.customerName = customerName;
-        this.customerAddress = customerAddress;
-    }
-
-    public MonthlyTicket(String customerName, String customerAddress, int customerPhone, int customerAge, LocalDate registereDate, LocalDate expiedDate, double monthlyPrice, String customerAvatar) {
-        this.customerName = customerName;
-        this.customerAddress = customerAddress;
-        this.customerPhone = customerPhone;
-        this.registereDate = registereDate;
-        this.expiedDate = expiedDate;
-        this.monthlyPrice = monthlyPrice;
-        this.customerAvatar = customerAvatar;
-    }
-
-    public MonthlyTicket(String customerName, String customerAddress, int customerPhone, int customerAge, LocalDate registereDate, LocalDate expiedDate, double monthlyPrice, String customerAvatar, String ticketID, int age, String isTicketVip) {
-        super(ticketID, age, isTicketVip);
-        this.customerName = customerName;
-        this.customerAddress = customerAddress;
-        this.customerPhone = customerPhone;
-        this.registereDate = registereDate;
-        this.expiedDate = expiedDate;
-        this.monthlyPrice = monthlyPrice;
-        this.customerAvatar = customerAvatar;
-    }
-
-    public MonthlyTicket(String customerName, String customerAddress, int customerPhone, int customerAge, LocalDate registereDate, LocalDate expiedDate, double monthlyPrice, String customerAvatar, int age, String isTicketVip) {
-        super(age, isTicketVip);
-        this.customerName = customerName;
-        this.customerAddress = customerAddress;
-        this.customerPhone = customerPhone;
-        this.registereDate = registereDate;
-        this.expiedDate = expiedDate;
-        this.monthlyPrice = monthlyPrice;
-        this.customerAvatar = customerAvatar;
-    }
-
-    public MonthlyTicket(String customerName, String customerAddress, int customerPhone, int customerAge, LocalDate registereDate, LocalDate expiedDate) {
-        this.customerName = customerName;
-        this.customerAddress = customerAddress;
-        this.customerPhone = customerPhone;
-        this.registereDate = registereDate;
-        this.expiedDate = expiedDate;
-    }
-
-    public MonthlyTicket(String customerName, String customerAddress, int customerPhone, LocalDate registereDate, LocalDate expiedDate, double monthlyPrice, String customerAvatar) {
-        this.customerName = customerName;
-        this.customerAddress = customerAddress;
-        this.customerPhone = customerPhone;
-        this.registereDate = registereDate;
-        this.expiedDate = expiedDate;
-        this.monthlyPrice = monthlyPrice;
-        this.customerAvatar = customerAvatar;
-    }
-
     public MonthlyTicket(String ticketID, int age, String isTicketVip, String customerName, String customerAddress, int customerPhone, LocalDate registereDate, LocalDate expiedDate, double monthlyPrice, String customerAvatar) {
         super(ticketID, age, isTicketVip);
-        this.customerName = customerName;
-        this.customerAddress = customerAddress;
-        this.customerPhone = customerPhone;
-        this.registereDate = registereDate;
-        this.expiedDate = expiedDate;
-        this.monthlyPrice = monthlyPrice;
-        this.customerAvatar = customerAvatar;
-    }
-
-    public MonthlyTicket(String customerName, String customerAddress, int customerPhone, LocalDate registereDate, LocalDate expiedDate, double monthlyPrice, String customerAvatar, int age, String isTicketVip) {
-        super(age, isTicketVip);
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.customerPhone = customerPhone;
@@ -182,48 +96,6 @@ public class MonthlyTicket extends Ticket {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 19 * hash + Objects.hashCode(this.customerName);
-        hash = 19 * hash + Objects.hashCode(this.customerAddress);
-        hash = 19 * hash + Objects.hashCode(this.registereDate);
-        hash = 19 * hash + Objects.hashCode(this.expiedDate);
-        hash = 19 * hash + (int) (Double.doubleToLongBits(this.monthlyPrice) ^ (Double.doubleToLongBits(this.monthlyPrice) >>> 32));
-        hash = 19 * hash + Objects.hashCode(this.customerAvatar);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final MonthlyTicket other = (MonthlyTicket) obj;
-        if (Double.doubleToLongBits(this.monthlyPrice) != Double.doubleToLongBits(other.monthlyPrice)) {
-            return false;
-        }
-        if (!Objects.equals(this.customerName, other.customerName)) {
-            return false;
-        }
-        if (!Objects.equals(this.customerAddress, other.customerAddress)) {
-            return false;
-        }
-        if (!Objects.equals(this.customerAvatar, other.customerAvatar)) {
-            return false;
-        }
-        if (!Objects.equals(this.registereDate, other.registereDate)) {
-            return false;
-        }
-        return Objects.equals(this.expiedDate, other.expiedDate);
-    }
-
-    @Override
     public String creatTicketID(int index) {
         super.setTicketID(String.format("THANG-" + "%03d", index));
         return super.getTicketID();
@@ -277,18 +149,8 @@ public class MonthlyTicket extends Ticket {
         return getMonthlyPrice();
     }
 
-    public String checkCustomerAvata() {
-        //đọc file và trả về URL
-        return "path";
-    }
-
     public String writeCSV() {
         String str = String.format("%s,%d,%s,%s,%s,%d,%s,%s,%.0f,%s\n", super.getTicketID(), super.getAge(), super.getIsTicketVip(), getCustomerName(), getCustomerAddress(), getCustomerPhone(), getRegistereDate().toString(), getExpiedDate().toString(), getMonthlyPrice(), getCustomerAvatar());
         return str;
     }
-
-    public Object getStartTime() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
 }
