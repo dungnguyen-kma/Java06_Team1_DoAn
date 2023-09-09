@@ -846,7 +846,7 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
         } else if (jInputPhone.getText().equals("Số điện thoại*")) {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập số điện thoại!");
             return false;
-        } else if (!jInputPhone.getText().matches("^\\d{10}$")) {
+        } else if (!jInputPhone.getText().matches("^\\d{10}$") || Double.parseDouble(jInputPhone.getText())>=Integer.MAX_VALUE) {
             JOptionPane.showMessageDialog(null, "Số điện thoại không đúng!");
             return false;
         } else if (jInputAge.getText().equals("Tuổi*")) {
