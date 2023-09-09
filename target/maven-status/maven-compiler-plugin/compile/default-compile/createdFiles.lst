@@ -16,7 +16,6 @@ com\actvn\java06\UI\SellMonthlyTicket$20.class
 com\actvn\java06\DailyTicket.class
 com\actvn\java06\UI\SearchMonthlyTicket$5.class
 com\actvn\java06\UI\SearchDailyTicket$14.class
-com\actvn\java06\PoolUsingManage.class
 com\actvn\java06\UI\MonthlyTicketStatistic$3.class
 com\actvn\java06\UI\FormDailyTicket$2.class
 com\actvn\java06\UI\SearchMonthlyTicket$4.class
@@ -45,9 +44,9 @@ com\actvn\java06\UI\TicketExtension$4.class
 com\actvn\java06\UI\SearchMonthlyTicket$7.class
 com\actvn\java06\UI\TicketStatistic$2.class
 com\actvn\java06\UI\SearchMonthlyTicket$1.class
-com\actvn\java06\DayComparatorInDaily.class
 com\actvn\java06\UI\TicketExtension$5.class
 com\actvn\java06\Ticket.class
 com\actvn\java06\UI\DailyTicketStatistic$6.class
 com\actvn\java06\UI\TicketStatistic$3.class
 com\actvn\java06\UI\SellMonthlyTicket$17.class
+com\actvn\java06\UI\MonthlyTicketStatistic$5.class

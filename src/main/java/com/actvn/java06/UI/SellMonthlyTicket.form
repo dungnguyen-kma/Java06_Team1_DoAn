@@ -566,6 +566,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="labelAvata">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="2" name="D:\Image\Anh_mac_dinh.png"/>
+        </Property>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>

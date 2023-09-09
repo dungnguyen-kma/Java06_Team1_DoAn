@@ -482,6 +482,7 @@ public class SellMonthlyTicket extends javax.swing.JFrame {
             }
         });
 
+        labelAvata.setIcon(new javax.swing.ImageIcon("D:\\Image\\Anh_mac_dinh.png")); // NOI18N
         labelAvata.setToolTipText("");
 
         chooseAvata.setText("Chọn ảnh");

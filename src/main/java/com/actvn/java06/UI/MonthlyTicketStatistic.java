@@ -91,7 +91,7 @@ public class MonthlyTicketStatistic extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã vé", "Họ tên kháh hàng", "Địa chỉ", "Số điện thoại", "Tuổi", "Loại vé", "Ngày đăng ký", "Ngày hết hạn", "Giá tiền"
+                "Mã vé", "Họ tên khách hàng", "Địa chỉ", "Số điện thoại", "Tuổi", "Loại vé", "Ngày đăng ký", "Ngày hết hạn", "Giá tiền"
             }
         ) {
             Class[] types = new Class [] {
@@ -131,15 +131,13 @@ public class MonthlyTicketStatistic extends javax.swing.JFrame {
                 .addComponent(txtMonth)
                 .addGap(30, 30, 30)
                 .addComponent(txtTotalMonthlyPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(221, 221, 221)
                 .addComponent(jLabel3)
-                .addContainerGap(509, Short.MAX_VALUE))
+                .addContainerGap(457, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 856, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -192,11 +190,11 @@ public class MonthlyTicketStatistic extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(219, 219, 219)
                 .addComponent(jExitButton)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jExportFile)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(196, 196, 196))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
