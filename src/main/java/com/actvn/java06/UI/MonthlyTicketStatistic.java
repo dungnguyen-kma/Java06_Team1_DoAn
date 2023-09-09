@@ -166,7 +166,7 @@ public class MonthlyTicketStatistic extends javax.swing.JFrame {
         );
 
         jExitButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jExitButton.setText("Quay lại");
+        jExitButton.setText("Thoát");
         jExitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jExitButtonActionPerformed(evt);
@@ -190,11 +190,11 @@ public class MonthlyTicketStatistic extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(219, 219, 219)
+                .addGap(39, 39, 39)
                 .addComponent(jExitButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jExportFile)
-                .addGap(196, 196, 196))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

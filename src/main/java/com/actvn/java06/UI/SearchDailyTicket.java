@@ -218,6 +218,7 @@ public class SearchDailyTicket extends javax.swing.JFrame {
         });
         jScrollPane6.setViewportView(jTableDaily1);
 
+        buttonSave.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         buttonSave.setText("Lưu");
         buttonSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,6 +226,7 @@ public class SearchDailyTicket extends javax.swing.JFrame {
             }
         });
 
+        buttonExit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         buttonExit.setText("Thoát");
         buttonExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -256,11 +258,11 @@ public class SearchDailyTicket extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(240, 240, 240)
-                                .addComponent(buttonSave)
-                                .addGap(228, 228, 228)
-                                .addComponent(buttonExit)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(55, 55, 55)
+                                .addComponent(buttonExit)
+                                .addGap(18, 18, 18)
+                                .addComponent(buttonSave)))
+                        .addGap(0, 493, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -272,17 +274,17 @@ public class SearchDailyTicket extends javax.swing.JFrame {
                     .addComponent(txtTimeSlotID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84)
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonSave)
-                    .addComponent(buttonExit))
-                .addGap(16, 16, 16))
+                    .addComponent(buttonExit)
+                    .addComponent(buttonSave))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
